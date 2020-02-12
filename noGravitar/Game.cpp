@@ -21,16 +21,19 @@ void Game::run()
 {
     sf::Clock clock;
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
-    while(mainWindow.isOpen() && gameState == Settings::gameStates::Play)
+    while(mainWindow.isOpen())
     {
         processEvents();
+        if(gameState == Settings::gameStates::Play)
+        {
+            if(!solarSystem->update(TimePerFrame))
+                youLost();
+        }
         timeSinceLastUpdate += clock.restart();
         while (timeSinceLastUpdate > TimePerFrame)
         {
             timeSinceLastUpdate -= TimePerFrame;
             processEvents();
-            if(!solarSystem->update(TimePerFrame))
-                youLost();
         }
         render();
     }
@@ -43,20 +46,30 @@ void Game::processEvents()
     {
         switch (event.type)
         {
-            case sf::Event::KeyPressed:
-                solarSystem->handleInputEvent(event.key.code, true);
+            if(gameState == Settings::gameStates::Play)
+            {
+                case sf::Event::KeyPressed:
+                    solarSystem->handleInputEvent(event.key.code, true);
                 break;
-            case sf::Event::KeyReleased:
-                solarSystem->handleInputEvent(event.key.code, false);
+                case sf::Event::KeyReleased:
+                    solarSystem->handleInputEvent(event.key.code, false);
                 break;
-            case sf::Event::Closed:
-                mainWindow.close();
+                case sf::Event::Closed:
+                    mainWindow.close();
                 break;
+                
             default:
                 break;
+            }
+            else if (gameState == Settings::gameStates::Lost)
+            {
+                if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N)    //start a new match if you lost and you hit (or released) 'n'
+                {
+                    solarSystem = new SolarSystem(*textures);
+                    gameState = Settings::gameStates::Play;
+                }
+            }
         }
-        if(gameState == Settings::gameStates::Lost && event.key.code == sf::Keyboard::N)    //start a new match if you lost and you hit (or released) 'n'
-            gameState = Settings::gameStates::Play;
     }
 }
 
@@ -77,7 +90,9 @@ void Game::render()
             mainView.setCenter((Settings::MAP_X - Settings::VIEW_X/2), mainView.getCenter().y);
         if(mainView.getCenter().y > (Settings::MAP_Y - Settings::VIEW_Y/2))
             mainView.setCenter(mainView.getCenter().x, (Settings::MAP_Y - Settings::VIEW_Y/2));
-    } else {
+    }
+    else if (gameState == Settings::gameStates::Lost)
+    {
         //Show something like "you lost!"
     }
 
@@ -89,5 +104,5 @@ void Game::youLost()
 {
     gameState = Settings::gameStates::Lost;
     delete solarSystem;
-    solarSystem = new SolarSystem(*textures);
+    solarSystem = nullptr;
 }

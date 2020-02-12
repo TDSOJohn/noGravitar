@@ -18,6 +18,7 @@ SolarSystem::SolarSystem(const TextureHolder& textures) : ourHero(textures), ssB
 
 SolarSystem::~SolarSystem()
 {
+//    ourHero.~Spaceship();
 }
 
 void SolarSystem::handleInputEvent(sf::Keyboard::Key key, bool isPressed)
@@ -76,10 +77,7 @@ bool SolarSystem::update(sf::Time deltaTime)            //1 if still alive, 0 if
         checkCollisions();
     } else {
         if(!planetArray[solarSystemStatus].updatePlanet(ourHero, deltaTime, movement, isShooting, isGrabbing))
-        {
-            ourHero.~Spaceship();           //ourHero is dead! Long live ourHero!
             return 0;
-        }
     }
     return 1;
 }

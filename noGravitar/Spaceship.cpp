@@ -20,9 +20,6 @@ Spaceship::Spaceship(const TextureHolder& textures, sf::Vector2f position) : spa
 
 Spaceship::~Spaceship()
 {
-/*    lifeBar.~RectangleShape();
-    hookSprite.~Sprite();
-    spaceshipSprite.~Sprite();*/
 }
 
 void Spaceship::move(sf::Vector2f movement, bool shotInput, bool grabInput) //moving the hook if grabInput =1
