@@ -8,9 +8,11 @@
 
 #include "Game.hpp"
 
-Game::Game(const TextureHolder& textures) : solarSystem(textures), mainWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar"),
+Game::Game(const TextureHolder& txtrs) : mainWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar"),
 mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play)
 {
+    textures = &txtrs;
+    solarSystem = new SolarSystem(*textures);
     mainWindow.setVerticalSyncEnabled(true);
     TimePerFrame = sf::seconds(1.f / 60.f);
 }
@@ -27,7 +29,7 @@ void Game::run()
         {
             timeSinceLastUpdate -= TimePerFrame;
             processEvents();
-            if(!solarSystem.update(TimePerFrame))
+            if(!solarSystem->update(TimePerFrame))
                 youLost();
         }
         render();
@@ -42,10 +44,10 @@ void Game::processEvents()
         switch (event.type)
         {
             case sf::Event::KeyPressed:
-                solarSystem.handleInputEvent(event.key.code, true);
+                solarSystem->handleInputEvent(event.key.code, true);
                 break;
             case sf::Event::KeyReleased:
-                solarSystem.handleInputEvent(event.key.code, false);
+                solarSystem->handleInputEvent(event.key.code, false);
                 break;
             case sf::Event::Closed:
                 mainWindow.close();
@@ -53,6 +55,8 @@ void Game::processEvents()
             default:
                 break;
         }
+        if(gameState == Settings::gameStates::Lost && event.key.code == sf::Keyboard::N)    //start a new match if you lost and you hit (or released) 'n'
+            gameState = Settings::gameStates::Play;
     }
 }
 
@@ -62,9 +66,9 @@ void Game::render()
     
     if(gameState == Settings::gameStates::Play)
     {
-        mainWindow.draw(solarSystem);
+        mainWindow.draw(*solarSystem);
     
-        mainView.setCenter(solarSystem.getSpaceshipPosition());
+        mainView.setCenter(solarSystem->getSpaceshipPosition());
         if(mainView.getCenter().x < Settings::VIEW_X/2)
             mainView.setCenter(Settings::VIEW_X/2, mainView.getCenter().y);
         if(mainView.getCenter().y < Settings::VIEW_Y/2)
@@ -73,6 +77,8 @@ void Game::render()
             mainView.setCenter((Settings::MAP_X - Settings::VIEW_X/2), mainView.getCenter().y);
         if(mainView.getCenter().y > (Settings::MAP_Y - Settings::VIEW_Y/2))
             mainView.setCenter(mainView.getCenter().x, (Settings::MAP_Y - Settings::VIEW_Y/2));
+    } else {
+        //Show something like "you lost!"
     }
 
     mainWindow.setView(mainView);
@@ -82,4 +88,6 @@ void Game::render()
 void Game::youLost()
 {
     gameState = Settings::gameStates::Lost;
+    delete solarSystem;
+    solarSystem = new SolarSystem(*textures);
 }

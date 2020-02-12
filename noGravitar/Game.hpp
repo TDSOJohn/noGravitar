@@ -18,7 +18,7 @@
 class Game
 {
 public:
-                        Game(const TextureHolder&);
+                        Game(const TextureHolder& txtrs);
     void                run();
     
 private:
@@ -26,13 +26,13 @@ private:
     void                render();
     void                youLost();
     
+private:
 Settings::gameStates    gameState;
     
-private:
     sf::RenderWindow    mainWindow;
     sf::View            mainView;
-    TextureHolder       textures;
-    SolarSystem         solarSystem;
+const TextureHolder*    textures;
+    SolarSystem*        solarSystem;
     sf::Time            TimePerFrame;
 };
 #endif /* Game_hpp */
