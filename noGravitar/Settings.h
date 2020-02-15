@@ -34,7 +34,7 @@ namespace Settings
     
     const unsigned short    ICONS_DIM = 64;
     
-    const unsigned short    PLANETS = 8;
+    const unsigned short    PLANETS = 3;
     
     const unsigned short    GROUND_POINTS = 11;
     const unsigned short    FUEL_POINTS = 4;

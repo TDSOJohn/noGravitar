@@ -10,9 +10,17 @@
 
 SolarSystem::SolarSystem(const TextureHolder& textures) : ourHero(textures), ssBackgroundSprite(textures.get(Textures::ssBackground)), solarSystemStatus(-1), movingUp(false), movingDown(false), movingLeft(false), movingRight(false), isGrabbing(false), isShooting(false)
 {
-    for(int i=0; i<Settings::PLANETS; i++)
+    int tempX =0;
+    int tempY =0;
+    int i =0;
+    
+    while(planetArray.size()<Settings::PLANETS)
     {
-        planetArray.push_back(planetCell { (Planet(textures, sf::Vector2f(Settings::MAP_X/(Settings::PLANETS+1)*(i+1), rand()%(Settings::MAP_Y - Settings::ICONS_DIM)+Settings::ICONS_DIM))), false });
+        tempX = Settings::MAP_X/(Settings::PLANETS+1)*(i+1);
+        tempY = rand()%(Settings::MAP_Y - Settings::ICONS_DIM) + Settings::ICONS_DIM;
+        if(tempY != Settings::MAP_Y/3)
+            i++;
+            planetArray.push_back(planetCell { (Planet(textures, sf::Vector2f(Settings::MAP_X/(Settings::PLANETS+1)*i, tempY))), false });
     }
 }
 

@@ -9,7 +9,7 @@
 #include "Game.hpp"
 
 Game::Game(const TextureHolder& txtrs) : mainWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar"),
-mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play), youLostMessage(txtrs.get(Textures::youLost))
+mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play), youWonMessage(txtrs.get(Textures::youWon)), youLostMessage(txtrs.get(Textures::youLost))
 {
     textures = &txtrs;
     solarSystem = new SolarSystem(*textures);
@@ -46,6 +46,8 @@ void Game::processEvents()
     sf::Event event;
     while (mainWindow.pollEvent(event))
     {
+        if(event.type == sf::Event::Closed)
+            mainWindow.close();
         switch(gameState)
         {
             case Settings::gameStates::Play:
@@ -53,8 +55,6 @@ void Game::processEvents()
                     solarSystem->handleInputEvent(event.key.code, true);
                 if(event.type == sf::Event::KeyReleased)
                     solarSystem->handleInputEvent(event.key.code, false);
-                if(event.type == sf::Event::Closed)
-                    mainWindow.close();
                 break;
             case Settings::gameStates::Pause:
                 break;
@@ -86,6 +86,11 @@ void Game::render()
             mainView.setCenter((Settings::MAP_X - Settings::VIEW_X/2), mainView.getCenter().y);
         if(mainView.getCenter().y > (Settings::MAP_Y - Settings::VIEW_Y/2))
             mainView.setCenter(mainView.getCenter().x, (Settings::MAP_Y - Settings::VIEW_Y/2));
+    }
+    else if(gameState == Settings::gameStates::Won)
+    {
+        mainView.setCenter(Settings::VIEW_X/2, Settings::VIEW_Y/2);
+        mainWindow.draw(youWonMessage);
     }
     else if (gameState == Settings::gameStates::Lost)
     {

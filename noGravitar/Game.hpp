@@ -36,6 +36,7 @@ const TextureHolder*    textures;
     SolarSystem*        solarSystem;
     sf::Time            TimePerFrame;
     
+    sf::Sprite          youWonMessage;
     sf::Sprite          youLostMessage;
 };
 #endif /* Game_hpp */
