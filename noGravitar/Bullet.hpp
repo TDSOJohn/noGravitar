@@ -9,9 +9,6 @@
 #ifndef Bullet_hpp
 #define Bullet_hpp
 
-#include <SFML/graphics.hpp>
-
-#include "ResourcePath.hpp"
 #include "Settings.h"
 
 class Bullet : public sf::Drawable

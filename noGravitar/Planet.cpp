@@ -8,7 +8,7 @@
 
 #include "Planet.hpp"
 
-Planet::Planet(const TextureHolder& textures, sf::Vector2f planetPosition) : planetSprite(textures.get(Textures::Planet)), planetBackground(textures.get(Textures::pBackground)), bulletTexture(textures.get(Textures::Bullet)), spaceshipBulletTime(sf::Time::Zero), enemyBulletTime(sf::Time::Zero), planetStatus(false)
+Planet::Planet(int* scr, const TextureHolder& textures, sf::Vector2f planetPosition) : planetSprite(textures.get(Textures::Planet)), planetBackground(textures.get(Textures::pBackground)), bulletTexture(textures.get(Textures::Bullet)), spaceshipBulletTime(sf::Time::Zero), enemyBulletTime(sf::Time::Zero), planetStatus(false), score(scr)
 {
     planetSprite.setOrigin(Settings::ICONS_DIM, Settings::ICONS_DIM);
     planetSprite.setPosition(planetPosition);
@@ -102,6 +102,7 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
             if(spaceship.getHookBounds().intersects(fuelArray[i].getBounds()))
             {
                 spaceship.isHit(fuelArray[i].getFuel() * (-1));
+                *score += fuelArray[i].getFuel();
                 fuelArray.erase(fuelArray.begin() + i);
             }
         }
@@ -133,7 +134,11 @@ bool Planet::checkCollisions(Spaceship& spaceship)
             if(enemyArray[i] == spaceshipBulletArray[j])
             {
                 if(!enemyArray[i].isHit(spaceshipBulletArray[i].getDamage()))
+                {
+                    *score += 100;
                     enemyArray.erase(enemyArray.begin() + i);
+                }
+                *score += 10;
                 spaceshipBulletArray.erase(spaceshipBulletArray.begin() + j);
             }
         }

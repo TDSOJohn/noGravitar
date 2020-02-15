@@ -9,10 +9,7 @@
 #ifndef Spaceship_hpp
 #define Spaceship_hpp
 
-#include <SFML/graphics.hpp>
-
 #include "Settings.h"
-#include "TextureHolder.hpp"
 #include "Bullet.hpp"
 
 class Spaceship : public sf::Drawable

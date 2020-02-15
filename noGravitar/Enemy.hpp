@@ -9,10 +9,7 @@
 #ifndef Enemy_hpp
 #define Enemy_hpp
 
-#include <SFML/graphics.hpp>
-
 #include "Settings.h"
-#include "TextureHolder.hpp"
 #include "Bullet.hpp"
 
 class Enemy : public sf::Drawable
@@ -20,7 +17,7 @@ class Enemy : public sf::Drawable
     
     
 public:
-    Enemy(const TextureHolder& = TextureHolder(), sf::Vector2f = sf::Vector2f(0.f, 0.f), float =0);
+    Enemy(const TextureHolder& = TextureHolder(), sf::Vector2f = sf::Vector2f(), float =0);
     ~Enemy();
 
     bool                operator==(const Bullet&);                  //Operator == checks if enemy is hitting the bullet

@@ -11,7 +11,6 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "ResourcePath.hpp"
 #include "Settings.h"
 #include "SolarSystem.hpp"
 
@@ -29,12 +28,15 @@ private:
     
 private:
 Settings::gameStates    gameState;
+    int                 score;
     
     sf::RenderWindow    mainWindow;             //Window & general game loop stuff
     sf::View            mainView;
 const TextureHolder*    textures;
     SolarSystem*        solarSystem;
     sf::Time            TimePerFrame;
+    sf::Font            gameFont;
+    sf::Text            scoreText;
     
     sf::Sprite          youWonMessage;
     sf::Sprite          youLostMessage;

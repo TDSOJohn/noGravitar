@@ -9,11 +9,7 @@
 #ifndef Planet_hpp
 #define Planet_hpp
 
-
-#include <SFML/graphics.hpp>
-
 #include "Settings.h"
-#include "TextureHolder.hpp"
 #include "Spaceship.hpp"
 #include "Enemy.hpp"
 #include "Fuel.hpp"
@@ -22,7 +18,7 @@
 class Planet : public sf::Drawable
 {
 public:
-    Planet(const TextureHolder& = TextureHolder(), sf::Vector2f = sf::Vector2f());
+    Planet(int*, const TextureHolder& = TextureHolder(), sf::Vector2f = sf::Vector2f());
     void                changeStatus(bool pStatus);
     void                fireBullet(const sf::Vector2f&);
 
@@ -44,6 +40,7 @@ private:
     std::vector<Bullet> spaceshipBulletArray;
     std::vector<Bullet> enemyBulletArray;
     
+    int*                score;
     bool                planetStatus;       //0 for Solar System view, 1 for Planet view
     
     bool                checkCollisions(Spaceship&);

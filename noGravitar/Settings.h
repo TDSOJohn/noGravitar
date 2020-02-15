@@ -11,7 +11,9 @@
 
 #include <iostream>
 #include <cmath>
+#include <SFML/graphics.hpp>
 
+#include "ResourcePath.hpp"
 #include "TextureHolder.hpp"
 
 #define PI 3.14159265
