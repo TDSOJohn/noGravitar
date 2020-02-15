@@ -23,7 +23,8 @@ SolarSystem::~SolarSystem()
 
 void SolarSystem::handleInputEvent(sf::Keyboard::Key key, bool isPressed)
 {
-    switch (key) {
+    switch (key)
+    {
         case sf::Keyboard::W:
             movingUp = isPressed;
             break;

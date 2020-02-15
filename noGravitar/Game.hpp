@@ -24,6 +24,7 @@ public:
 private:
     void                processEvents();
     void                render();
+    void                youWon();
     void                youLost();
     
 private:

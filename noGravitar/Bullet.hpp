@@ -27,7 +27,6 @@ private:
     int                 damage;
     float               rotation;
     sf::Vector2f        directionVector;
-    sf::Texture         bulletTexture;
     sf::Sprite          bulletSprite;
     
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const

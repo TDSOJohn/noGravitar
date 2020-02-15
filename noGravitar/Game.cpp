@@ -23,6 +23,7 @@ void Game::run()
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     while(mainWindow.isOpen())
     {
+        std::cout << gameState << std::endl;
         processEvents();
         if(gameState == Settings::gameStates::Play)
         {
@@ -44,31 +45,25 @@ void Game::processEvents()
     sf::Event event;
     while (mainWindow.pollEvent(event))
     {
-        switch (event.type)
+        switch(gameState)
         {
-            if(gameState == Settings::gameStates::Play)
-            {
-                case sf::Event::KeyPressed:
+            case Settings::gameStates::Play:
+                if(event.type == sf::Event::KeyPressed)
                     solarSystem->handleInputEvent(event.key.code, true);
-                break;
-                case sf::Event::KeyReleased:
+                if(event.type == sf::Event::KeyReleased)
                     solarSystem->handleInputEvent(event.key.code, false);
-                break;
-                case sf::Event::Closed:
+                if(event.type == sf::Event::Closed)
                     mainWindow.close();
                 break;
-                
-            default:
+            case Settings::gameStates::Pause:
                 break;
-            }
-            else if (gameState == Settings::gameStates::Lost)
-            {
+            default:
                 if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N)    //start a new match if you lost and you hit (or released) 'n'
                 {
                     solarSystem = new SolarSystem(*textures);
                     gameState = Settings::gameStates::Play;
                 }
-            }
+                break;
         }
     }
 }
