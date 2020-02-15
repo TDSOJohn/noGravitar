@@ -37,12 +37,12 @@ Planet::Planet(const TextureHolder& textures, sf::Vector2f planetPosition) : pla
     }
 }
 
-int Planet::updatePlanet(Spaceship& spaceship, const sf::Time& deltaTime, sf::Vector2f& spaceshipMovement, bool isShooting, bool isGrabbing)
+Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& deltaTime, sf::Vector2f& spaceshipMovement, bool isShooting, bool isGrabbing)
 {
     bool collisions = checkCollisions(spaceship);
     
     if(!spaceship.getLife())
-        return 0;
+        return Settings::gameStates::Lost;
     
     if(!isGrabbing && !collisions)
         spaceship.move(spaceshipMovement * deltaTime.asSeconds(), isShooting, isGrabbing);
@@ -92,7 +92,7 @@ int Planet::updatePlanet(Spaceship& spaceship, const sf::Time& deltaTime, sf::Ve
     if(enemyArray.size() == 0)                                            //If all enemy are destroyed, planet is complete
     {
         completed();
-        return 2;
+        return Settings::gameStates::Won;
     }
 
     if(spaceship.isGrabbing())                                            //Check hook-fuel intersection
@@ -106,7 +106,7 @@ int Planet::updatePlanet(Spaceship& spaceship, const sf::Time& deltaTime, sf::Ve
             }
         }
     }
-    return 1;
+    return Settings::gameStates::Play;
 }
 
 void Planet::changeStatus(bool pStatus)

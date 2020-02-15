@@ -27,12 +27,7 @@ void Game::run()
         
         if(gameState == Settings::gameStates::Play)
         {
-            int temp = solarSystem->update(TimePerFrame);
-//            auto gameState = static_cast<Settings::gameStates>(temp);
-            if(!temp)
-                gameState = Settings::gameStates::Lost;
-            if(temp == 2)
-                gameState = Settings::gameStates::Won;
+            gameState = solarSystem->update(TimePerFrame);
             if(gameState == Settings::gameStates::Lost)
                 youLost();
         }

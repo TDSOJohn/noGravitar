@@ -60,7 +60,7 @@ void SolarSystem::handleInputEvent(sf::Keyboard::Key key, bool isPressed)
     }
 }
 
-int SolarSystem::update(sf::Time deltaTime)
+Settings::gameStates SolarSystem::update(sf::Time deltaTime)
 {
     sf::Vector2f movement(0.f, 0.f);
     if (movingUp)
@@ -72,23 +72,24 @@ int SolarSystem::update(sf::Time deltaTime)
     if (movingRight)
         movement.x += Settings::SPACESHIP_SPEED;
     
-    if(solarSystemStatus == -1)
+    if(solarSystemStatus == -1)             //If in solarSystem View, move spaceship and check collisions with planets
     {
         ourHero.move(movement * deltaTime.asSeconds(), false, false);
         checkCollisions();
     } else {
-        int temp = planetArray[solarSystemStatus].planet.updatePlanet(ourHero, deltaTime, movement, isShooting, isGrabbing);
+        Settings::gameStates temp = planetArray[solarSystemStatus].planet.updatePlanet(ourHero, deltaTime, movement, isShooting, isGrabbing);
         int temp2 = 0;
-        if(temp == 2)
+        if(temp == Settings::gameStates::Won)
+        {
             planetArray[solarSystemStatus].status = true;
-        else
+            for(int i=0; i<Settings::PLANETS; i++)
+                temp2 += planetArray[i].status;
+            if(temp2 == Settings::PLANETS)
+                return Settings::gameStates::Won;
+        } else
             return temp;
-        for(int i=0; i<Settings::PLANETS; i++)
-            temp2 += planetArray[i].status;
-        if(temp2 == Settings::PLANETS)
-            return 2;
     }
-    return 1;
+    return Settings::gameStates::Play;
 }
 
 bool SolarSystem::checkCollisions()
