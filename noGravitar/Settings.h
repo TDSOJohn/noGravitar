@@ -24,7 +24,7 @@
 
 namespace Settings
 {
-    enum                    gameStates { Play, Pause, Lost, Won };
+    enum                    gameStates { Lost, Play, Won, Pause };
     
     const unsigned int      MAP_X = 1920;
     const unsigned int      MAP_Y = 1200;

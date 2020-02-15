@@ -37,7 +37,7 @@ Planet::Planet(const TextureHolder& textures, sf::Vector2f planetPosition) : pla
     }
 }
 
-bool Planet::updatePlanet(Spaceship& spaceship, const sf::Time& deltaTime, sf::Vector2f& spaceshipMovement, bool isShooting, bool isGrabbing)
+int Planet::updatePlanet(Spaceship& spaceship, const sf::Time& deltaTime, sf::Vector2f& spaceshipMovement, bool isShooting, bool isGrabbing)
 {
     bool collisions = checkCollisions(spaceship);
     
@@ -92,6 +92,7 @@ bool Planet::updatePlanet(Spaceship& spaceship, const sf::Time& deltaTime, sf::V
     if(enemyArray.size() == 0)                                            //If all enemy are destroyed, planet is complete
     {
         completed();
+        return 2;
     }
 
     if(spaceship.isGrabbing())                                            //Check hook-fuel intersection
@@ -141,8 +142,7 @@ bool Planet::checkCollisions(Spaceship& spaceship)
     {
         if(spaceship == enemyBulletArray[i])
         {
-            if(!spaceship.isHit(enemyBulletArray[i].getDamage()))
-                ;                                                //!!! - se la vita dell'astronave finisce
+            spaceship.isHit(enemyBulletArray[i].getDamage());
             enemyBulletArray.erase(enemyBulletArray.begin() + i);
         }
     }

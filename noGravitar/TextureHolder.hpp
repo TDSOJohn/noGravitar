@@ -15,7 +15,7 @@
 
 namespace Textures
 {
-    enum ID { ssBackground, pBackground, Planet, Spaceship, Hook, Fuel, Enemy, Bullet };
+    enum ID { ssBackground, pBackground, Planet, Spaceship, Hook, Fuel, Enemy, Bullet, youLost };
 }
 
 class TextureHolder

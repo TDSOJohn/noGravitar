@@ -21,6 +21,9 @@ int main()
 {
     std::srand(std::time(0));
     TextureHolder textures;
+    
+    textures.load(Textures::youLost, resourcePath() + "youLost.png");
+    
     textures.load(Textures::ssBackground, resourcePath() + "ssBackground.png");
     textures.load(Textures::pBackground, resourcePath() + "pBackground.png");
     textures.load(Textures::Planet, resourcePath() + "planet.png");

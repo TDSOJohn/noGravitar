@@ -12,7 +12,7 @@ SolarSystem::SolarSystem(const TextureHolder& textures) : ourHero(textures), ssB
 {
     for(int i=0; i<Settings::PLANETS; i++)
     {
-        planetArray.push_back(Planet(textures, sf::Vector2f(Settings::MAP_X/(Settings::PLANETS+1)*(i+1), rand()%(Settings::MAP_Y - Settings::ICONS_DIM)+Settings::ICONS_DIM)));
+        planetArray.push_back(planetCell { (Planet(textures, sf::Vector2f(Settings::MAP_X/(Settings::PLANETS+1)*(i+1), rand()%(Settings::MAP_Y - Settings::ICONS_DIM)+Settings::ICONS_DIM))), false });
     }
 }
 
@@ -50,7 +50,7 @@ void SolarSystem::handleInputEvent(sf::Keyboard::Key key, bool isPressed)
                 isShooting = false;
             break;
         case sf::Keyboard::Escape:
-            planetArray[solarSystemStatus].changeStatus(false);
+            planetArray[solarSystemStatus].planet.changeStatus(false);
             solarSystemStatus = -1;
             ourHero.move(sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
             break;
@@ -60,7 +60,7 @@ void SolarSystem::handleInputEvent(sf::Keyboard::Key key, bool isPressed)
     }
 }
 
-bool SolarSystem::update(sf::Time deltaTime)            //1 if still alive, 0 if ourHero is DE4D
+int SolarSystem::update(sf::Time deltaTime)
 {
     sf::Vector2f movement(0.f, 0.f);
     if (movingUp)
@@ -77,8 +77,16 @@ bool SolarSystem::update(sf::Time deltaTime)            //1 if still alive, 0 if
         ourHero.move(movement * deltaTime.asSeconds(), false, false);
         checkCollisions();
     } else {
-        if(!planetArray[solarSystemStatus].updatePlanet(ourHero, deltaTime, movement, isShooting, isGrabbing))
-            return 0;
+        int temp = planetArray[solarSystemStatus].planet.updatePlanet(ourHero, deltaTime, movement, isShooting, isGrabbing);
+        int temp2 = 0;
+        if(temp == 2)
+            planetArray[solarSystemStatus].status = true;
+        else
+            return temp;
+        for(int i=0; i<Settings::PLANETS; i++)
+            temp2 += planetArray[i].status;
+        if(temp2 == Settings::PLANETS)
+            return 2;
     }
     return 1;
 }
@@ -89,11 +97,11 @@ bool SolarSystem::checkCollisions()
     sf::FloatRect ourHeroBounds = ourHero.getBounds();
     for(int i=0; i<planetArray.size(); i++)
     {
-        hit = ourHeroBounds.intersects(planetArray[i].getBounds());
+        hit = ourHeroBounds.intersects(planetArray[i].planet.getBounds());
         if(hit)
         {
             ourHero.move(sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
-            planetArray[i].changeStatus(hit);
+            planetArray[i].planet.changeStatus(hit);
             solarSystemStatus = i;
         }
     }

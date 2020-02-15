@@ -9,7 +9,7 @@
 #include "Game.hpp"
 
 Game::Game(const TextureHolder& txtrs) : mainWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar"),
-mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play)
+mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play), youLostMessage(txtrs.get(Textures::youLost))
 {
     textures = &txtrs;
     solarSystem = new SolarSystem(*textures);
@@ -23,11 +23,17 @@ void Game::run()
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     while(mainWindow.isOpen())
     {
-        std::cout << gameState << std::endl;
         processEvents();
+        
         if(gameState == Settings::gameStates::Play)
         {
-            if(!solarSystem->update(TimePerFrame))
+            int temp = solarSystem->update(TimePerFrame);
+//            auto gameState = static_cast<Settings::gameStates>(temp);
+            if(!temp)
+                gameState = Settings::gameStates::Lost;
+            if(temp == 2)
+                gameState = Settings::gameStates::Won;
+            if(gameState == Settings::gameStates::Lost)
                 youLost();
         }
         timeSinceLastUpdate += clock.restart();
@@ -57,7 +63,7 @@ void Game::processEvents()
                 break;
             case Settings::gameStates::Pause:
                 break;
-            default:
+            default:                        //Cases Lost e Won
                 if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N)    //start a new match if you lost and you hit (or released) 'n'
                 {
                     solarSystem = new SolarSystem(*textures);
@@ -88,16 +94,26 @@ void Game::render()
     }
     else if (gameState == Settings::gameStates::Lost)
     {
-        //Show something like "you lost!"
+        mainView.setCenter(Settings::VIEW_X/2, Settings::VIEW_Y/2);
+        mainWindow.draw(youLostMessage);
     }
 
     mainWindow.setView(mainView);
     mainWindow.display();
 }
 
+void Game::youWon()
+{
+    std::cout << "you have won!" << std::endl;
+    std::cout << gameState << std::endl;
+    delete solarSystem;
+    solarSystem = nullptr;
+}
+
 void Game::youLost()
 {
-    gameState = Settings::gameStates::Lost;
+    std::cout << "you have lost!" << std::endl;
+    std::cout << gameState << std::endl;
     delete solarSystem;
     solarSystem = nullptr;
 }

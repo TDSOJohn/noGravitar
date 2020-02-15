@@ -30,10 +30,12 @@ private:
 private:
 Settings::gameStates    gameState;
     
-    sf::RenderWindow    mainWindow;
+    sf::RenderWindow    mainWindow;             //Window & general game loop stuff
     sf::View            mainView;
 const TextureHolder*    textures;
     SolarSystem*        solarSystem;
     sf::Time            TimePerFrame;
+    
+    sf::Sprite          youLostMessage;
 };
 #endif /* Game_hpp */

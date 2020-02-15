@@ -17,13 +17,19 @@
 #include "Enemy.hpp"
 #include "Bullet.hpp"
 
+struct planetCell
+{
+    Planet planet;
+    bool status;                //1 for completed, 0 otherwise
+};
+
 class SolarSystem: public sf::Drawable
 {
 public:
     SolarSystem(const TextureHolder& = TextureHolder());
     ~SolarSystem();
     void                handleInputEvent(sf::Keyboard::Key key, bool isMoving);
-    bool                update(sf::Time deltaTime);
+    int                 update(sf::Time deltaTime);         //Returns 0 if spaceship dead, 1 if everything ok, 2 if planet complete
     sf::Vector2f        getSpaceshipPosition() { return(ourHero.getPosition()); }
     
 private:
@@ -31,7 +37,7 @@ private:
     
     sf::Sprite          ssBackgroundSprite;
     Spaceship           ourHero;
-    std::vector<Planet> planetArray;
+    std::vector<planetCell> planetArray;
     
     bool                movingUp,
                         movingDown,
@@ -40,7 +46,7 @@ private:
                         isGrabbing,
                         isShooting;
     
-    short               solarSystemStatus;              //-1 for Solar System, i for planet[i]
+    short               solarSystemStatus;                  //-1 for Solar System, i for planet[i]
 
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
@@ -48,9 +54,9 @@ private:
         {
             target.draw(ssBackgroundSprite);
             for(int i=0; i<Settings::PLANETS; i++)
-                target.draw(planetArray[i]);
+                target.draw(planetArray[i].planet);
         } else
-            target.draw(planetArray[solarSystemStatus]);
+            target.draw(planetArray[solarSystemStatus].planet);
 
         target.draw(ourHero);
     }
