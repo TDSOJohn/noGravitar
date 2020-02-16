@@ -41,9 +41,9 @@ namespace Settings
     const unsigned short    GROUND_POINTS = 11;
     const unsigned short    FUEL_POINTS = 4;
 
-    const unsigned int      BULLET_SPEED = 750;
+    const unsigned int      BULLET_SPEED = 850;
 
-    const unsigned int      SPACESHIP_SPEED = 550;
+    const unsigned int      SPACESHIP_SPEED = 750;
     const unsigned int      SPACESHIP_LIFE = 50;
     const float             SPACESHIP_FIRERATE = 10;
     const unsigned short    SPACESHIP_DAMAGE = 10;
@@ -52,7 +52,7 @@ namespace Settings
     const unsigned int      HOOK_SPEED = 450;
 
     const unsigned short    ENEMY_LIFE = 50;
-    const float             ENEMY_FIRERATE = 1.3;
+    const float             ENEMY_FIRERATE = 1.5;
     const unsigned short    ENEMY_DAMAGE = 4;
 }
 

@@ -16,7 +16,7 @@
 class Character : public sf::Drawable
 {
 public:
-    Character(const TextureHolder = TextureHolder(), sf::Vector2f = sf::Vector2f());
+    Character(const TextureHolder = TextureHolder(), sf::Vector2f = sf::Vector2f(), float =0.f);
     ~Character();
     
     bool                operator==(const Bullet&);
@@ -24,10 +24,11 @@ public:
  
     sf::Vector2f        getPosition()   { return characterSprite.getPosition(); }
     sf::FloatRect       getBounds()     { return characterSprite.getGlobalBounds(); }
+    float               getRotation()   { return characterSprite.getRotation(); }
     int                 getLife()       { return life; }
     bool                isShooting()    { return shooting; }
     
-private:
+protected:
     bool                shooting;
     int                 life;
     

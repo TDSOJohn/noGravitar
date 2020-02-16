@@ -7,8 +7,8 @@
 //
 
 #include "Enemy.hpp"
-
-Enemy::Enemy(const TextureHolder& textures, sf::Vector2f position, float rot) : enemySprite(textures.get(Textures::Enemy)), life(Settings::ENEMY_LIFE), lifeBar(sf::Vector2f(Settings::ENEMY_LIFE, 4.f)), rotation(rot)
+/*
+Enemy::Enemy(const TextureHolder& textures, sf::Vector2f position, float rot) : enemySprite(textures.get(Textures::Enemy)), life(Settings::ENEMY_LIFE), lifeBar(sf::Vector2f(life, 4.f)), rotation(rot)
 {
     enemySprite.setOrigin(Settings::ICONS_DIM/2, Settings::ICONS_DIM/2);
     enemySprite.setRotation(rotation);
@@ -26,8 +26,8 @@ Enemy::~Enemy()
 int Enemy::isHit(int damage)
 {
     life -= damage;
-    if(life < 0)
-        life = 0;
+    if(life <0)
+        life =0;
     lifeBar.setSize(sf::Vector2f(life, 4.f));
     
     return life;
@@ -37,3 +37,4 @@ bool Enemy::operator==(const Bullet& b)
 {        
     return(enemySprite.getGlobalBounds().intersects(b.getBounds()));
 }
+*/

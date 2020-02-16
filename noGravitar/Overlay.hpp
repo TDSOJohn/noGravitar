@@ -24,12 +24,15 @@ private:
     
     sf::Font                gameFont;
     sf::Text                scoreText;
+    sf::Text                scoreNumberText;
+    
     sf::Sprite              youWonMessage;
     sf::Sprite              youLostMessage;
     
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         target.draw(scoreText);
+        target.draw(scoreNumberText);
         if(*gameState == Settings::gameStates::Won)
             target.draw(youWonMessage);
         if(*gameState == Settings::gameStates::Lost)
