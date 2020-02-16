@@ -9,15 +9,9 @@
 #include "Game.hpp"
 
 Game::Game(const TextureHolder& txtrs) : mainWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar"),
-mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play), youWonMessage(txtrs.get(Textures::youWon)), youLostMessage(txtrs.get(Textures::youLost)), score(0)
+mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play), score(0), gameOverlay(&gameState, &score, txtrs)
 {
     textures = &txtrs;
-    if(!gameFont.loadFromFile(resourcePath() + "andaleMono.ttf"))
-        return EXIT_FAILURE;
-    scoreText.setFont(gameFont);
-    scoreText.setCharacterSize(28);
-    scoreText.setFillColor(sf::Color::Green);
-        
     mainWindow.setVerticalSyncEnabled(true);
     TimePerFrame = sf::seconds(1.f / 60.f);
     solarSystem = new SolarSystem(&score, *textures);
@@ -29,6 +23,7 @@ void Game::run()
     sf::Time timeSinceLastUpdate = sf::Time::Zero;
     while(mainWindow.isOpen())
     {
+        gameOverlay.update(mainView.getCenter());
         processEvents();
         
         if(gameState == Settings::gameStates::Play)
@@ -43,8 +38,7 @@ void Game::run()
             timeSinceLastUpdate -= TimePerFrame;
             processEvents();
         }
-        scoreText.setString(std::to_string(score));
-        scoreText.setPosition(mainView.getCenter() - sf::Vector2f(0.f, 250.f));
+        
         render();
     }
 }
@@ -95,17 +89,10 @@ void Game::render()
         if(mainView.getCenter().y > (Settings::MAP_Y - Settings::VIEW_Y/2))
             mainView.setCenter(mainView.getCenter().x, (Settings::MAP_Y - Settings::VIEW_Y/2));
     }
-    else if(gameState == Settings::gameStates::Won)
-    {
+    else
         mainView.setCenter(Settings::VIEW_X/2, Settings::VIEW_Y/2);
-        mainWindow.draw(youWonMessage);
-    }
-    else if (gameState == Settings::gameStates::Lost)
-    {
-        mainView.setCenter(Settings::VIEW_X/2, Settings::VIEW_Y/2);
-        mainWindow.draw(youLostMessage);
-    }
-    mainWindow.draw(scoreText);
+    
+    mainWindow.draw(gameOverlay);
     mainWindow.setView(mainView);
     mainWindow.display();
 }
