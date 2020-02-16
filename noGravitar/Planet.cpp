@@ -30,7 +30,7 @@ Planet::Planet(int* scr, const TextureHolder& textures, sf::Vector2f planetPosit
         } else if (i)                               //Un nemico ogni 2 tratti di terreno, non partendo da i=0 ma da i=2
         {
             fuelVector = sf::Vector2f((ground[i-1].position.x + ground[i].position.x)/2, (ground[i-1].position.y + ground[i].position.y)/2);
-            enemyArray.push_back(Enemy(textures, fuelVector,
+            enemyArray.push_back(Enemy(textures, Textures::Enemy, fuelVector,
                                        std::atan((ground[i].position.y - ground[i-1].position.y)/
                                         (Settings::MAP_X/(Settings::GROUND_POINTS-1)))*180/PI)); //Pass angle of rotation of ground line
         }

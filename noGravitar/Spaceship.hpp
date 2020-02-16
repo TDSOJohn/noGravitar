@@ -10,7 +10,7 @@
 #define Spaceship_hpp
 
 #include "Settings.h"
-#include "Bullet.hpp"
+#include "Character.hpp"
 
 class Spaceship : public sf::Drawable
 {

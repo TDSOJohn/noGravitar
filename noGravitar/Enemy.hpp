@@ -11,14 +11,19 @@
 
 #include "Settings.h"
 #include "Character.hpp"
-#include "Bullet.hpp"
 
-class Enemy : Character
+class Enemy : public Character
 {
 public:
-
+    using               Character::Character;
+    using               Character::operator==;
+    
 private:
-
+    virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
+    {
+        target.draw(Character::characterSprite);
+        target.draw(Character::lifeBar);
+    }
 };
 
 #endif /* Enemy_hpp */

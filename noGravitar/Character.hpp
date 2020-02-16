@@ -16,7 +16,7 @@
 class Character : public sf::Drawable
 {
 public:
-    Character(const TextureHolder = TextureHolder(), sf::Vector2f = sf::Vector2f(), float =0.f);
+    Character(const TextureHolder& =TextureHolder(), Textures::ID =Textures::Enemy, sf::Vector2f =sf::Vector2f(), float =0.f);
     ~Character();
     
     bool                operator==(const Bullet&);
@@ -34,7 +34,8 @@ protected:
     
     sf::Sprite          characterSprite;
     sf::RectangleShape  lifeBar;
-    
+
+private:
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         target.draw(characterSprite);
