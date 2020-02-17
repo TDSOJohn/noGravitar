@@ -14,7 +14,6 @@
 #include <SFML/graphics.hpp>
 
 #include "ResourcePath.hpp"
-#include "TextureHolder.hpp"
 
 #define PI 3.14159265
 /*
@@ -24,8 +23,17 @@
     Fuel rate is in fuel(life)/second
  */
 
+struct    characterSettings
+{
+    const unsigned int      LIFE;
+    const unsigned int      SPEED;
+    const float             FIRERATE;
+    const unsigned short    DAMAGE;
+};
+
 namespace Settings
 {
+    
     enum                    gameStates { Lost, Play, Won, Pause };
     
     const unsigned int      MAP_X = 1920;
@@ -43,17 +51,11 @@ namespace Settings
 
     const unsigned int      BULLET_SPEED = 850;
 
-    const unsigned int      SPACESHIP_SPEED = 750;
-    const unsigned int      SPACESHIP_LIFE = 50;
-    const float             SPACESHIP_FIRERATE = 10;
-    const unsigned short    SPACESHIP_DAMAGE = 10;
-    const unsigned int      SPACESHIP_FUEL_RATE = 1;
-    
     const unsigned int      HOOK_SPEED = 450;
-
-    const unsigned short    ENEMY_LIFE = 50;
-    const float             ENEMY_FIRERATE = 1.5;
-    const unsigned short    ENEMY_DAMAGE = 4;
+    
+    const characterSettings SPACESHIP = { 50, 750, 10, 10 };
+    const characterSettings ENEMY_1 = { 50, 0, 1.5, 5 };
+    const characterSettings ENEMY_2 = { 70, 0, 1.5, 3 };
 }
 
 #endif /* Settings_h */

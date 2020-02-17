@@ -9,14 +9,13 @@
 #ifndef Enemy_hpp
 #define Enemy_hpp
 
-#include "Settings.h"
+#include "TextureHolder.hpp"
 #include "Character.hpp"
 
 class Enemy : public Character
 {
 public:
     using               Character::Character;
-    using               Character::operator==;
     
 private:
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -27,3 +26,4 @@ private:
 };
 
 #endif /* Enemy_hpp */
+

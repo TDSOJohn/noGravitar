@@ -9,7 +9,7 @@
 #ifndef Character_hpp
 #define Character_hpp
 
-#include "Settings.h"
+#include "TextureHolder.hpp"
 
 #include "Bullet.hpp"
 

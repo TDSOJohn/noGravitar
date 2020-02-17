@@ -58,24 +58,24 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
     
     if(spaceshipFuelConsumption.asSeconds() >= 1)
     {
-        spaceship.isHit(Settings::SPACESHIP_FUEL_RATE);
+        spaceship.isHit(1);
         spaceshipFuelConsumption -= sf::seconds(1.f);
     }
     if(spaceship.isShooting())                                            //Checks time for spaceship bullets
     {
         spaceshipBulletTime += deltaTime;
-        if(spaceshipBulletTime.asSeconds() >= 1.f/Settings::SPACESHIP_FIRERATE)
+        if(spaceshipBulletTime.asSeconds() >= 1.f/Settings::SPACESHIP.FIRERATE)
         {
-            spaceshipBulletArray.push_back(Bullet(bulletTexture, spaceship.getPosition(), Settings::SPACESHIP_DAMAGE, 180.f));
-            spaceshipBulletTime -= sf::seconds(1.f/Settings::SPACESHIP_FIRERATE);
+            spaceshipBulletArray.push_back(Bullet(bulletTexture, spaceship.getPosition(), Settings::SPACESHIP.DAMAGE, 180.f));
+            spaceshipBulletTime -= sf::seconds(1.f/Settings::SPACESHIP.FIRERATE);
         }
     }
     
-    if(enemyBulletTime.asSeconds() >= 1.f/Settings::ENEMY_FIRERATE)       //Checks time for enemy bullets, sometimes fires
+    if(enemyBulletTime.asSeconds() >= 1.f/Settings::ENEMY_1.FIRERATE)       //Checks time for enemy bullets, sometimes fires
     {
         for(int i=0; i<enemyArray.size(); i++)
-            enemyBulletArray.push_back(Bullet(bulletTexture, enemyArray[i].getPosition(), Settings::ENEMY_DAMAGE, enemyArray[i].getRotation()));
-        enemyBulletTime -= sf::seconds(1.f/Settings::ENEMY_FIRERATE);
+            enemyBulletArray.push_back(Bullet(bulletTexture, enemyArray[i].getPosition(), Settings::ENEMY_1.DAMAGE, enemyArray[i].getRotation()));
+        enemyBulletTime -= sf::seconds(1.f/Settings::ENEMY_1.FIRERATE);
     }
     
     for(int i=0; i < spaceshipBulletArray.size(); i++)                    //Update spaceship bullets' positions

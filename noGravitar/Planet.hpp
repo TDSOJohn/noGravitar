@@ -9,7 +9,7 @@
 #ifndef Planet_hpp
 #define Planet_hpp
 
-#include "Settings.h"
+#include "TextureHolder.hpp"
 #include "Spaceship.hpp"
 #include "Enemy.hpp"
 #include "Fuel.hpp"

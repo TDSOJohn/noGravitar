@@ -31,7 +31,7 @@ int main()
     textures.load(Textures::Spaceship, resourcePath() + "spaceship.png");
     textures.load(Textures::Hook, resourcePath() + "hook.png");
     textures.load(Textures::Fuel, resourcePath() + "fuel.png");
-    textures.load(Textures::Enemy, resourcePath() + "enemy.png");
+    textures.load(Textures::Enemy_1, resourcePath() + "enemy.png");
     textures.load(Textures::Bullet, resourcePath() + "bullet.png");
     
     Game game(textures);

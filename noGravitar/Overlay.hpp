@@ -9,7 +9,7 @@
 #ifndef Overlay_hpp
 #define Overlay_hpp
 
-#include "Settings.h"
+#include "TextureHolder.hpp"
 
 class Overlay : public sf::Drawable
 {

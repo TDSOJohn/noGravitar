@@ -9,7 +9,7 @@
 #ifndef SolarSystem_hpp
 #define SolarSystem_hpp
 
-#include "Settings.h"
+#include "TextureHolder.hpp"
 #include "Spaceship.hpp"
 #include "Planet.hpp"
 #include "Enemy.hpp"

@@ -9,7 +9,7 @@
 #ifndef Spaceship_hpp
 #define Spaceship_hpp
 
-#include "Settings.h"
+#include "TextureHolder.hpp"
 #include "Character.hpp"
 
 class Spaceship : public sf::Drawable

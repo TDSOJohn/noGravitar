@@ -9,7 +9,7 @@
 #ifndef Fuel_hpp
 #define Fuel_hpp
 
-#include "Settings.h"
+#include "TextureHolder.hpp"
 
 class Fuel : public sf::Drawable
 {

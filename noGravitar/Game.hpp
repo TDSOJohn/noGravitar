@@ -11,7 +11,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Settings.h"
+#include "TextureHolder.hpp"
 #include "Overlay.hpp"
 #include "SolarSystem.hpp"
 
