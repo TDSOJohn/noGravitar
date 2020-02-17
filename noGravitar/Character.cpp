@@ -8,7 +8,7 @@
 
 #include "Character.hpp"
 
-Character::Character(const TextureHolder& textures, Textures::ID textureID, sf::Vector2f position, float rotation) : characterSprite(textures.get(textureID)), lifeBar(sf::Vector2f(life, 4.f))
+Character::Character(const ResourceHolder& resources, Textures::ID textureID, sf::Vector2f position, float rotation) : characterSprite(*(resources.get(textureID).texture)), lifeBar(sf::Vector2f(life, 4.f)), life(resources.get(textureID).entityData.LIFE)
 {
     characterSprite.setOrigin(Settings::ICONS_DIM/2, Settings::ICONS_DIM/2);
     characterSprite.setPosition(position);

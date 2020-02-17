@@ -9,13 +9,13 @@
 #ifndef Spaceship_hpp
 #define Spaceship_hpp
 
-#include "TextureHolder.hpp"
+#include "ResourceHolder.hpp"
 #include "Character.hpp"
 
 class Spaceship : public sf::Drawable
 {
 public:
-    Spaceship(const TextureHolder& =TextureHolder(), sf::Vector2f =sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
+    Spaceship(const ResourceHolder& =ResourceHolder(), sf::Vector2f =sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
     ~Spaceship();
     
     bool                operator==(const Bullet&);                  //Operator == checks if spaceship is hitting the bullet

@@ -9,7 +9,7 @@
 #ifndef Planet_hpp
 #define Planet_hpp
 
-#include "TextureHolder.hpp"
+#include "ResourceHolder.hpp"
 #include "Spaceship.hpp"
 #include "Enemy.hpp"
 #include "Fuel.hpp"
@@ -18,7 +18,7 @@
 class Planet : public sf::Drawable
 {
 public:
-    Planet(int*, const TextureHolder& = TextureHolder(), sf::Vector2f = sf::Vector2f());
+    Planet(int*, const ResourceHolder& =ResourceHolder(), sf::Vector2f =sf::Vector2f());
     void                changeStatus(bool pStatus);
     void                fireBullet(const sf::Vector2f&);
 

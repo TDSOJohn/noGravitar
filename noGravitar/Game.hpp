@@ -11,14 +11,14 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "TextureHolder.hpp"
+#include "ResourceHolder.hpp"
 #include "Overlay.hpp"
 #include "SolarSystem.hpp"
 
 class Game
 {
 public:
-                        Game(const TextureHolder& txtrs);
+                        Game(const ResourceHolder& txtrs);
     void                run();
     
 private:
@@ -34,7 +34,7 @@ Settings::gameStates    gameState;
     Overlay             gameOverlay;
     sf::RenderWindow    mainWindow;             //Window & general game loop stuff
     sf::View            mainView;
-const TextureHolder*    textures;
+const ResourceHolder*   textures;
     SolarSystem*        solarSystem;
     sf::Time            TimePerFrame;
 };

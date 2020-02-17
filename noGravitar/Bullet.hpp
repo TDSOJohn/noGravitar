@@ -9,7 +9,7 @@
 #ifndef Bullet_hpp
 #define Bullet_hpp
 
-#include "TextureHolder.hpp"
+#include "ResourceHolder.hpp"
 
 class Bullet : public sf::Drawable
 {

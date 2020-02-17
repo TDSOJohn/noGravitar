@@ -9,12 +9,12 @@
 #ifndef Overlay_hpp
 #define Overlay_hpp
 
-#include "TextureHolder.hpp"
+#include "ResourceHolder.hpp"
 
 class Overlay : public sf::Drawable
 {
 public:
-    Overlay(Settings::gameStates*, int*, const TextureHolder& = TextureHolder());
+    Overlay(Settings::gameStates*, int*, const ResourceHolder& = ResourceHolder());
     ~Overlay();
     void                    update(sf::Vector2f);
     

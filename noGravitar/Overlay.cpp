@@ -8,7 +8,7 @@
 
 #include "Overlay.hpp"
 
-Overlay::Overlay(Settings::gameStates* gState, int* scr, const TextureHolder& textures) : youWonMessage(textures.get(Textures::youWon)), youLostMessage(textures.get(Textures::youLost))
+Overlay::Overlay(Settings::gameStates* gState, int* scr, const ResourceHolder& resources) : youWonMessage(*(resources.get(Textures::Won).texture)), youLostMessage(*(resources.get(Textures::Lost).texture))
 {
     score = scr;
     gameState = gState;

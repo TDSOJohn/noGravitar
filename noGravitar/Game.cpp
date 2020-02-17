@@ -8,10 +8,10 @@
 
 #include "Game.hpp"
 
-Game::Game(const TextureHolder& txtrs) : mainWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar"),
-mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play), score(0), gameOverlay(&gameState, &score, txtrs)
+Game::Game(const ResourceHolder& rsrcs) : mainWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar"),
+mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play), score(0), gameOverlay(&gameState, &score, rsrcs)
 {
-    textures = &txtrs;
+    textures = &rsrcs;
     mainWindow.setVerticalSyncEnabled(true);
     TimePerFrame = sf::seconds(1.f / 60.f);
     solarSystem = new SolarSystem(&score, *textures);

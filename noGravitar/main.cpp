@@ -20,10 +20,10 @@
 int main()
 {
     std::srand(std::time(0));
-    TextureHolder textures;
+    ResourceHolder textures;
     
-    textures.load(Textures::youWon, resourcePath() + "youWon.png");
-    textures.load(Textures::youLost, resourcePath() + "youLost.png");
+    textures.load(Textures::Won, resourcePath() + "youWon.png");
+    textures.load(Textures::Lost, resourcePath() + "youLost.png");
     
     textures.load(Textures::ssBackground, resourcePath() + "ssBackground.png");
     textures.load(Textures::pBackground, resourcePath() + "pBackground.png");

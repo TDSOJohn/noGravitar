@@ -9,7 +9,7 @@
 #ifndef Enemy_hpp
 #define Enemy_hpp
 
-#include "TextureHolder.hpp"
+#include "ResourceHolder.hpp"
 #include "Character.hpp"
 
 class Enemy : public Character
