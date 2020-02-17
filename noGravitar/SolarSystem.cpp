@@ -72,13 +72,13 @@ Settings::gameStates SolarSystem::update(sf::Time deltaTime)
 {
     sf::Vector2f movement(0.f, 0.f);
     if (movingUp)
-        movement.y -= Settings::SPACESHIP.SPEED;
+        movement.y -= Settings::SPACESHIP.speed;
     if (movingDown)
-        movement.y += Settings::SPACESHIP.SPEED;
+        movement.y += Settings::SPACESHIP.speed;
     if (movingLeft)
-        movement.x -= Settings::SPACESHIP.SPEED;
+        movement.x -= Settings::SPACESHIP.speed;
     if (movingRight)
-        movement.x += Settings::SPACESHIP.SPEED;
+        movement.x += Settings::SPACESHIP.speed;
     
     if(solarSystemStatus == -1)             //If in solarSystem View, move spaceship and check collisions with planets
     {

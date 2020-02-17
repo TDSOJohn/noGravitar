@@ -17,12 +17,14 @@
     Fuel rate is in fuel(life)/second
  */
 
-struct    characterSettings
+struct    entitySettings
 {
-    const unsigned int      LIFE;
-    const unsigned int      SPEED;
-    const float             FIRERATE;
-    const unsigned short    DAMAGE;
+    unsigned int            life;
+    unsigned int            speed;
+    float                   firerate;
+    unsigned short          damage;
+    float                   rotation;
+    
 };
 
 namespace Settings
@@ -46,9 +48,10 @@ namespace Settings
 
     const unsigned int      HOOK_SPEED = 450;
     
-    const characterSettings SPACESHIP = { 50,   750,    10,     10 };
-    const characterSettings ENEMY_1 =   { 50,   0,      1.5,    5 };
-    const characterSettings ENEMY_2 =   { 70,   0,      1.5,    3 };
+    const entitySettings    SPACESHIP = { 50,   750,    10,     10,     0 };
+    const entitySettings    ENEMY_1 =   { 50,   0,      1.5,    5,      0 };
+    const entitySettings    ENEMY_2 =   { 70,   0,      1.5,    3,      0 };
+    const entitySettings    BULLET =    { 0,    850,    0,      0,      0 };
 }
 
 #endif /* Settings_h */

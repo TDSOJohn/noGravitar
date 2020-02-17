@@ -12,7 +12,7 @@
 #include "ResourceHolder.hpp"
 #include "Character.hpp"
 
-class Enemy : public Character
+class Enemy : public Character      //Character class inherits almost everything from Character
 {
 public:
     using               Character::Character;

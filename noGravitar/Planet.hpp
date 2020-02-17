@@ -24,8 +24,9 @@ public:
     void                fireBullet(const sf::Vector2f&);
 
     sf::FloatRect       getBounds() { return planetSprite.getGlobalBounds(); }
-    Settings::gameStates updatePlanet(Spaceship&, const sf::Time&, sf::Vector2f&, bool, bool);   //Return is 1 if spaceship alive, 0 is dead, 2 if planet complete
-                                                                                                //Spaceship, Time since last update, isShooting, isGrabbing
+    Settings::gameStates updatePlanet(Spaceship&, const sf::Time&, sf::Vector2f&, bool, bool);   //Return is ::Play if spaceship alive, ::Lost is dead, ::Won if planet
+                                                                                                 //complete
+                                                                                                 //Spaceship, Time since last update, isShooting, isGrabbing
 
 private:
     sf::Sprite          planetSprite;

@@ -23,15 +23,20 @@ Planet::Planet(int* scr, const ResourceHolder& resources, sf::Vector2f planetPos
         ground[i].color = sf::Color::Red;
         groundVector.x += Settings::MAP_X/(Settings::GROUND_POINTS-1);
         groundVector.y = rand()%240 + 960;
-        if(i%2)                                     //Un fuel ogni 2 tratti di terreno
+        if(i%2)                                     //A fuel for every second ground tile
         {
             fuelVector = sf::Vector2f((ground[i-1].position.x + ground[i].position.x)/2, (ground[i-1].position.y + ground[i].position.y)/2);
             fuelArray.push_back(Fuel(resources.get(Textures::Fuel), fuelVector));
-        } else if (i)                               //Un nemico ogni 2 tratti di terreno, non partendo da i=0 ma da i=2
+        } else if (i)                               //An enemy for every second ground tile
         {
             fuelVector = sf::Vector2f((ground[i-1].position.x + ground[i].position.x)/2, (ground[i-1].position.y + ground[i].position.y)/2);
-            enemyArray.push_back(Enemy(resources, Textures::Enemy_1, fuelVector,
-                                       std::atan((ground[i].position.y - ground[i-1].position.y)/
+            if(int(fuelVector.y)%2 == 0)
+                enemyArray.push_back(Enemy(resources, Textures::Enemy_1, fuelVector,
+                                        std::atan((ground[i].position.y - ground[i-1].position.y)/
+                                        (Settings::MAP_X/(Settings::GROUND_POINTS-1)))*180/PI)); //Pass angle of rotation of ground line
+            else
+                enemyArray.push_back(Enemy(resources, Textures::Enemy_2, fuelVector,
+                                        std::atan((ground[i].position.y - ground[i-1].position.y)/
                                         (Settings::MAP_X/(Settings::GROUND_POINTS-1)))*180/PI)); //Pass angle of rotation of ground line
         }
     }
@@ -64,18 +69,18 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
     if(spaceship.isShooting())                                            //Checks time for spaceship bullets
     {
         spaceshipBulletTime += deltaTime;
-        if(spaceshipBulletTime.asSeconds() >= 1.f/Settings::SPACESHIP.FIRERATE)
+        if(spaceshipBulletTime.asSeconds() >= 1.f/Settings::SPACESHIP.firerate)
         {
-            spaceshipBulletArray.push_back(Bullet(bulletTexture, spaceship.getPosition(), Settings::SPACESHIP.DAMAGE, 180.f));
-            spaceshipBulletTime -= sf::seconds(1.f/Settings::SPACESHIP.FIRERATE);
+            spaceshipBulletArray.push_back(Bullet(bulletTexture, spaceship.getPosition(), Settings::SPACESHIP.firerate, 180.f));
+            spaceshipBulletTime -= sf::seconds(1.f/Settings::SPACESHIP.firerate);
         }
     }
     
-    if(enemyBulletTime.asSeconds() >= 1.f/Settings::ENEMY_1.FIRERATE)       //Checks time for enemy bullets, sometimes fires
+    if(enemyBulletTime.asSeconds() >= 1.f/Settings::ENEMY_1.firerate)       //Checks time for enemy bullets, sometimes fires
     {
         for(int i=0; i<enemyArray.size(); i++)
-            enemyBulletArray.push_back(Bullet(bulletTexture, enemyArray[i].getPosition(), Settings::ENEMY_1.DAMAGE, enemyArray[i].getRotation()));
-        enemyBulletTime -= sf::seconds(1.f/Settings::ENEMY_1.FIRERATE);
+            enemyBulletArray.push_back(Bullet(bulletTexture, enemyArray[i].getPosition(), Settings::ENEMY_1.damage, enemyArray[i].getRotation()));
+        enemyBulletTime -= sf::seconds(1.f/Settings::ENEMY_1.firerate);
     }
     
     for(int i=0; i < spaceshipBulletArray.size(); i++)                    //Update spaceship bullets' positions

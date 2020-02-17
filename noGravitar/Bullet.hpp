@@ -17,12 +17,11 @@ public:
     Bullet(const sf::Texture& = sf::Texture(), sf::Vector2f = sf::Vector2f(), int = 0, float = 0.f); //int is damage, float is rotation angle
 
     bool                move(const sf::Time& = sf::Time());                                 //Return 0 if bullet no longer inside map coordinates
-    int                 getDamage() { return damage; }
+    int                 getDamage() { return settings.damage; }
     sf::FloatRect       getBounds() const { return bulletSprite.getGlobalBounds(); }
 
 private:
-    int                 damage;
-    float               rotation;
+    entitySettings      settings;
     sf::Vector2f        directionVector;
     sf::Sprite          bulletSprite;
     

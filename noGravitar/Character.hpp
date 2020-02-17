@@ -24,12 +24,12 @@ public:
     sf::Vector2f        getPosition()   { return characterSprite.getPosition(); }
     sf::FloatRect       getBounds()     { return characterSprite.getGlobalBounds(); }
     float               getRotation()   { return characterSprite.getRotation(); }
-    int                 getLife()       { return life; }
+    int                 getLife()       { return settings.life; }
     bool                isShooting()    { return shooting; }
     
 protected:
     bool                shooting;
-    int                 life;
+    entitySettings      settings;
     
     sf::Sprite          characterSprite;
     sf::RectangleShape  lifeBar;

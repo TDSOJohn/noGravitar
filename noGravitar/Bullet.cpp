@@ -8,13 +8,16 @@
 
 #include "Bullet.hpp"
 
-Bullet::Bullet(const sf::Texture& bulletTexture, sf::Vector2f position, int dam, float rot) : bulletSprite(bulletTexture), directionVector(0.f, 0.f), rotation(180.f - rot), damage(dam)
+Bullet::Bullet(const sf::Texture& bulletTexture, sf::Vector2f position, int dam, float rot) : bulletSprite(bulletTexture), directionVector(0.f, 0.f), settings(Settings::BULLET)
 {
+    settings.rotation = 180.f - rot;
+    settings.damage = dam;
     bulletSprite.setOrigin(Settings::ICONS_DIM/8, Settings::ICONS_DIM/4);
     bulletSprite.setPosition(position);
-    bulletSprite.setRotation(rotation*(-1));
+    bulletSprite.setRotation(settings.rotation*(-1));
     
-    directionVector = sf::Vector2f(Settings::BULLET_SPEED*std::sin(rotation*PI/180), Settings::BULLET_SPEED*std::cos(rotation*PI/180));
+    directionVector = sf::Vector2f(Settings::BULLET_SPEED*std::sin(settings.rotation*PI/180),
+                                   Settings::BULLET_SPEED*std::cos(settings.rotation*PI/180));
 }
 
 bool Bullet::move(const sf::Time& expTime)

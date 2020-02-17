@@ -11,28 +11,29 @@
 Character::Character(const ResourceHolder& resources, Textures::ID textureID, sf::Vector2f position, float rotation) : characterSprite(resources.get(textureID))
 {
     if(textureID == Textures::Enemy_1)
-        life = Settings::ENEMY_1.LIFE;
+        settings = Settings::ENEMY_1;
     else
-        life = Settings::ENEMY_2.LIFE;
+        settings = Settings::ENEMY_2;
     
+    settings.rotation = rotation;
     characterSprite.setOrigin(Settings::ICONS_DIM/2, Settings::ICONS_DIM/2);
     characterSprite.setPosition(position);
-    characterSprite.setRotation(rotation);
+    characterSprite.setRotation(settings.rotation);
     
-    lifeBar.setSize(sf::Vector2f(life, 4.f));
+    lifeBar.setSize(sf::Vector2f(settings.life, 4.f));
     lifeBar.setFillColor(sf::Color::Green);
-    lifeBar.setOrigin(life/2, 2.f);
+    lifeBar.setOrigin(settings.life/2, 2.f);
     lifeBar.setPosition(position - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
 }
 
 int Character::isHit(int damage)
 {
-    life -= damage;
-    if(life <0)
-        life =0;
-    lifeBar.setSize(sf::Vector2f(life, 4.f));
+    settings.life -= damage;
+    if(settings.life <0)
+        settings.life =0;
+    lifeBar.setSize(sf::Vector2f(settings.life, 4.f));
 
-    return life;
+    return settings.life;
 }
 
 bool Character::operator==(const Bullet& b)
