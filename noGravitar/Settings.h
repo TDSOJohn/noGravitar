@@ -9,12 +9,6 @@
 #ifndef Settings_h
 #define Settings_h
 
-#include <iostream>
-#include <cmath>
-#include <SFML/graphics.hpp>
-
-#include "ResourcePath.hpp"
-
 #define PI 3.14159265
 /*
     Fire rate is in shoots/second
@@ -33,7 +27,6 @@ struct    characterSettings
 
 namespace Settings
 {
-    
     enum                    gameStates { Lost, Play, Won, Pause };
     
     const unsigned int      MAP_X = 1920;
@@ -53,9 +46,9 @@ namespace Settings
 
     const unsigned int      HOOK_SPEED = 450;
     
-    const characterSettings SPACESHIP = { 50, 750, 10, 10 };
-    const characterSettings ENEMY_1 = { 50, 0, 1.5, 5 };
-    const characterSettings ENEMY_2 = { 70, 0, 1.5, 3 };
+    const characterSettings SPACESHIP = { 50,   750,    10,     10 };
+    const characterSettings ENEMY_1 =   { 50,   0,      1.5,    5 };
+    const characterSettings ENEMY_2 =   { 70,   0,      1.5,    3 };
 }
 
 #endif /* Settings_h */

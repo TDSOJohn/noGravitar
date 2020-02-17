@@ -17,7 +17,6 @@ class Character : public sf::Drawable
 {
 public:
     Character(const ResourceHolder& =ResourceHolder(), Textures::ID =Textures::Enemy_1, sf::Vector2f =sf::Vector2f(), float =0.f);
-    ~Character();
     
     bool                operator==(const Bullet&);
     int                 isHit(int);

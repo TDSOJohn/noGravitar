@@ -17,9 +17,6 @@ Bullet::Bullet(const sf::Texture& bulletTexture, sf::Vector2f position, int dam,
     directionVector = sf::Vector2f(Settings::BULLET_SPEED*std::sin(rotation*PI/180), Settings::BULLET_SPEED*std::cos(rotation*PI/180));
 }
 
-Bullet::~Bullet() {
-}
-
 bool Bullet::move(const sf::Time& expTime)
 {
     bulletSprite.move(directionVector*expTime.asSeconds());

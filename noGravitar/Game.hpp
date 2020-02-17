@@ -9,8 +9,6 @@
 #ifndef Game_hpp
 #define Game_hpp
 
-#include <SFML/Graphics.hpp>
-
 #include "ResourceHolder.hpp"
 #include "Overlay.hpp"
 #include "SolarSystem.hpp"

@@ -9,6 +9,7 @@
 #ifndef Overlay_hpp
 #define Overlay_hpp
 
+#include "ResourcePath.hpp"
 #include "ResourceHolder.hpp"
 
 class Overlay : public sf::Drawable

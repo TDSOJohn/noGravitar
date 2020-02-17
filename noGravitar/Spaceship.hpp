@@ -16,7 +16,6 @@ class Spaceship : public sf::Drawable
 {
 public:
     Spaceship(const ResourceHolder& =ResourceHolder(), sf::Vector2f =sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
-    ~Spaceship();
     
     bool                operator==(const Bullet&);                  //Operator == checks if spaceship is hitting the bullet
     void                move(sf::Vector2f, bool, bool);             //Move from current position by vector2f passed, bool for shooting and hook movement

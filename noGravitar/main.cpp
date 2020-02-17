@@ -15,6 +15,7 @@
 //
 
 #include "ResourcePath.hpp"
+#include "ResourceHolder.hpp"
 #include "Game.hpp"
 
 int main()

@@ -19,6 +19,7 @@ class Planet : public sf::Drawable
 {
 public:
     Planet(int*, const ResourceHolder& =ResourceHolder(), sf::Vector2f =sf::Vector2f());
+    
     void                changeStatus(bool pStatus);
     void                fireBullet(const sf::Vector2f&);
 

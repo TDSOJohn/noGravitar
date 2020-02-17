@@ -8,7 +8,7 @@
 
 #include "Spaceship.hpp"
 
-Spaceship::Spaceship(const ResourceHolder& resources, sf::Vector2f position) : spaceshipSprite(*(resources.get(Textures::Spaceship).texture)), hookSprite(*(resources.get(Textures::Hook).texture)), life(Settings::SPACESHIP.LIFE), lifeBar(sf::Vector2f(Settings::SPACESHIP.LIFE, 6.f)), shooting(false), grabbing(false)
+Spaceship::Spaceship(const ResourceHolder& resources, sf::Vector2f position) : spaceshipSprite(resources.get(Textures::Spaceship)), hookSprite(resources.get(Textures::Hook)), life(Settings::SPACESHIP.LIFE), lifeBar(sf::Vector2f(Settings::SPACESHIP.LIFE, 6.f)), shooting(false), grabbing(false)
 {
     spaceshipSprite.setOrigin(Settings::ICONS_DIM/2, Settings::ICONS_DIM/2);
     lifeBar.setOrigin(life/2, 3.f);
@@ -16,10 +16,6 @@ Spaceship::Spaceship(const ResourceHolder& resources, sf::Vector2f position) : s
     lifeBar.setPosition(position - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
     hookSprite.setOrigin(Settings::ICONS_DIM/4, Settings::ICONS_DIM/4);
     spaceshipSprite.setPosition(position);
-}
-
-Spaceship::~Spaceship()
-{
 }
 
 void Spaceship::move(sf::Vector2f movement, bool shotInput, bool grabInput) //moving the hook if grabInput =1

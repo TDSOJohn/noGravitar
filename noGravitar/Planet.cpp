@@ -8,7 +8,7 @@
 
 #include "Planet.hpp"
 
-Planet::Planet(int* scr, const ResourceHolder& resources, sf::Vector2f planetPosition) : planetSprite(*(resources.get(Textures::Planet).texture)), planetBackground(*(resources.get(Textures::pBackground).texture)), bulletTexture(*(resources.get(Textures::Bullet).texture)), spaceshipBulletTime(sf::Time::Zero), enemyBulletTime(sf::Time::Zero), planetStatus(false), score(scr)
+Planet::Planet(int* scr, const ResourceHolder& resources, sf::Vector2f planetPosition) : planetSprite(resources.get(Textures::Planet)), planetBackground(resources.get(Textures::pBackground)), bulletTexture(resources.get(Textures::Bullet)), spaceshipBulletTime(sf::Time::Zero), enemyBulletTime(sf::Time::Zero), planetStatus(false), score(scr)
 {
     planetSprite.setOrigin(Settings::ICONS_DIM, Settings::ICONS_DIM);
     planetSprite.setPosition(planetPosition);
@@ -26,7 +26,7 @@ Planet::Planet(int* scr, const ResourceHolder& resources, sf::Vector2f planetPos
         if(i%2)                                     //Un fuel ogni 2 tratti di terreno
         {
             fuelVector = sf::Vector2f((ground[i-1].position.x + ground[i].position.x)/2, (ground[i-1].position.y + ground[i].position.y)/2);
-            fuelArray.push_back(Fuel(*(resources.get(Textures::Fuel).texture), fuelVector));
+            fuelArray.push_back(Fuel(resources.get(Textures::Fuel), fuelVector));
         } else if (i)                               //Un nemico ogni 2 tratti di terreno, non partendo da i=0 ma da i=2
         {
             fuelVector = sf::Vector2f((ground[i-1].position.x + ground[i].position.x)/2, (ground[i-1].position.y + ground[i].position.y)/2);

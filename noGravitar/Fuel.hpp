@@ -15,7 +15,7 @@ class Fuel : public sf::Drawable
 {
 public:
     Fuel(const sf::Texture& = sf::Texture(), sf::Vector2f = sf::Vector2f());
-    ~Fuel();
+
     int                 getFuel()      { return fuelQuantity; }
     sf::FloatRect       getBounds()    { return fuelSprite.getGlobalBounds(); }
     

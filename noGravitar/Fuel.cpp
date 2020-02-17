@@ -15,9 +15,5 @@ Fuel::Fuel(const sf::Texture& fuelText, sf::Vector2f fuelPosition)
     
     fuelSprite.setTexture(fuelText);
     fuelSprite.setPosition(fuelPosition);
-}
-
-Fuel::~Fuel()
-{
-    
+    fuelSprite.setColor(sf::Color(255 -(fuelQuantity*5), (fuelQuantity*5), 0, 255));
 }
