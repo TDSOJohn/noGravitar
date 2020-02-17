@@ -23,10 +23,6 @@ struct entityResources
     characterSettings entityData;
 };*/
 
-namespace Textures
-{
-    enum                ID { ssBackground, pBackground, Planet, Spaceship, Hook, Fuel, Enemy_1, Enemy_2, Bullet, Won, Lost };
-}
 
 class ResourceHolder
 {

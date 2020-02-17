@@ -79,7 +79,7 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
     if(enemyBulletTime.asSeconds() >= 1.f/Settings::ENEMY_1.firerate)       //Checks time for enemy bullets, sometimes fires
     {
         for(int i=0; i<enemyArray.size(); i++)
-            enemyBulletArray.push_back(Bullet(bulletTexture, enemyArray[i].getPosition(), Settings::ENEMY_1.damage, enemyArray[i].getRotation()));
+            enemyBulletArray.push_back(Bullet(bulletTexture, enemyArray[i].getPosition(), enemyArray[i].getDamage(), enemyArray[i].getRotation()));
         enemyBulletTime -= sf::seconds(1.f/Settings::ENEMY_1.firerate);
     }
     

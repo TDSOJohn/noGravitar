@@ -25,6 +25,7 @@ public:
     sf::FloatRect       getBounds()     { return characterSprite.getGlobalBounds(); }
     float               getRotation()   { return characterSprite.getRotation(); }
     int                 getLife()       { return settings.life; }
+    int                 getDamage()     { return settings.damage; }
     bool                isShooting()    { return shooting; }
     
 protected:

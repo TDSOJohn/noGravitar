@@ -7,3 +7,11 @@
 //
 
 #include "Enemy.hpp"
+
+float Enemy::getRotation()
+{
+    if(settings.entityType == Textures::Enemy_1)
+        return (settings.rotation + rand()%40 -10);
+    else
+        return settings.rotation;
+}

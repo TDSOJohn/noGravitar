@@ -57,12 +57,17 @@ void Game::processEvents()
                     solarSystem->handleInputEvent(event.key.code, true);
                 if(event.type == sf::Event::KeyReleased)
                     solarSystem->handleInputEvent(event.key.code, false);
-                break;
+//                break;
             case Settings::gameStates::Pause:
                 break;
             default:                        //Cases Lost e Won
                 if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::N)    //start a new match if you lost and you hit (or released) 'n'
                 {
+                    if(solarSystem != nullptr)
+                    {
+                        delete solarSystem;
+                        solarSystem = nullptr;
+                    }
                     solarSystem = new SolarSystem(&score, *textures);
                     gameState = Settings::gameStates::Play;
                 }
