@@ -10,7 +10,7 @@
 
 Planet::Planet(int* scr, const ResourceHolder& resources, sf::Vector2f planetPosition) : planetSprite(resources.get(Textures::Planet)), planetBackground(resources.get(Textures::pBackground)), bulletTexture(resources.get(Textures::Bullet_1)), spaceshipBulletTime(sf::Time::Zero), enemyBullet1Time(sf::Time::Zero), enemyBullet2Time(sf::Time::Zero), planetStatus(false), score(scr)
 {
-    planetSprite.setOrigin(Settings::ICONS_DIM, Settings::ICONS_DIM);
+    planetSprite.setOrigin(planetSprite.getLocalBounds().width, planetSprite.getLocalBounds().height);
     planetSprite.setPosition(planetPosition);
     
     ground.setPrimitiveType(sf::LineStrip);
@@ -27,7 +27,7 @@ Planet::Planet(int* scr, const ResourceHolder& resources, sf::Vector2f planetPos
         {
             tempVector = ground[i].position;
             fuelArray.push_back(Fuel(resources.get(Textures::Fuel), tempVector));
-        } if (i && i != (Settings::GROUND_POINTS-1) && (rand()%3))                     //An enemy for every ground tile
+        } if (i && i != (Settings::GROUND_POINTS-1) && (rand()%2))                     //An enemy for every ground tile
         {
             tempVector = sf::Vector2f((ground[i-1].position.x + ground[i].position.x)/2, (ground[i-1].position.y + ground[i].position.y)/2);
             if(int(tempVector.y)%2 == 0)
@@ -61,7 +61,7 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
     enemyBullet1Time += deltaTime;
     enemyBullet2Time += deltaTime;
     
-    if(spaceship.isShooting())                                            //Checks time for spaceship bullets
+    if(spaceship.isShooting())                                               //Checks time for spaceship bullets
     {
         spaceshipBulletTime += deltaTime;
         if(spaceshipBulletTime.asSeconds() >= 1.f/Settings::SPACESHIP.firerate)

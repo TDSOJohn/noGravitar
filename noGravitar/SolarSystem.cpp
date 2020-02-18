@@ -15,18 +15,13 @@ SolarSystem::SolarSystem(int* scr, const ResourceHolder& resources) : ourHero(re
     
     while(planetArray.size()<Settings::PLANETS)
     {
-        tempY = rand()%(Settings::MAP_Y - Settings::ICONS_DIM) + Settings::ICONS_DIM;
+        tempY = rand()%(Settings::MAP_Y - Settings::ICONS_DIM*2) + Settings::ICONS_DIM;
         if((tempY < (Settings::MAP_Y/3 - Settings::ICONS_DIM*2)) || (tempY > (Settings::MAP_Y/3 + Settings::ICONS_DIM*2)))
         {
             i++;
             planetArray.push_back(planetCell { (Planet(score, resources, sf::Vector2f(Settings::MAP_X/(Settings::PLANETS+1)*i, tempY))), false });
         }
     }
-}
-
-SolarSystem::~SolarSystem()
-{
-//    ourHero.~Spaceship();
 }
 
 void SolarSystem::handleInputEvent(sf::Keyboard::Key key, bool isPressed)

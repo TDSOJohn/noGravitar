@@ -22,11 +22,11 @@ Overlay::Overlay(Settings::gameStates* gState, int* scr, const ResourceHolder& r
     scoreText.setFillColor(sf::Color::Green);
     scoreNumberText.setFillColor(sf::Color::Green);
     scoreText.setOrigin(scoreText.getLocalBounds().width/2, scoreText.getLocalBounds().height/2);
-}
-
-Overlay::~Overlay()
-{
     
+    youWonMessage.setOrigin(youWonMessage.getLocalBounds().width/2, youWonMessage.getLocalBounds().height/2);
+    youWonMessage.setPosition(Settings::VIEW_X/2, Settings::VIEW_Y/2);
+    youLostMessage.setOrigin(youLostMessage.getLocalBounds().width/2, youLostMessage.getLocalBounds().height/2);
+    youLostMessage.setPosition(Settings::VIEW_X/2, Settings::VIEW_Y/2);
 }
 
 void Overlay::update(sf::Vector2f position)

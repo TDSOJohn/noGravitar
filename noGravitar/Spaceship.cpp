@@ -10,7 +10,7 @@
 
 Spaceship::Spaceship(const ResourceHolder& resources, sf::Vector2f position) : spaceshipSprite(resources.get(Textures::Spaceship)), hookSprite(resources.get(Textures::Hook)), life(Settings::SPACESHIP.life), lifeBar(sf::Vector2f(Settings::SPACESHIP.life, 6.f)), shooting(false), grabbing(false)
 {
-    spaceshipSprite.setOrigin(Settings::ICONS_DIM/2, Settings::ICONS_DIM/2);
+    spaceshipSprite.setOrigin(spaceshipSprite.getLocalBounds().width/2, spaceshipSprite.getLocalBounds().height/2);
     lifeBar.setOrigin(life/2, 3.f);
     lifeBar.setFillColor(sf::Color::Green);
     lifeBar.setPosition(position - sf::Vector2f(0.f, Settings::ICONS_DIM/2));

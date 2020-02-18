@@ -31,6 +31,8 @@ void Game::run()
             gameState = solarSystem->update(TimePerFrame);
             if(gameState == Settings::gameStates::Lost)
                 youLost();
+            if(gameState == Settings::gameStates::Won)
+                youWon();
         }
         timeSinceLastUpdate += clock.restart();
         while (timeSinceLastUpdate > TimePerFrame)

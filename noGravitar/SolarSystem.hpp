@@ -25,7 +25,7 @@ class SolarSystem: public sf::Drawable
 {
 public:
     SolarSystem(int*, const ResourceHolder& = ResourceHolder());
-    ~SolarSystem();
+
     void                handleInputEvent(sf::Keyboard::Key key, bool isMoving);
     Settings::gameStates update(sf::Time deltaTime);         //Returns ::Lost if spaceship dead, ::Play if everything ok, ::Win if planet complete
     sf::Vector2f        getSpaceshipPosition() { return(ourHero.getPosition()); }

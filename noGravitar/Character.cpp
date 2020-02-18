@@ -16,7 +16,7 @@ Character::Character(const ResourceHolder& resources, Textures::ID textureID, sf
         settings = Settings::ENEMY_2;
     
     settings.rotation = rotation;
-    characterSprite.setOrigin(Settings::ICONS_DIM/2, Settings::ICONS_DIM/2);
+    characterSprite.setOrigin(characterSprite.getLocalBounds().width/2, characterSprite.getLocalBounds().height/2);
     characterSprite.setPosition(position);
     characterSprite.setRotation(settings.rotation);
     

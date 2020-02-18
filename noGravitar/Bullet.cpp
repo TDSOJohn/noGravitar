@@ -18,7 +18,7 @@ Bullet::Bullet(const sf::Texture& bulletTexture, sf::Vector2f position, Textures
         settings = Settings::BULLET_3;
     
     settings.rotation = 180.f - rot;
-    bulletSprite.setOrigin(Settings::ICONS_DIM/8, Settings::ICONS_DIM/4);
+    bulletSprite.setOrigin(bulletSprite.getLocalBounds().width/2, bulletSprite.getLocalBounds().height);
     bulletSprite.setPosition(position);
     bulletSprite.setRotation(settings.rotation*(-1));
     
