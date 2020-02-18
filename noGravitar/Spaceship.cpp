@@ -51,6 +51,20 @@ void Spaceship::move(sf::Vector2f newPos)
     lifeBar.setPosition(newPos - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
 }
 
+int Spaceship::isHit(int damage)
+{
+    settings.life -= damage;
+    if(settings.life <0)
+        settings.life =0;
+    if(settings.life > Settings::SPACESHIP.life)
+        settings.life = Settings::SPACESHIP.life;
+    lifeBar.setSize(sf::Vector2f(settings.life, 4.f));
+    lifeBar.setOrigin(sf::Vector2f(settings.life/2, 2.f));
+    lifeBar.setPosition(characterSprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+    
+    return settings.life;
+}
+
 /*
  
  if(spaceshipFuelConsumption.asSeconds() >= 1)

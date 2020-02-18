@@ -48,10 +48,10 @@ namespace Settings
     const unsigned short    PLANETS = 3;
     
     const unsigned short    GROUND_POINTS = 11;
-    const unsigned short    FUEL_POINTS = 4;
 
-    const unsigned int      BULLET_SPEED = 850;
-
+    const unsigned int      ENEMY_SCORE = 100;
+    const unsigned int      PLANET_SCORE = 1000;
+    const unsigned int      SOLARSYSTEM_SCORE = 2500;
     const unsigned int      HOOK_SPEED = 450;
     
     const entitySettings    SPACESHIP = { Textures::Spaceship,  50,   750,    9,      8,      0 };

@@ -101,10 +101,7 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
     }
     
     if(enemyArray.size() == 0)                                            //If all enemy are destroyed, planet is complete
-    {
-        completed();
         return Settings::gameStates::Won;
-    }
 
     if(spaceship.isGrabbing())                                            //Check hook-fuel intersection
     {
@@ -113,7 +110,7 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
             if(spaceship.getHookBounds().intersects(fuelArray[i].getBounds()))
             {
                 spaceship.isHit(fuelArray[i].getFuel() * (-1));
-                *score += fuelArray[i].getFuel();
+                *score += fuelArray[i].getFuel();                         //Increment score by fuel value
                 fuelArray.erase(fuelArray.begin() + i);
             }
         }
@@ -139,12 +136,15 @@ bool Planet::checkCollisions(Spaceship& spaceship)
         {
             if(enemyArray[i] == spaceshipBulletArray[j])
             {
+                *score += spaceshipBulletArray[i].getDamage();                                            //Score is incremented by the amount of damage delt to enemy
                 if(!enemyArray[i].isHit(spaceshipBulletArray[i].getDamage()))
                 {
-                    *score += 100;
+                    *score += Settings::ENEMY_SCORE;
                     enemyArray.erase(enemyArray.begin() + i);
+                    if(enemyArray.size() == 0)
+                        completed();
+
                 }
-                *score += 10;
                 spaceshipBulletArray.erase(spaceshipBulletArray.begin() + j);
             }
         }
@@ -165,5 +165,6 @@ bool Planet::checkCollisions(Spaceship& spaceship)
 
 void Planet::completed()
 {
+    *score += Settings::PLANET_SCORE;
     planetSprite.setColor(sf::Color::Red);
 }

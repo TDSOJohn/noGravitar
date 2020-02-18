@@ -1,0 +1,1 @@
+g++ --std=c++11 main.cpp Game.cpp Overlay.cpp SolarSystem.cpp Character.cpp Planet.cpp Spaceship.cpp Enemy.cpp ResourceHolder.cpp Fuel.cpp Bullet.cpp -framework /Library/Frameworks/sfml-network /Library/Frameworks/sfml-system /Library/Frameworks/sfml-window /Library/Frameworks/sfml-graphics /Library/Frameworks/sfml-audio

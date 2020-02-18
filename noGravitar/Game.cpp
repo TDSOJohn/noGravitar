@@ -108,7 +108,7 @@ void Game::youWon()
 {
     std::cout << "you have won!" << std::endl;
     std::cout << gameState << std::endl;
-    score += 1000;
+    score += Settings::SOLARSYSTEM_SCORE;
     delete solarSystem;
     solarSystem = nullptr;
 }
