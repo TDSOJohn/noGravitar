@@ -8,14 +8,16 @@
 
 #include "Spaceship.hpp"
 
-Spaceship::Spaceship(const ResourceHolder& resources, sf::Vector2f position) : spaceshipSprite(resources.get(Textures::Spaceship)), hookSprite(resources.get(Textures::Hook)), life(Settings::SPACESHIP.life), lifeBar(sf::Vector2f(Settings::SPACESHIP.life, 6.f)), shooting(false), grabbing(false)
+Spaceship::Spaceship(const ResourceHolder& resources, Textures::ID textureID, sf::Vector2f position) : Character(resources, textureID, position, 0), hookSprite(resources.get(Textures::Hook)), grabbing(false)
 {
-    spaceshipSprite.setOrigin(spaceshipSprite.getLocalBounds().width/2, spaceshipSprite.getLocalBounds().height/2);
-    lifeBar.setOrigin(life/2, 3.f);
+    settings = Settings::SPACESHIP;
+    characterSprite.setTexture(resources.get(textureID));
+    characterSprite.setOrigin(characterSprite.getLocalBounds().width/2, characterSprite.getLocalBounds().height/2);
+    lifeBar.setOrigin(settings.life/2, 3.f);
     lifeBar.setFillColor(sf::Color::Green);
     lifeBar.setPosition(position - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
     hookSprite.setOrigin(Settings::ICONS_DIM/4, Settings::ICONS_DIM/4);
-    spaceshipSprite.setPosition(position);
+    characterSprite.setPosition(position);
 }
 
 void Spaceship::move(sf::Vector2f movement, bool shotInput, bool grabInput) //moving the hook if grabInput =1
@@ -24,18 +26,17 @@ void Spaceship::move(sf::Vector2f movement, bool shotInput, bool grabInput) //mo
     grabbing = grabInput;
     if(!grabbing)
     {
-        spaceshipSprite.move(movement);
-        if(spaceshipSprite.getPosition().x < Settings::ICONS_DIM/2)
-            spaceshipSprite.setPosition(Settings::ICONS_DIM/2, spaceshipSprite.getPosition().y);
-        else if(spaceshipSprite.getPosition().x > (Settings::MAP_X - Settings::ICONS_DIM/2))
-            spaceshipSprite.setPosition((Settings::MAP_X - Settings::ICONS_DIM/2), spaceshipSprite.getPosition().y);
-        if(spaceshipSprite.getPosition().y < Settings::ICONS_DIM/2)
-            spaceshipSprite.setPosition(spaceshipSprite.getPosition().x, Settings::ICONS_DIM/2);
-        else if(spaceshipSprite.getPosition().y > (Settings::MAP_Y - Settings::ICONS_DIM/2))
-            spaceshipSprite.setPosition(spaceshipSprite.getPosition().x, (Settings::MAP_Y - Settings::ICONS_DIM/2));
+        characterSprite.move(movement);
+        if(characterSprite.getPosition().x < Settings::ICONS_DIM/2)
+            characterSprite.setPosition(Settings::ICONS_DIM/2, characterSprite.getPosition().y);
+        else if(characterSprite.getPosition().x > (Settings::MAP_X - Settings::ICONS_DIM/2))
+            characterSprite.setPosition((Settings::MAP_X - Settings::ICONS_DIM/2), characterSprite.getPosition().y);
+        if(characterSprite.getPosition().y < Settings::ICONS_DIM/2)
+            characterSprite.setPosition(characterSprite.getPosition().x, Settings::ICONS_DIM/2);
+        else if(characterSprite.getPosition().y > (Settings::MAP_Y - Settings::ICONS_DIM/2))
 
-        lifeBar.setPosition(spaceshipSprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
-        hookSprite.setPosition(spaceshipSprite.getPosition() + sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+        lifeBar.setPosition(characterSprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+        hookSprite.setPosition(characterSprite.getPosition() + sf::Vector2f(0.f, Settings::ICONS_DIM/2));
     }
     else
     {
@@ -45,31 +46,9 @@ void Spaceship::move(sf::Vector2f movement, bool shotInput, bool grabInput) //mo
 
 void Spaceship::move(sf::Vector2f newPos)
 {
-    spaceshipSprite.setPosition(newPos);
+    characterSprite.setPosition(newPos);
     lifeBar.setPosition(newPos - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
 }
-
-bool Spaceship::operator==(const Bullet& b)
-{
-    return (spaceshipSprite.getGlobalBounds().intersects(b.getBounds()));
-}
-
-int Spaceship::isHit(int damage)
-{
-    life -= damage;
-    lifeBar.setPosition(spaceshipSprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
-
-    if(life < 0)
-        life =0;
-    else if(life > 100)
-        life =100;
-    
-    lifeBar.setSize(sf::Vector2f(life, 6.f));
-    lifeBar.setOrigin(life/2, 3.f);
-
-    return life;
-}
-
 
 /*
  

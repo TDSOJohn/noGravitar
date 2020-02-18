@@ -41,7 +41,7 @@ namespace Settings
     const unsigned int      MAP_Y = 1200;
     
     const unsigned int      VIEW_X = 1280;
-    const unsigned int      VIEW_Y = 720;
+    const unsigned int      VIEW_Y = 854;
     
     const unsigned short    ICONS_DIM = 64;
     

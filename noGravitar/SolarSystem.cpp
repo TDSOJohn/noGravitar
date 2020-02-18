@@ -8,7 +8,7 @@
 
 #include "SolarSystem.hpp"
 
-SolarSystem::SolarSystem(int* scr, const ResourceHolder& resources) : ourHero(resources), ssBackgroundSprite(resources.get(Textures::ssBackground)), solarSystemStatus(-1), movingUp(false), movingDown(false), movingLeft(false), movingRight(false), isGrabbing(false), isShooting(false), score(scr)
+SolarSystem::SolarSystem(int* scr, const ResourceHolder& resources) : ourHero(resources, Textures::Spaceship), ssBackgroundSprite(resources.get(Textures::ssBackground)), solarSystemStatus(-1), movingUp(false), movingDown(false), movingLeft(false), movingRight(false), isGrabbing(false), isShooting(false), score(scr)
 {
     int tempY =0;
     int i =0;

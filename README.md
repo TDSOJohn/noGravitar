@@ -16,8 +16,8 @@ Solar System is destroyed and recreated once all planets are cleared, effectivel
 Fuel quantity is connected to the barrel's color: the greener, the fuller.
 
 Two types of enemies exist:
-Green 	- 70hp 	- 3hp damage 	- steady shot
-Red 	- 50hp 	- 5hp damage 	- random shot
+Green 	- 70hp 	- 3hp damage 	- steady, double shot
+Red 	- 50hp 	- 5hp damage 	- random, single shot
 
 #Controls
 W: 	spaceship movement up
