@@ -50,13 +50,17 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
         return Settings::gameStates::Lost;
     
     if(!isGrabbing && !collisions)
-        spaceship.move(spaceshipMovement * deltaTime.asSeconds(), isShooting, isGrabbing);
+        if(spaceship.move(spaceshipMovement * deltaTime.asSeconds(), isShooting, isGrabbing) == Settings::gameStates::Lost)
+            return Settings::gameStates::Lost;
     if(!isGrabbing && collisions)
-        spaceship.move(sf::Vector2f(0.f, -100.f) * deltaTime.asSeconds(), isShooting, isGrabbing);
+        if(spaceship.move(sf::Vector2f(0.f, -100.f) * deltaTime.asSeconds(), isShooting, isGrabbing) == Settings::gameStates::Lost)
+            return Settings::gameStates::Lost;
     if(isGrabbing && !collisions)
-        spaceship.move(sf::Vector2f(0.f, Settings::HOOK_SPEED) * deltaTime.asSeconds(), isShooting, isGrabbing);
+        if(spaceship.move(sf::Vector2f(0.f, Settings::HOOK_SPEED) * deltaTime.asSeconds(), isShooting, isGrabbing) == Settings::gameStates::Lost)
+            return Settings::gameStates::Lost;
     if(isGrabbing && collisions)
-        spaceship.move(sf::Vector2f(0.f, 0.f), false, false);
+        if(spaceship.move(sf::Vector2f(0.f, 0.f), false, false) == Settings::gameStates::Lost)
+            return Settings::gameStates::Lost;
 
     enemyBullet1Time += deltaTime;
     enemyBullet2Time += deltaTime;

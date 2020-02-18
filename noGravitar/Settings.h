@@ -52,6 +52,8 @@ namespace Settings
     const unsigned int      ENEMY_SCORE = 100;
     const unsigned int      PLANET_SCORE = 1000;
     const unsigned int      SOLARSYSTEM_SCORE = 2500;
+    
+    const unsigned int      SPACESHIP_FUEL = 50;
     const unsigned int      HOOK_SPEED = 450;
     
     const entitySettings    SPACESHIP = { Textures::Spaceship,  50,   750,    9,      8,      0 };
