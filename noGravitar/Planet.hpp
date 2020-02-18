@@ -21,7 +21,6 @@ public:
     Planet(int*, const ResourceHolder& =ResourceHolder(), sf::Vector2f =sf::Vector2f());
     
     void                changeStatus(bool pStatus);
-    void                fireBullet(const sf::Vector2f&);
 
     sf::FloatRect       getBounds() { return planetSprite.getGlobalBounds(); }
     Settings::gameStates updatePlanet(Spaceship&, const sf::Time&, sf::Vector2f&, bool, bool);   //Return is ::Play if spaceship alive, ::Lost is dead, ::Won if planet
@@ -34,8 +33,8 @@ private:
     sf::VertexArray     ground;
     const sf::Texture&  bulletTexture;
     sf::Time            spaceshipBulletTime;
-    sf::Time            enemyBulletTime;
-    sf::Time            spaceshipFuelConsumption;
+    sf::Time            enemyBullet1Time;
+    sf::Time            enemyBullet2Time;
     
     std::vector<Fuel>   fuelArray;
     std::vector<Enemy>  enemyArray;

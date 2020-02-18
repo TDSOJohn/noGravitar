@@ -8,10 +8,16 @@
 
 #include "Bullet.hpp"
 
-Bullet::Bullet(const sf::Texture& bulletTexture, sf::Vector2f position, int dam, float rot) : bulletSprite(bulletTexture), directionVector(0.f, 0.f), settings(Settings::BULLET)
+Bullet::Bullet(const sf::Texture& bulletTexture, sf::Vector2f position, Textures::ID bulletID, float rot) : bulletSprite(bulletTexture), directionVector(0.f, 0.f)
 {
+    if(bulletID == Textures::Bullet_1)
+        settings = Settings::BULLET_1;
+    else if(bulletID == Textures::Bullet_2)
+        settings = Settings::BULLET_2;
+    else
+        settings = Settings::BULLET_3;
+    
     settings.rotation = 180.f - rot;
-    settings.damage = dam;
     bulletSprite.setOrigin(Settings::ICONS_DIM/8, Settings::ICONS_DIM/4);
     bulletSprite.setPosition(position);
     bulletSprite.setRotation(settings.rotation*(-1));

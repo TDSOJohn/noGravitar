@@ -69,3 +69,13 @@ int Spaceship::isHit(int damage)
 
     return life;
 }
+
+
+/*
+ 
+ if(spaceshipFuelConsumption.asSeconds() >= 1)
+ {
+ spaceship.isHit(1);
+ spaceshipFuelConsumption -= sf::seconds(1.f);
+ }
+*/

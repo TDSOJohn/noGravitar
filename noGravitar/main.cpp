@@ -34,8 +34,9 @@ int main()
     textures.load(Textures::Fuel, resourcePath() + "fuel.png");
     textures.load(Textures::Enemy_1, resourcePath() + "enemy1.png");
     textures.load(Textures::Enemy_2, resourcePath() + "enemy2.png");
-    textures.load(Textures::Bullet, resourcePath() + "bullet.png");
-    
+    textures.load(Textures::Bullet_1, resourcePath() + "bullet.png");
+    textures.load(Textures::Bullet_2, resourcePath() + "bullet.png");
+
     Game game(textures);
     game.run();
     

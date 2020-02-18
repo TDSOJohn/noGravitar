@@ -17,7 +17,8 @@ class Enemy : public Character      //Character class inherits almost everything
 public:
     using               Character::Character;
     float               getRotation();
-    
+    Textures::ID        getBulletID();
+
 private:
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {

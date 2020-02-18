@@ -13,6 +13,12 @@ Score is increased by:
 Every completed planet becomes red but is still accessible, even if empty.
 Solar System is destroyed and recreated once all planets are cleared, effectively restarting everything and keeping the score gained.
 
+Fuel quantity is connected to the barrel's color: the greener, the fuller.
+
+Two types of enemies exist:
+Green 	- 70hp 	- 3hp damage 	- steady shot
+Red 	- 50hp 	- 5hp damage 	- random shot
+
 #Controls
 W: 	spaceship movement up
 A: 	spaceship movement left

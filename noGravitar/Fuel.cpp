@@ -10,7 +10,7 @@
 
 Fuel::Fuel(const sf::Texture& fuelText, sf::Vector2f fuelPosition)
 {
-    fuelQuantity = rand()%40 + 10;
+    fuelQuantity = rand()%30 + 10;
     fuelSprite.setOrigin(Settings::ICONS_DIM/2, Settings::ICONS_DIM/4);
     
     fuelSprite.setTexture(fuelText);
