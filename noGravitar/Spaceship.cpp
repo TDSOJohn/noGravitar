@@ -34,6 +34,7 @@ void Spaceship::move(sf::Vector2f movement, bool shotInput, bool grabInput) //mo
         if(characterSprite.getPosition().y < Settings::ICONS_DIM/2)
             characterSprite.setPosition(characterSprite.getPosition().x, Settings::ICONS_DIM/2);
         else if(characterSprite.getPosition().y > (Settings::MAP_Y - Settings::ICONS_DIM/2))
+            characterSprite.setPosition(characterSprite.getPosition().x, (Settings::MAP_Y - Settings::ICONS_DIM/2));
 
         lifeBar.setPosition(characterSprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
         hookSprite.setPosition(characterSprite.getPosition() + sf::Vector2f(0.f, Settings::ICONS_DIM/2));
