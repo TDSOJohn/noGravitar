@@ -113,7 +113,7 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
         {
             if(spaceship.getHookBounds().intersects(fuelArray[i].getBounds()))
             {
-                spaceship.isHit(fuelArray[i].getFuel() * (-1));
+                spaceship.addFuel(fuelArray[i].getFuel());
                 *score += fuelArray[i].getFuel();                         //Increment score by fuel value
                 fuelArray.erase(fuelArray.begin() + i);
             }

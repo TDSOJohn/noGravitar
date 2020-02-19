@@ -19,6 +19,7 @@ public:
     
     Settings::gameStates move(sf::Vector2f, bool, bool);             //Move from current position by vector2f passed, bool for shooting and hook movement
     void                move(sf::Vector2f);                         //Move to position passed by vector2f
+    void                addFuel(int);
 
     int                 isHit(int);
     sf::FloatRect       getHookBounds()         { return hookSprite.getGlobalBounds(); }

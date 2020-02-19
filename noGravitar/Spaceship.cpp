@@ -23,7 +23,8 @@ Settings::gameStates Spaceship::move(sf::Vector2f movement, bool shotInput, bool
     if(fuelConsumption.asSeconds() >= 1)
     {
         fuelConsumption -= sf::seconds(1.f);
-        fuel--;
+        if(fuel)
+            fuel--;
         fuelBar.setSize(sf::Vector2f(fuel, 6.f));
         fuelBar.setOrigin(fuel/2, 3.f);
 
@@ -50,7 +51,7 @@ Settings::gameStates Spaceship::move(sf::Vector2f movement, bool shotInput, bool
     {
         hookSprite.move(movement);
     }
-    if(fuel <= 0)
+    if(fuel == 0)
         return Settings::gameStates::Lost;
     return Settings::gameStates::Play;
 }
@@ -59,6 +60,15 @@ void Spaceship::move(sf::Vector2f newPos)
 {
     characterSprite.setPosition(newPos);
     lifeBar.setPosition(newPos - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+}
+
+void Spaceship::addFuel(int f)
+{
+    fuel += f;
+    if(fuel > Settings::SPACESHIP_FUEL*2)
+        fuel = Settings::SPACESHIP_FUEL*2;
+    fuelBar.setSize(sf::Vector2f(fuel, 6.f));
+    fuelBar.setOrigin(fuel/2, 3.f);
 }
 
 int Spaceship::isHit(int damage)
