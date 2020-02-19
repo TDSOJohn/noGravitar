@@ -8,30 +8,18 @@
 
 #include "Bullet.hpp"
 
-Bullet::Bullet(const sf::Texture& bulletTexture, sf::Vector2f position, Textures::ID bulletID, float rot) : bulletSprite(bulletTexture), directionVector(0.f, 0.f)
+Bullet::Bullet(const entityResources& bulletResources, sf::Vector2f position, float rot) : directionVector(0.f, 0.f), GameEntity(bulletResources, position, rot)
 {
-    if(bulletID == Textures::Bullet_1)
-        settings = Settings::BULLET_1;
-    else if(bulletID == Textures::Bullet_2)
-        settings = Settings::BULLET_2;
-    else
-        settings = Settings::BULLET_3;
-    
-    settings.rotation = 180.f - rot;
-    bulletSprite.setOrigin(bulletSprite.getLocalBounds().width/2, bulletSprite.getLocalBounds().height);
-    bulletSprite.setPosition(position);
-    bulletSprite.setRotation(settings.rotation*(-1));
-    
-    directionVector = sf::Vector2f(settings.speed*std::sin(settings.rotation*PI/180),
-                                   settings.speed*std::cos(settings.rotation*PI/180));
+    directionVector = sf::Vector2f(settings.speed*std::sin((180-settings.rotation)*PI/180),
+                                   settings.speed*std::cos((180-settings.rotation)*PI/180));
 }
 
 bool Bullet::move(const sf::Time& expTime)
 {
-    bulletSprite.move(directionVector*expTime.asSeconds());
+    entitySprite.move(directionVector*expTime.asSeconds());
     
-    return(bulletSprite.getPosition().x > 0 &&
-           bulletSprite.getPosition().x < Settings::MAP_X &&
-           bulletSprite.getPosition().y > 0 &&
-           bulletSprite.getPosition().y < Settings::MAP_Y);
+    return(entitySprite.getPosition().x > 0 &&
+           entitySprite.getPosition().x < Settings::MAP_X &&
+           entitySprite.getPosition().y > 0 &&
+           entitySprite.getPosition().y < Settings::MAP_Y);
 }

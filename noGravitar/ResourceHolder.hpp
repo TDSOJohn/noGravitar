@@ -16,23 +16,23 @@
 
 #include "Settings.h"
 
-/*
+
 struct entityResources
 {
     std::unique_ptr<sf::Texture> texture;
-    characterSettings entityData;
-};*/
+    entitySettings entityData;
+};
 
 
 class ResourceHolder
 {
 public:
-    void                load(Textures::ID id, const std::string& filename);
-    sf::Texture&        get(Textures::ID id);
-    const sf::Texture&  get(Textures::ID id) const;
+    void                    load(Textures::ID id, const std::string& filename);
+    entityResources&        get(Textures::ID id);
+    const entityResources&  get(Textures::ID id) const;
     
 private:
-    std::map<Textures::ID, std::unique_ptr<sf::Texture>> mTextureMap;
+    std::map<Textures::ID, entityResources> mTextureMap;
 };
 
 #endif

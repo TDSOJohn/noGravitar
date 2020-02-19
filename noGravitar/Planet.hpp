@@ -31,7 +31,7 @@ private:
     sf::Sprite          planetSprite;
     sf::Sprite          planetBackground;
     sf::VertexArray     ground;
-    const sf::Texture&  bulletTexture;
+    const entityResources& bulletResources;
     sf::Time            spaceshipBulletTime;
     sf::Time            enemyBullet1Time;
     sf::Time            enemyBullet2Time;
