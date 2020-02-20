@@ -29,7 +29,7 @@ Space:	activate descending hook
 N: 	new game
 
 #TODO LIST:
-Add life separate from fuel
+Add parameters to std::map
 Ground needs to be different in order to implement correct hitArea
 
 #KNOWN BUGS:
