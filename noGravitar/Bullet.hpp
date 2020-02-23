@@ -9,6 +9,8 @@
 #ifndef Bullet_hpp
 #define Bullet_hpp
 
+#include <cmath>
+
 #include "GameEntity.hpp"
 #include "ResourceHolder.hpp"
 

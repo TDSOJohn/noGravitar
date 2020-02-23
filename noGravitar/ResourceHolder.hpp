@@ -6,33 +6,33 @@
 //  Copyright © 2020 Giovanni Basso. All rights reserved.
 //
 
-#ifndef ResourceHolder_hpp
-#define ResourceHolder_hpp
+#ifndef RESOURCEHOLDER_HPP
+#define RESOURCEHOLDER_HPP
 
 #include <iostream>
-#include <cmath>
 #include <map>
 #include <SFML/Graphics.hpp>
 
 #include "Settings.h"
 
-
-struct entityResources
-{
-    std::unique_ptr<sf::Texture> texture;
-    entitySettings entityData;
-};
-
-
+template <typename Resource, typename Identifier>
 class ResourceHolder
 {
 public:
-    void                    load(Textures::ID id, const std::string& filename);
-    entityResources&        get(Textures::ID id);
-    const entityResources&  get(Textures::ID id) const;
+    void                    load(Identifier, const std::string&);
+    
+    template <typename Parameter>
+    void                    load(Identifier, const std::string&, const Parameter&);
+    
+    Resource&               get(Identifier);
+    const Resource&         get(Identifier) const;
     
 private:
-    std::map<Textures::ID, entityResources> mTextureMap;
+    void                    insertResource(Identifier, std::unique_ptr<Resource>);
+    
+private:
+    std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
 
+#include "ResourceHolder.inl"
 #endif
