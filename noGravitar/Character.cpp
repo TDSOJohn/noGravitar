@@ -8,12 +8,12 @@
 
 #include "Character.hpp"
 
-Character::Character(const ResourceHolder& resources, Textures::ID textureID, sf::Vector2f position, float rotation) : characterSprite(*(resources.get(textureID).texture))
+Character::Character(const sf::Texture& texture, const sf::Vector2f& position, float rotation) : characterSprite(texture)
 {
-    if(textureID == Textures::Enemy_1)
+/*    if(textureID == Textures::Enemy_1)
         settings = Settings::ENEMY_1;
     else
-        settings = Settings::ENEMY_2;
+        settings = Settings::ENEMY_2;*/
     
     settings.rotation = rotation;
     characterSprite.setOrigin(characterSprite.getLocalBounds().width/2, characterSprite.getLocalBounds().height/2);

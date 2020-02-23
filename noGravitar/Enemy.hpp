@@ -9,6 +9,9 @@
 #ifndef Enemy_hpp
 #define Enemy_hpp
 
+#include <SFML/Graphics.hpp>
+
+#include "Settings.h"
 #include "ResourceHolder.hpp"
 #include "Character.hpp"
 

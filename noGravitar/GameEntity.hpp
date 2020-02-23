@@ -9,12 +9,16 @@
 #ifndef GameEntity_hpp
 #define GameEntity_hpp
 
+#include <SFML/Graphics.hpp>
+
+#include "Settings.h"
 #include "ResourceHolder.hpp"
 
 class GameEntity : public sf::Drawable
 {
 public:
-    GameEntity(const entityResources& =entityResources(), sf::Vector2f =sf::Vector2f(), float =0.f);
+    GameEntity(const sf::Texture& =sf::Texture(), const entitySettings& =entitySettings(),
+               const sf::Vector2f& =sf::Vector2f(), float =0.f);
 
     sf::FloatRect       getBounds() const { return entitySprite.getGlobalBounds(); }
     

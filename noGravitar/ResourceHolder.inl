@@ -6,8 +6,6 @@
 //  Copyright © 2020 Giovanni Basso. All rights reserved.
 //
 
-#include "ResourceHolder.hpp"
-
 template <typename Resource, typename Identifier>
 void ResourceHolder<Resource, Identifier>::load(Identifier id, const std::string& filename)
 {
@@ -33,7 +31,7 @@ template <typename Resource, typename Identifier>
 Resource& ResourceHolder<Resource, Identifier>::get(Identifier id)
 {
     auto found = mResourceMap.find(id);
-    assert(found != mResourceMap.end());
+    assert(found !=mResourceMap.end());
     
     return *found->second;
 }
@@ -41,7 +39,7 @@ template <typename Resource, typename Identifier>
 const Resource& ResourceHolder<Resource, Identifier>::get(Identifier id) const
 {
     auto found = mResourceMap.find(id);
-    assert(found != mResourceMap.end());
+    assert(found !=mResourceMap.end());
     
     return *found->second;
 }

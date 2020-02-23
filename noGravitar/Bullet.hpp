@@ -10,14 +10,16 @@
 #define Bullet_hpp
 
 #include <cmath>
+#include <SFML/Graphics.hpp>
 
+#include "Settings.h"
 #include "GameEntity.hpp"
 #include "ResourceHolder.hpp"
 
 class Bullet : public GameEntity
 {
 public:
-    Bullet(const entityResources& =entityResources(), sf::Vector2f = sf::Vector2f(), float = 0.f); //int is damage, float is rotation angle
+    Bullet(const sf::Texture& =sf::Texture(), entitySettings =entitySettings(), sf::Vector2f =sf::Vector2f(), float =0.f); //int is damage, float is rotation angle
 
     bool                move(const sf::Time& = sf::Time());                                 //Return 0 if bullet no longer inside map coordinates
     int                 getDamage() { return settings.damage; }

@@ -19,8 +19,7 @@
 
 namespace Textures
 {
-    enum                    ID { ssBackground, pBackground, Planet, Spaceship, Hook, Fuel, Enemy_1, Enemy_2, Bullet_1, Bullet_2,
-                                    Bullet_3, Won, Lost };
+    enum                    ID { ssBackground, pBackground, Planet, Spaceship, Hook, Fuel, Enemy_1, Enemy_2, Bullet_1, Bullet_2, Bullet_3, Won, Lost };
 }
 
 struct    entitySettings

@@ -14,6 +14,9 @@
 // function `resourcePath()` from ResourcePath.hpp
 //
 
+#include <SFML/Graphics.hpp>
+
+#include "Settings.h"
 #include "ResourcePath.hpp"
 #include "ResourceHolder.hpp"
 #include "Game.hpp"

@@ -11,9 +11,10 @@
 
 #include <iostream>
 #include <map>
-#include <SFML/Graphics.hpp>
-
-#include "Settings.h"
+#include <string>
+#include <memory>
+#include <stdexcept>
+#include <cassert>
 
 template <typename Resource, typename Identifier>
 class ResourceHolder

@@ -8,7 +8,7 @@
 
 #include "Spaceship.hpp"
 
-Spaceship::Spaceship(const ResourceHolder& resources, Textures::ID textureID, sf::Vector2f position) : Character(resources, textureID, position, 0), fuelBar(sf::Vector2f(Settings::SPACESHIP_FUEL, 6.f)), hookSprite(*(resources.get(Textures::Hook).texture)), fuel(Settings::SPACESHIP_FUEL), grabbing(false), clock(), fuelConsumption(sf::Time::Zero)
+Spaceship::Spaceship(const ResourceHolder<sf::Texture, Textures::ID>& textures, Textures::ID textureID, sf::Vector2f position) : Character(textures.get(textureID), position, 0), fuelBar(sf::Vector2f(Settings::SPACESHIP_FUEL, 6.f)), hookSprite(textures.get(Textures::Hook)), fuel(Settings::SPACESHIP_FUEL), grabbing(false), clock(), fuelConsumption(sf::Time::Zero)
 {
     settings = Settings::SPACESHIP;
     fuelBar.setOrigin(fuel/2, 3.f);

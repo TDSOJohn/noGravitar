@@ -9,6 +9,9 @@
 #ifndef SolarSystem_hpp
 #define SolarSystem_hpp
 
+#include <SFML/Graphics.hpp>
+
+#include "Settings.h"
 #include "ResourceHolder.hpp"
 #include "Spaceship.hpp"
 #include "Planet.hpp"
@@ -24,7 +27,7 @@ struct planetCell
 class SolarSystem: public sf::Drawable
 {
 public:
-    SolarSystem(int*, const ResourceHolder& = ResourceHolder());
+    SolarSystem(int*, const ResourceHolder<sf::Texture, Textures::ID>& = ResourceHolder<sf::Texture, Textures::ID>());
 
     void                handleInputEvent(sf::Keyboard::Key key, bool isMoving);
     Settings::gameStates update(sf::Time deltaTime);         //Returns ::Lost if spaceship dead, ::Play if everything ok, ::Win if planet complete

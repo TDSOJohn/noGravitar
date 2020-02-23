@@ -8,7 +8,7 @@
 
 #include "Bullet.hpp"
 
-Bullet::Bullet(const entityResources& bulletResources, sf::Vector2f position, float rot) : directionVector(0.f, 0.f), GameEntity(bulletResources, position, rot)
+Bullet::Bullet(const sf::Texture& texture, const entitySettings eSettings, sf::Vector2f position, float rot) : directionVector(0.f, 0.f), GameEntity(texture, eSettings, position, rot)
 {
     directionVector = sf::Vector2f(settings.speed*std::sin((180-settings.rotation)*PI/180),
                                    settings.speed*std::cos((180-settings.rotation)*PI/180));

@@ -9,14 +9,16 @@
 #ifndef Character_hpp
 #define Character_hpp
 
-#include "ResourceHolder.hpp"
+#include <SFML/Graphics.hpp>
 
+#include "Settings.h"
+#include "ResourceHolder.hpp"
 #include "Bullet.hpp"
 
 class Character : public sf::Drawable
 {
 public:
-    Character(const ResourceHolder& =ResourceHolder(), Textures::ID =Textures::Enemy_1, sf::Vector2f =sf::Vector2f(), float =0.f);
+    Character(const sf::Texture&  =sf::Texture(), const sf::Vector2f& =sf::Vector2f(), float =0.f);
     
     bool                operator==(const Bullet&);
     int                 isHit(int);

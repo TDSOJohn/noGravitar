@@ -9,6 +9,9 @@
 #ifndef Fuel_hpp
 #define Fuel_hpp
 
+#include <SFML/Graphics.hpp>
+
+#include "Settings.h"
 #include "ResourceHolder.hpp"
 
 class Fuel : public sf::Drawable

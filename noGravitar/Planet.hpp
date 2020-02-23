@@ -9,6 +9,9 @@
 #ifndef Planet_hpp
 #define Planet_hpp
 
+#include <SFML/Graphics.hpp>
+
+#include "Settings.h"
 #include "ResourceHolder.hpp"
 #include "Spaceship.hpp"
 #include "Enemy.hpp"
@@ -18,7 +21,7 @@
 class Planet : public sf::Drawable
 {
 public:
-    Planet(int*, const ResourceHolder& =ResourceHolder(), sf::Vector2f =sf::Vector2f());
+    Planet(int*, const ResourceHolder<sf::Texture, Textures::ID> =ResourceHolder<sf::Texture, Textures::ID>(), sf::Vector2f =sf::Vector2f());
     
     void                changeStatus(bool pStatus);
 
@@ -31,7 +34,7 @@ private:
     sf::Sprite          planetSprite;
     sf::Sprite          planetBackground;
     sf::VertexArray     ground;
-    const entityResources& bulletResources;
+    const sf::Texture   bulletTexture;
     sf::Time            spaceshipBulletTime;
     sf::Time            enemyBullet1Time;
     sf::Time            enemyBullet2Time;
@@ -56,13 +59,13 @@ private:
             target.draw(planetBackground);
             target.draw(ground);
             
-            for(int i= 0; i<fuelArray.size(); i++)
+            for(int i =0; i <fuelArray.size(); i++)
                 target.draw(fuelArray[i]);
-            for(int i= 0; i<enemyArray.size(); i++)
+            for(int i =0; i <enemyArray.size(); i++)
                 target.draw(enemyArray[i]);
-            for(int i=0; i<spaceshipBulletArray.size(); i++)
+            for(int i =0; i <spaceshipBulletArray.size(); i++)
                 target.draw(spaceshipBulletArray[i]);
-            for(int i=0; i<enemyBulletArray.size(); i++)
+            for(int i =0; i <enemyBulletArray.size(); i++)
                 target.draw(enemyBulletArray[i]);
         }
     }

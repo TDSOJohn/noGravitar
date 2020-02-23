@@ -8,7 +8,7 @@
 
 #include "Planet.hpp"
 
-Planet::Planet(int* scr, const ResourceHolder& resources, sf::Vector2f planetPosition) : planetSprite(*(resources.get(Textures::Planet).texture)), planetBackground(*(resources.get(Textures::pBackground).texture)), bulletResources(resources.get(Textures::Bullet_1)), spaceshipBulletTime(sf::Time::Zero), enemyBullet1Time(sf::Time::Zero), enemyBullet2Time(sf::Time::Zero), planetStatus(false), score(scr)
+Planet::Planet(int* scr, ResourceHolder<sf::Texture, Textures::ID> textures, sf::Vector2f planetPosition) : planetSprite(textures.get(Textures::Planet)), planetBackground(textures.get(Textures::pBackground)), bulletTexture(textures.get(Textures::Bullet_1)), spaceshipBulletTime(sf::Time::Zero), enemyBullet1Time(sf::Time::Zero), enemyBullet2Time(sf::Time::Zero), planetStatus(false), score(scr)
 {
     planetSprite.setOrigin(planetSprite.getLocalBounds().width, planetSprite.getLocalBounds().height);
     planetSprite.setPosition(planetPosition);
@@ -26,16 +26,16 @@ Planet::Planet(int* scr, const ResourceHolder& resources, sf::Vector2f planetPos
         if(i%2 && i != (Settings::GROUND_POINTS-1))                                    //A fuel for every second ground tile
         {
             tempVector = ground[i].position;
-            fuelArray.push_back(Fuel(*(resources.get(Textures::Fuel).texture), tempVector));
+            fuelArray.push_back(Fuel(textures.get(Textures::Fuel), tempVector));
         } if (i && i != (Settings::GROUND_POINTS-1) && (rand()%2))                     //An enemy for every ground tile
         {
             tempVector = sf::Vector2f((ground[i-1].position.x + ground[i].position.x)/2, (ground[i-1].position.y + ground[i].position.y)/2);
             if(int(tempVector.y)%2 == 0)
-                enemyArray.push_back(Enemy(resources, Textures::Enemy_1, tempVector,
+                enemyArray.push_back(Enemy(textures.get(Textures::Enemy_1), tempVector,
                                         std::atan((ground[i].position.y - ground[i-1].position.y)/
                                         (Settings::MAP_X/(Settings::GROUND_POINTS-1)))*180/PI)); //Pass angle of rotation of ground line
             else
-                enemyArray.push_back(Enemy(resources, Textures::Enemy_2, tempVector,
+                enemyArray.push_back(Enemy(textures.get(Textures::Enemy_1), tempVector,
                                         std::atan((ground[i].position.y - ground[i-1].position.y)/
                                         (Settings::MAP_X/(Settings::GROUND_POINTS-1)))*180/PI)); //Pass angle of rotation of ground line
         }
@@ -70,7 +70,7 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
         spaceshipBulletTime += deltaTime;
         if(spaceshipBulletTime.asSeconds() >= 1.f/Settings::SPACESHIP.firerate)
         {
-            spaceshipBulletArray.push_back(Bullet(bulletResources, spaceship.getPosition(), 180.f));
+            spaceshipBulletArray.push_back(Bullet(bulletTexture, Settings::ENEMY_1, spaceship.getPosition(), 180.f));
             spaceshipBulletTime -= sf::seconds(1.f/Settings::SPACESHIP.firerate);
         }
     }
@@ -79,7 +79,7 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
     {
         for(int i=0; i<enemyArray.size(); i++)
             if(enemyArray[i].getBulletID() == Textures::Bullet_1)
-                enemyBulletArray.push_back(Bullet(bulletResources, enemyArray[i].getPosition(), enemyArray[i].getRotation()));
+                enemyBulletArray.push_back(Bullet(bulletTexture, Settings::ENEMY_2, enemyArray[i].getPosition(), enemyArray[i].getRotation()));
         enemyBullet1Time -= sf::seconds(1.f/Settings::ENEMY_1.firerate);
     }
     if(enemyBullet2Time.asSeconds() >= 1.f/Settings::ENEMY_2.firerate)
@@ -87,8 +87,8 @@ Settings::gameStates Planet::updatePlanet(Spaceship& spaceship, const sf::Time& 
         for(int i=0; i<enemyArray.size(); i++)
             if(enemyArray[i].getBulletID() == Textures::Bullet_2)
             {
-                enemyBulletArray.push_back(Bullet(bulletResources, enemyArray[i].getPosition(), enemyArray[i].getRotation() - 25.f));
-                enemyBulletArray.push_back(Bullet(bulletResources, enemyArray[i].getPosition(), enemyArray[i].getRotation() + 25.f));
+                enemyBulletArray.push_back(Bullet(bulletTexture, Settings::BULLET_1, enemyArray[i].getPosition(), enemyArray[i].getRotation() - 25.f));
+                enemyBulletArray.push_back(Bullet(bulletTexture, Settings::BULLET_1, enemyArray[i].getPosition(), enemyArray[i].getRotation() + 25.f));
             }
         enemyBullet2Time -= sf::seconds(1.f/Settings::ENEMY_2.firerate);
     }
