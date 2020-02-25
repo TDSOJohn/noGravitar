@@ -27,7 +27,7 @@ struct planetCell
 class SolarSystem: public sf::Drawable
 {
 public:
-    SolarSystem(int*, const ResourceHolder<sf::Texture, Textures::ID>& = ResourceHolder<sf::Texture, Textures::ID>());
+    SolarSystem(int*, const ResourceHolder<sf::Texture, Textures::ID>& =ResourceHolder<sf::Texture, Textures::ID>());
 
     void                handleInputEvent(sf::Keyboard::Key key, bool isMoving);
     Settings::gameStates update(sf::Time deltaTime);         //Returns ::Lost if spaceship dead, ::Play if everything ok, ::Win if planet complete

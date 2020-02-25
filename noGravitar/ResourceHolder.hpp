@@ -16,6 +16,9 @@
 #include <stdexcept>
 #include <cassert>
 
+#include "Settings.h"
+
+
 template <typename Resource, typename Identifier>
 class ResourceHolder
 {
