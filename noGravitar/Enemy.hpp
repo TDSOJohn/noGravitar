@@ -9,6 +9,7 @@
 #ifndef Enemy_hpp
 #define Enemy_hpp
 
+
 #include <SFML/Graphics.hpp>
 
 #include "Settings.h"
@@ -25,7 +26,7 @@ public:
 private:
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        target.draw(Character::characterSprite);
+        target.draw(entitySprite);
         target.draw(Character::lifeBar);
     }
 };

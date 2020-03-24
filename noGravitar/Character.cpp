@@ -8,18 +8,8 @@
 
 #include "Character.hpp"
 
-Character::Character(const sf::Texture& texture, const sf::Vector2f& position, float rotation) : characterSprite(texture)
+Character::Character(const sf::Texture& texture, const entitySettings& settings, const sf::Vector2f& position, float rotation) : GameEntity(texture, settings, position, rotation)
 {
-/*    if(textureID == Textures::Enemy_1)
-        settings = Settings::ENEMY_1;
-    else
-        settings = Settings::ENEMY_2;*/
-    
-    settings.rotation = rotation;
-    characterSprite.setOrigin(characterSprite.getLocalBounds().width/2, characterSprite.getLocalBounds().height/2);
-    characterSprite.setPosition(position);
-    characterSprite.setRotation(settings.rotation);
-    
     lifeBar.setSize(sf::Vector2f(settings.life, 4.f));
     lifeBar.setFillColor(sf::Color::Green);
     lifeBar.setOrigin(settings.life/2, 2.f);
@@ -33,12 +23,12 @@ int Character::isHit(int damage)
         settings.life =0;
     lifeBar.setSize(sf::Vector2f(settings.life, 4.f));
     lifeBar.setOrigin(sf::Vector2f(settings.life/2, 2.f));
-    lifeBar.setPosition(characterSprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+    lifeBar.setPosition(entitySprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
 
     return settings.life;
 }
 
 bool Character::operator==(const Bullet& b)
 {
-    return(characterSprite.getGlobalBounds().intersects(b.getBounds()));
+    return(entitySprite.getGlobalBounds().intersects(b.getBounds()));
 }

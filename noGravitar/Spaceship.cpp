@@ -8,7 +8,7 @@
 
 #include "Spaceship.hpp"
 
-Spaceship::Spaceship(const ResourceHolder<sf::Texture, Textures::ID>& textures, Textures::ID textureID, sf::Vector2f position) : Character(textures.get(textureID), position, 0), fuelBar(sf::Vector2f(Settings::SPACESHIP_FUEL, 6.f)), hookSprite(textures.get(Textures::Hook)), fuel(Settings::SPACESHIP_FUEL), grabbing(false), clock(), fuelConsumption(sf::Time::Zero)
+Spaceship::Spaceship(const ResourceHolder<sf::Texture, Textures::ID>& textures, Textures::ID textureID, sf::Vector2f position) : Character(textures.get(textureID), Settings::SPACESHIP, position, 0), fuelBar(sf::Vector2f(Settings::SPACESHIP_FUEL, 6.f)), hookSprite(textures.get(Textures::Hook)), fuel(Settings::SPACESHIP_FUEL), grabbing(false), clock(), fuelConsumption(sf::Time::Zero)
 {
     settings = Settings::SPACESHIP;
     fuelBar.setOrigin(fuel/2, 3.f);
@@ -33,19 +33,19 @@ Settings::gameStates Spaceship::move(sf::Vector2f movement, bool shotInput, bool
     grabbing = grabInput;
     if(!grabbing)
     {
-        characterSprite.move(movement);
-        if(characterSprite.getPosition().x < Settings::ICONS_DIM/2)
-            characterSprite.setPosition(Settings::ICONS_DIM/2, characterSprite.getPosition().y);
-        else if(characterSprite.getPosition().x > (Settings::MAP_X - Settings::ICONS_DIM/2))
-            characterSprite.setPosition((Settings::MAP_X - Settings::ICONS_DIM/2), characterSprite.getPosition().y);
-        if(characterSprite.getPosition().y < Settings::ICONS_DIM/2)
-            characterSprite.setPosition(characterSprite.getPosition().x, Settings::ICONS_DIM/2);
-        else if(characterSprite.getPosition().y > (Settings::MAP_Y - Settings::ICONS_DIM/2))
-            characterSprite.setPosition(characterSprite.getPosition().x, (Settings::MAP_Y - Settings::ICONS_DIM/2));
+        entitySprite.move(movement);
+        if(entitySprite.getPosition().x < Settings::ICONS_DIM/2)
+            entitySprite.setPosition(Settings::ICONS_DIM/2, entitySprite.getPosition().y);
+        else if(entitySprite.getPosition().x > (Settings::MAP_X - Settings::ICONS_DIM/2))
+            entitySprite.setPosition((Settings::MAP_X - Settings::ICONS_DIM/2), entitySprite.getPosition().y);
+        if(entitySprite.getPosition().y < Settings::ICONS_DIM/2)
+            entitySprite.setPosition(entitySprite.getPosition().x, Settings::ICONS_DIM/2);
+        else if(entitySprite.getPosition().y > (Settings::MAP_Y - Settings::ICONS_DIM/2))
+            entitySprite.setPosition(entitySprite.getPosition().x, (Settings::MAP_Y - Settings::ICONS_DIM/2));
 
-        lifeBar.setPosition(characterSprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
-        fuelBar.setPosition(characterSprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2 +12));
-        hookSprite.setPosition(characterSprite.getPosition() + sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+        lifeBar.setPosition(entitySprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+        fuelBar.setPosition(entitySprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2 +12));
+        hookSprite.setPosition(entitySprite.getPosition() + sf::Vector2f(0.f, Settings::ICONS_DIM/2));
     }
     else
     {
@@ -58,7 +58,7 @@ Settings::gameStates Spaceship::move(sf::Vector2f movement, bool shotInput, bool
 
 void Spaceship::move(sf::Vector2f newPos)
 {
-    characterSprite.setPosition(newPos);
+    entitySprite.setPosition(newPos);
     lifeBar.setPosition(newPos - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
 }
 

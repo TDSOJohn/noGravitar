@@ -38,7 +38,7 @@ private:
     
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        target.draw(characterSprite);
+        target.draw(entitySprite);
         if(grabbing)
             target.draw(hookSprite);
         target.draw(lifeBar);

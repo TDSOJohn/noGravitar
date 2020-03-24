@@ -12,7 +12,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Settings.h"
-#include "ResourceHolder.hpp"
+
 
 class GameEntity : public sf::Drawable
 {

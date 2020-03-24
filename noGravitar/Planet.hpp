@@ -21,7 +21,7 @@
 class Planet : public sf::Drawable
 {
 public:
-    Planet(int*, const ResourceHolder<sf::Texture, Textures::ID> =ResourceHolder<sf::Texture, Textures::ID>(), sf::Vector2f =sf::Vector2f());
+    Planet(int*, const ResourceHolder<sf::Texture, Textures::ID>& =ResourceHolder<sf::Texture, Textures::ID>(), sf::Vector2f =sf::Vector2f());
     
     void                changeStatus(bool pStatus);
 
@@ -59,14 +59,14 @@ private:
             target.draw(planetBackground);
             target.draw(ground);
             
-            for(int i =0; i <fuelArray.size(); i++)
-                target.draw(fuelArray[i]);
-            for(int i =0; i <enemyArray.size(); i++)
-                target.draw(enemyArray[i]);
-            for(int i =0; i <spaceshipBulletArray.size(); i++)
-                target.draw(spaceshipBulletArray[i]);
-            for(int i =0; i <enemyBulletArray.size(); i++)
-                target.draw(enemyBulletArray[i]);
+            for(auto i : fuelArray)
+                target.draw(i);
+            for(auto i : enemyArray)
+                target.draw(i);
+            for(auto i : spaceshipBulletArray)
+                target.draw(i);
+            for(auto i : enemyBulletArray)
+                target.draw(i);
         }
     }
 };

@@ -12,35 +12,33 @@
 #include <SFML/Graphics.hpp>
 
 #include "Settings.h"
-#include "ResourceHolder.hpp"
+#include "GameEntity.hpp"
 #include "Bullet.hpp"
 
-class Character : public sf::Drawable
+class Character : public GameEntity
 {
 public:
-    Character(const sf::Texture&  =sf::Texture(), const sf::Vector2f& =sf::Vector2f(), float =0.f);
+    Character(const sf::Texture&  =sf::Texture(), const entitySettings& =entitySettings(),
+              const sf::Vector2f& =sf::Vector2f(), float =0.f);
     
-    bool                operator==(const Bullet&);
-    int                 isHit(int);
+    bool                operator==(const Bullet&); //return 1 if bounds intersect
+    int                 isHit(int); //return updated life
  
-    sf::Vector2f        getPosition()   { return characterSprite.getPosition(); }
-    sf::FloatRect       getBounds()     { return characterSprite.getGlobalBounds(); }
-    float               getRotation()   { return characterSprite.getRotation(); }
+    sf::Vector2f        getPosition()   { return entitySprite.getPosition(); }
+    float               getRotation()   { return entitySprite.getRotation(); }
     int                 getLife()       { return settings.life; }
     int                 getDamage()     { return settings.damage; }
     bool                isShooting()    { return shooting; }
     
 protected:
     bool                shooting;
-    entitySettings      settings;
     
-    sf::Sprite          characterSprite;
     sf::RectangleShape  lifeBar;
 
 private:
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        target.draw(characterSprite);
+        target.draw(entitySprite);
         target.draw(lifeBar);
     }
 };

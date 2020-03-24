@@ -9,6 +9,7 @@
 #ifndef Game_hpp
 #define Game_hpp
 
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
 #include "Settings.h"
