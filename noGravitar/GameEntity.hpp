@@ -14,7 +14,7 @@
 #include "Settings.h"
 
 
-class GameEntity : public sf::Drawable
+class GameEntity : public sf::Drawable, public sf::Transformable
 {
 public:
     GameEntity(const sf::Texture& =sf::Texture(), const entitySettings& =entitySettings(),

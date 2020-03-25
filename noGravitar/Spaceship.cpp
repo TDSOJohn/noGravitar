@@ -55,12 +55,12 @@ Settings::gameStates Spaceship::move(sf::Vector2f movement, bool shotInput, bool
         return Settings::gameStates::Lost;
     return Settings::gameStates::Play;
 }
-
+/*
 void Spaceship::move(sf::Vector2f newPos)
 {
     entitySprite.setPosition(newPos);
     lifeBar.setPosition(newPos - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
-}
+}*/
 
 void Spaceship::addFuel(int f)
 {

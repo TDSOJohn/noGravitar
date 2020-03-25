@@ -24,8 +24,6 @@ public:
     bool                operator==(const Bullet&); //return 1 if bounds intersect
     int                 isHit(int); //return updated life
  
-    sf::Vector2f        getPosition()   { return entitySprite.getPosition(); }
-    float               getRotation()   { return entitySprite.getRotation(); }
     int                 getLife()       { return settings.life; }
     int                 getDamage()     { return settings.damage; }
     bool                isShooting()    { return shooting; }
