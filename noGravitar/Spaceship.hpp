@@ -38,14 +38,15 @@ private:
     sf::Clock           clock;
     sf::Time            fuelConsumption;
     
+
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         std::cout <<this->getPosition().x <<"\t" <<this->getPosition().y <<std::endl;
-        target.draw(entitySprite);
+        target.draw(entitySprite, states);
         if(grabbing)
-            target.draw(hookSprite);
-        target.draw(lifeBar);
-        target.draw(fuelBar);
+            target.draw(hookSprite, states);
+        target.draw(lifeBar, states);
+        target.draw(fuelBar, states);
     }
 };
 

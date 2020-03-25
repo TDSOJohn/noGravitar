@@ -33,15 +33,15 @@ Settings::gameStates Spaceship::move(sf::Vector2f movement, bool shotInput, bool
     grabbing = grabInput;
     if(!grabbing)
     {
-        entitySprite.move(movement);
-        if(entitySprite.getPosition().x < Settings::ICONS_DIM/2)
-            entitySprite.setPosition(Settings::ICONS_DIM/2, entitySprite.getPosition().y);
-        else if(entitySprite.getPosition().x > (Settings::MAP_X - Settings::ICONS_DIM/2))
-            entitySprite.setPosition((Settings::MAP_X - Settings::ICONS_DIM/2), entitySprite.getPosition().y);
-        if(entitySprite.getPosition().y < Settings::ICONS_DIM/2)
-            entitySprite.setPosition(entitySprite.getPosition().x, Settings::ICONS_DIM/2);
-        else if(entitySprite.getPosition().y > (Settings::MAP_Y - Settings::ICONS_DIM/2))
-            entitySprite.setPosition(entitySprite.getPosition().x, (Settings::MAP_Y - Settings::ICONS_DIM/2));
+        this->move(movement);
+        if(this->getPosition().x < Settings::ICONS_DIM/2)
+            this->setPosition(Settings::ICONS_DIM/2, this->getPosition().y);
+        else if(this->getPosition().x > (Settings::MAP_X - Settings::ICONS_DIM/2))
+            this->setPosition((Settings::MAP_X - Settings::ICONS_DIM/2), this->getPosition().y);
+        if(this->getPosition().y < Settings::ICONS_DIM/2)
+            this->setPosition(this->getPosition().x, Settings::ICONS_DIM/2);
+        else if(this->getPosition().y > (Settings::MAP_Y - Settings::ICONS_DIM/2))
+            this->setPosition(this->getPosition().x, (Settings::MAP_Y - Settings::ICONS_DIM/2));
 
         lifeBar.setPosition(entitySprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
         fuelBar.setPosition(entitySprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2 +12));
