@@ -3,3 +3,6 @@
 *.plist
 *.xcbkptlist
 /Index
+*.xcscheme
+*.xcworkspacedata
+*.xcsettings
