@@ -33,12 +33,6 @@ protected:
     
     sf::RectangleShape  lifeBar;
 
-private:
-    virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
-    {
-        target.draw(entitySprite);
-        target.draw(lifeBar);
-    }
 };
 
 #endif /* Character_hpp */

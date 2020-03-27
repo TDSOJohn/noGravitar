@@ -35,12 +35,12 @@ private:
     
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        target.draw(scoreText);
-        target.draw(scoreNumberText);
+        target.draw(scoreText, states);
+        target.draw(scoreNumberText, states);
         if(*gameState == Settings::gameStates::Won)
-            target.draw(youWonMessage);
+            target.draw(youWonMessage, states);
         if(*gameState == Settings::gameStates::Lost)
-            target.draw(youLostMessage);
+            target.draw(youLostMessage, states);
     }
 };
 #endif /* Overlay_hpp */

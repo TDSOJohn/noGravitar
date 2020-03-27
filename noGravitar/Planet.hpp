@@ -53,20 +53,20 @@ private:
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         if(!planetStatus)
-            target.draw(planetSprite);
+            target.draw(planetSprite, states);
         else
         {
-            target.draw(planetBackground);
-            target.draw(ground);
+            target.draw(planetBackground, states);
+            target.draw(ground, states);
             
             for(auto i : fuelArray)
-                target.draw(i);
+                target.draw(i, states);
             for(auto i : enemyArray)
-                target.draw(i);
+                target.draw(i, states);
             for(auto i : spaceshipBulletArray)
-                target.draw(i);
+                target.draw(i, states);
             for(auto i : enemyBulletArray)
-                target.draw(i);
+                target.draw(i, states);
         }
     }
 };

@@ -16,7 +16,7 @@
 #include "ResourceHolder.hpp"
 #include "Character.hpp"
 
-class Enemy : public Character      //Character class inherits almost everything from Character
+class Enemy : public Character      //Enemy class inherits almost everything from Character
 {
 public:
     using               Character::Character;
@@ -26,8 +26,9 @@ public:
 private:
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        target.draw(entitySprite);
-        target.draw(Character::lifeBar);
+        states.transform *=getTransform();
+        target.draw(entitySprite, states);
+        target.draw(Character::lifeBar, states);
     }
 };
 

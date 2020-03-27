@@ -20,7 +20,7 @@ public:
     GameEntity(const sf::Texture& =sf::Texture(), const entitySettings& =entitySettings(),
                const sf::Vector2f& =sf::Vector2f(), float =0.f);
 
-    sf::FloatRect       getBounds() const { return entitySprite.getGlobalBounds(); }
+    sf::FloatRect       getBounds() const { return getTransform().transformRect(entitySprite.getGlobalBounds()); }
     
 protected:
     entitySettings      settings;
@@ -29,7 +29,8 @@ protected:
 private:
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        target.draw(entitySprite);
+        states.transform *=getTransform();
+        target.draw(entitySprite, states);
     }
 };
 

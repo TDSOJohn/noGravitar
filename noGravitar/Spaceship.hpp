@@ -22,7 +22,6 @@ public:
     Spaceship(const ResourceHolder<sf::Texture, Textures::ID>& =ResourceHolder<sf::Texture, Textures::ID>(), Textures::ID =Textures::Spaceship, sf::Vector2f =sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
     
     Settings::gameStates move(sf::Vector2f, bool, bool);             //Move from current position by vector2f passed, bool for shooting and hook movement
-//    void                move(sf::Vector2f);                         //Move to position passed by vector2f
     using               sf::Transformable::move;
     void                addFuel(int);
 
@@ -41,7 +40,8 @@ private:
 
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        std::cout <<this->getPosition().x <<"\t" <<this->getPosition().y <<std::endl;
+        states.transform *=getTransform();
+//        std::cout <<this->getPosition().x <<"\t" <<this->getPosition().y <<std::endl;
         target.draw(entitySprite, states);
         if(grabbing)
             target.draw(hookSprite, states);

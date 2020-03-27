@@ -29,7 +29,8 @@ private:
     
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        target.draw(entitySprite);
+        states.transform *=getTransform();
+        target.draw(entitySprite, states);
     }
 };
 

@@ -13,7 +13,7 @@ Character::Character(const sf::Texture& texture, const entitySettings& settings,
     lifeBar.setSize(sf::Vector2f(settings.life, 4.f));
     lifeBar.setFillColor(sf::Color::Green);
     lifeBar.setOrigin(settings.life/2, 2.f);
-    lifeBar.setPosition(position - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+    lifeBar.setPosition(0.f, -(Settings::ICONS_DIM/2));
 }
 
 int Character::isHit(int damage)
@@ -23,12 +23,12 @@ int Character::isHit(int damage)
         settings.life =0;
     lifeBar.setSize(sf::Vector2f(settings.life, 4.f));
     lifeBar.setOrigin(sf::Vector2f(settings.life/2, 2.f));
-    lifeBar.setPosition(entitySprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+    lifeBar.setPosition(sf::Vector2f(0.f, -(Settings::ICONS_DIM/2)));
 
     return settings.life;
 }
 
 bool Character::operator==(const Bullet& b)
 {
-    return(entitySprite.getGlobalBounds().intersects(b.getBounds()));
+    return(this->getBounds().intersects(b.getBounds()));
 }

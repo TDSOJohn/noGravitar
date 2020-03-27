@@ -55,7 +55,7 @@ void SolarSystem::handleInputEvent(sf::Keyboard::Key key, bool isPressed)
         case sf::Keyboard::Escape:
             planetArray[solarSystemStatus].planet.changeStatus(false);
             solarSystemStatus = -1;
-            ourHero.move(sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
+            ourHero.setPosition(Settings::MAP_X/2, Settings::MAP_Y/3);
             break;
 
         default:
@@ -104,7 +104,7 @@ bool SolarSystem::checkCollisions()
         hit = ourHeroBounds.intersects(planetArray[i].planet.getBounds());
         if(hit)
         {
-            ourHero.move(sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
+            ourHero.setPosition(Settings::MAP_X/2, Settings::MAP_Y/3);
             planetArray[i].planet.changeStatus(hit);
             solarSystemStatus = i;
         }

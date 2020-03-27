@@ -54,13 +54,13 @@ private:
     {
         if(solarSystemStatus == -1)
         {
-            target.draw(ssBackgroundSprite);
+            target.draw(ssBackgroundSprite, states);
             for(int i=0; i<Settings::PLANETS; i++)
-                target.draw(planetArray[i].planet);
+                target.draw(planetArray[i].planet, states);
         } else
-            target.draw(planetArray[solarSystemStatus].planet);
+            target.draw(planetArray[solarSystemStatus].planet, states);
 
-        target.draw(ourHero);
+        target.draw(ourHero, states);
     }
 };
 

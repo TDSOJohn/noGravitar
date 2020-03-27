@@ -8,13 +8,16 @@
 
 #include "Spaceship.hpp"
 
-Spaceship::Spaceship(const ResourceHolder<sf::Texture, Textures::ID>& textures, Textures::ID textureID, sf::Vector2f position) : Character(textures.get(textureID), Settings::SPACESHIP, position, 0), fuelBar(sf::Vector2f(Settings::SPACESHIP_FUEL, 6.f)), hookSprite(textures.get(Textures::Hook)), fuel(Settings::SPACESHIP_FUEL), grabbing(false), clock(), fuelConsumption(sf::Time::Zero)
+Spaceship::Spaceship(const ResourceHolder<sf::Texture, Textures::ID>& textures, Textures::ID textureID, sf::Vector2f position) : Character(textures.get(textureID), Settings::SPACESHIP, sf::Vector2f(0.f, 0.f), 0), fuelBar(sf::Vector2f(Settings::SPACESHIP_FUEL, 6.f)), hookSprite(textures.get(Textures::Hook)), fuel(Settings::SPACESHIP_FUEL), grabbing(false), clock(), fuelConsumption(sf::Time::Zero)
 {
+    std::cout <<this->getOrigin().x <<std::endl <<this->getOrigin().y <<std::endl;
+    this->setPosition(position);
     settings = Settings::SPACESHIP;
     fuelBar.setOrigin(fuel/2, 3.f);
     fuelBar.setFillColor(sf::Color::Blue);
-    fuelBar.setPosition(position - sf::Vector2f(0.f, Settings::ICONS_DIM/2 +12));
     hookSprite.setOrigin(Settings::ICONS_DIM/4, Settings::ICONS_DIM/4);
+    fuelBar.setPosition(0.f, -(Settings::ICONS_DIM/2 +12));
+    hookSprite.setPosition(0.f, Settings::ICONS_DIM/2);
 }
 
 Settings::gameStates Spaceship::move(sf::Vector2f movement, bool shotInput, bool grabInput) //moving the hook if grabInput =1
@@ -33,19 +36,17 @@ Settings::gameStates Spaceship::move(sf::Vector2f movement, bool shotInput, bool
     grabbing = grabInput;
     if(!grabbing)
     {
+        hookSprite.setPosition(0.f, Settings::ICONS_DIM/2);
+        sf::Vector2f currPos =this->getPosition();
         this->move(movement);
-        if(this->getPosition().x < Settings::ICONS_DIM/2)
-            this->setPosition(Settings::ICONS_DIM/2, this->getPosition().y);
-        else if(this->getPosition().x > (Settings::MAP_X - Settings::ICONS_DIM/2))
-            this->setPosition((Settings::MAP_X - Settings::ICONS_DIM/2), this->getPosition().y);
-        if(this->getPosition().y < Settings::ICONS_DIM/2)
-            this->setPosition(this->getPosition().x, Settings::ICONS_DIM/2);
-        else if(this->getPosition().y > (Settings::MAP_Y - Settings::ICONS_DIM/2))
-            this->setPosition(this->getPosition().x, (Settings::MAP_Y - Settings::ICONS_DIM/2));
-
-        lifeBar.setPosition(entitySprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
-        fuelBar.setPosition(entitySprite.getPosition() - sf::Vector2f(0.f, Settings::ICONS_DIM/2 +12));
-        hookSprite.setPosition(entitySprite.getPosition() + sf::Vector2f(0.f, Settings::ICONS_DIM/2));
+        if(currPos.x < Settings::ICONS_DIM/2)
+            this->setPosition(Settings::ICONS_DIM/2, currPos.y);
+        else if(currPos.x > (Settings::MAP_X - Settings::ICONS_DIM/2))
+            this->setPosition((Settings::MAP_X - Settings::ICONS_DIM/2), currPos.y);
+        if(currPos.y < Settings::ICONS_DIM/2)
+            this->setPosition(currPos.x, Settings::ICONS_DIM/2);
+        else if(currPos.y > (Settings::MAP_Y - Settings::ICONS_DIM/2))
+            this->setPosition(currPos.x, (Settings::MAP_Y - Settings::ICONS_DIM/2));
     }
     else
     {
@@ -55,12 +56,6 @@ Settings::gameStates Spaceship::move(sf::Vector2f movement, bool shotInput, bool
         return Settings::gameStates::Lost;
     return Settings::gameStates::Play;
 }
-/*
-void Spaceship::move(sf::Vector2f newPos)
-{
-    entitySprite.setPosition(newPos);
-    lifeBar.setPosition(newPos - sf::Vector2f(0.f, Settings::ICONS_DIM/2));
-}*/
 
 void Spaceship::addFuel(int f)
 {
