@@ -14,7 +14,6 @@ GameEntity::GameEntity(const sf::Texture& texture, const entitySettings& eSettin
 {
     settings.rotation = rotation;
     this->setOrigin(entitySprite.getLocalBounds().width/2, entitySprite.getLocalBounds().height/2);
- //   std::cout <<this->getOrigin().x <<std::endl <<this->getOrigin().y <<std::endl;
     this->setPosition(position);
     this->setRotation(settings.rotation);
 }

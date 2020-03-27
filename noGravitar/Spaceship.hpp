@@ -26,14 +26,14 @@ public:
     void                addFuel(int);
 
     int                 isHit(int);
-    sf::FloatRect       getHookBounds()         { return hookSprite.getGlobalBounds(); }
+    sf::FloatRect       getHookBounds()         { return getTransform().transformRect(hook.getBounds()); }
     bool                isGrabbing()            { return grabbing; }
     
 private:
     int                 fuel;
     bool                grabbing;
     sf::RectangleShape  fuelBar;
-    sf::Sprite          hookSprite;
+    GameEntity          hook;
     sf::Clock           clock;
     sf::Time            fuelConsumption;
     
@@ -41,10 +41,9 @@ private:
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         states.transform *=getTransform();
-//        std::cout <<this->getPosition().x <<"\t" <<this->getPosition().y <<std::endl;
         target.draw(entitySprite, states);
         if(grabbing)
-            target.draw(hookSprite, states);
+            target.draw(hook, states);
         target.draw(lifeBar, states);
         target.draw(fuelBar, states);
     }
