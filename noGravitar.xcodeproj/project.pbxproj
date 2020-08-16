@@ -18,7 +18,8 @@
 		0C4544AD24BDCDC400214E91 /* Planet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C4544AB24BDCDC400214E91 /* Planet.cpp */; };
 		0C4544B424BDCE8D00214E91 /* SolarSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C4544B224BDCE8D00214E91 /* SolarSystem.cpp */; };
 		0C4544B724BDCEAA00214E91 /* Spaceship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C4544B524BDCEAA00214E91 /* Spaceship.cpp */; };
-		0CC8046B24E6E9E000ACDE50 /* ResourceHolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0CC8046A24E6E9E000ACDE50 /* ResourceHolder.cpp */; };
+		0C86054824E70265003B89E1 /* ResourceHolder.inl in Resources */ = {isa = PBXBuildFile; fileRef = 0CC8046A24E6E9E000ACDE50 /* ResourceHolder.inl */; };
+		0C86054B24E93AAF003B89E1 /* GameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C86054924E93AAF003B89E1 /* GameEntity.cpp */; };
 		0CFA98BA24BDD6BC00626A46 /* youLost.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFA98AE24BDD6BB00626A46 /* youLost.png */; };
 		0CFA98BB24BDD6BC00626A46 /* youWon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFA98AF24BDD6BB00626A46 /* youWon.png */; };
 		0CFA98BC24BDD6BC00626A46 /* fuel.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CFA98B024BDD6BB00626A46 /* fuel.png */; };
@@ -59,7 +60,9 @@
 		0C4544B324BDCE8D00214E91 /* SolarSystem.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SolarSystem.hpp; sourceTree = "<group>"; };
 		0C4544B524BDCEAA00214E91 /* Spaceship.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Spaceship.cpp; sourceTree = "<group>"; };
 		0C4544B624BDCEAA00214E91 /* Spaceship.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Spaceship.hpp; sourceTree = "<group>"; };
-		0CC8046A24E6E9E000ACDE50 /* ResourceHolder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ResourceHolder.cpp; path = noGravitar/ResourceHolder.cpp; sourceTree = "<group>"; };
+		0C86054924E93AAF003B89E1 /* GameEntity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameEntity.cpp; sourceTree = "<group>"; };
+		0C86054A24E93AAF003B89E1 /* GameEntity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameEntity.hpp; sourceTree = "<group>"; };
+		0CC8046A24E6E9E000ACDE50 /* ResourceHolder.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = ResourceHolder.inl; sourceTree = "<group>"; };
 		0CFA98AE24BDD6BB00626A46 /* youLost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = youLost.png; path = Resources/youLost.png; sourceTree = "<group>"; };
 		0CFA98AF24BDD6BB00626A46 /* youWon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = youWon.png; path = Resources/youWon.png; sourceTree = "<group>"; };
 		0CFA98B024BDD6BB00626A46 /* fuel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fuel.png; path = Resources/fuel.png; sourceTree = "<group>"; };
@@ -88,7 +91,6 @@
 		0C45447724BDCAE200214E91 = {
 			isa = PBXGroup;
 			children = (
-				0CC8046A24E6E9E000ACDE50 /* ResourceHolder.cpp */,
 				0C45448324BDCAE200214E91 /* noGravitar */,
 				0C45448224BDCAE200214E91 /* Products */,
 			);
@@ -107,27 +109,30 @@
 			children = (
 				0C45448624BDCAE200214E91 /* ResourcePath.mm */,
 				0C45448824BDCAE200214E91 /* ResourcePath.hpp */,
+				0C4544AF24BDCDFD00214E91 /* ResourceHolder.hpp */,
+				0CC8046A24E6E9E000ACDE50 /* ResourceHolder.inl */,
+				0C4544B124BDCE3C00214E91 /* Settings.h */,
 				0C45448924BDCAE200214E91 /* main.cpp */,
-				0C45449924BDCCC600214E91 /* Bullet.cpp */,
-				0C45449A24BDCCC600214E91 /* Bullet.hpp */,
+				0C4544A524BDCD6A00214E91 /* Game.cpp */,
+				0C4544A624BDCD6A00214E91 /* Game.hpp */,
+				0C4544B224BDCE8D00214E91 /* SolarSystem.cpp */,
+				0C4544B324BDCE8D00214E91 /* SolarSystem.hpp */,
+				0C86054924E93AAF003B89E1 /* GameEntity.cpp */,
+				0C86054A24E93AAF003B89E1 /* GameEntity.hpp */,
+				0C4544AB24BDCDC400214E91 /* Planet.cpp */,
+				0C4544AC24BDCDC400214E91 /* Planet.hpp */,
 				0C45449C24BDCCFA00214E91 /* Character.cpp */,
 				0C45449D24BDCCFA00214E91 /* Character.hpp */,
 				0C45449F24BDCD2700214E91 /* Enemy.cpp */,
 				0C4544A024BDCD2700214E91 /* Enemy.hpp */,
 				0C4544A224BDCD4F00214E91 /* Fuel.cpp */,
 				0C4544A324BDCD4F00214E91 /* Fuel.hpp */,
-				0C4544A524BDCD6A00214E91 /* Game.cpp */,
-				0C4544A624BDCD6A00214E91 /* Game.hpp */,
 				0C4544A824BDCD9300214E91 /* Overlay.cpp */,
 				0C4544A924BDCD9300214E91 /* Overlay.hpp */,
-				0C4544AB24BDCDC400214E91 /* Planet.cpp */,
-				0C4544AC24BDCDC400214E91 /* Planet.hpp */,
-				0C4544AF24BDCDFD00214E91 /* ResourceHolder.hpp */,
-				0C4544B124BDCE3C00214E91 /* Settings.h */,
-				0C4544B224BDCE8D00214E91 /* SolarSystem.cpp */,
-				0C4544B324BDCE8D00214E91 /* SolarSystem.hpp */,
 				0C4544B524BDCEAA00214E91 /* Spaceship.cpp */,
 				0C4544B624BDCEAA00214E91 /* Spaceship.hpp */,
+				0C45449924BDCCC600214E91 /* Bullet.cpp */,
+				0C45449A24BDCCC600214E91 /* Bullet.hpp */,
 				0C45448B24BDCAE200214E91 /* Resources */,
 				0C45448424BDCAE200214E91 /* Supporting Files */,
 			);
@@ -227,6 +232,7 @@
 				0CFA98C024BDD6BC00626A46 /* hook.png in Resources */,
 				0CFA98C224BDD6BC00626A46 /* enemy1.png in Resources */,
 				0CFA98BD24BDD6BC00626A46 /* enemy2.png in Resources */,
+				0C86054824E70265003B89E1 /* ResourceHolder.inl in Resources */,
 				0CFA98C124BDD6BC00626A46 /* bullet.png in Resources */,
 				0CFA98BA24BDD6BC00626A46 /* youLost.png in Resources */,
 				0CFA98BC24BDD6BC00626A46 /* fuel.png in Resources */,
@@ -261,8 +267,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C45448A24BDCAE200214E91 /* main.cpp in Sources */,
-				0CC8046B24E6E9E000ACDE50 /* ResourceHolder.cpp in Sources */,
 				0C45449B24BDCCC600214E91 /* Bullet.cpp in Sources */,
+				0C86054B24E93AAF003B89E1 /* GameEntity.cpp in Sources */,
 				0C4544B424BDCE8D00214E91 /* SolarSystem.cpp in Sources */,
 				0C4544A124BDCD2700214E91 /* Enemy.cpp in Sources */,
 				0C4544AD24BDCDC400214E91 /* Planet.cpp in Sources */,

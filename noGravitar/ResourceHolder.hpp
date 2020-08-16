@@ -23,19 +23,26 @@
  characterSettings entityData;
  };*/
 
-
+template <typename Resource, typename Identifier>
 class ResourceHolder
 {
 public:
-    void                load(Textures::ID id, const std::string& filename);
-    sf::Texture&        get(Textures::ID id);
-    const sf::Texture&  get(Textures::ID id) const;
+    void                load(Identifier id, const std::string& filename);
     
+    template <typename Parameter>
+    void                load(Identifier id, const std::string& filename, const Parameter& secondParam);
+    
+    Resource&           get(Identifier id);
+    const Resource&     get(Identifier id) const;
+    
+private:
+    void                insertResource(Identifier id, std::unique_ptr<Resource> resource);
 private:
     //  std::unique_ptr for automatic deletion on pointer out of scope
     //  or unique_ptr assignement to other pointer
     //  ownership is transferred, never shared
-    std::map<Textures::ID, std::unique_ptr<sf::Texture>> mTextureMap;
+    std::map<Identifier, std::unique_ptr<Resource>> mResourceMap;
 };
 
+#include "ResourceHolder.inl"
 #endif

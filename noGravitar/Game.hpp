@@ -16,7 +16,7 @@
 class Game
 {
 public:
-    Game(const ResourceHolder& txtrs);
+    Game(const TextureHolder& txtrs);
     void                run();
     
 private:
@@ -32,7 +32,7 @@ private:
     Overlay             gameOverlay;
     sf::RenderWindow    mainWindow;             //Window & general game loop stuff
     sf::View            mainView;
-    const ResourceHolder*   textures;
+    const TextureHolder*   textures;
     SolarSystem*        solarSystem;
     sf::Time            TimePerFrame;
 };

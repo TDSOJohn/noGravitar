@@ -8,7 +8,7 @@
 
 #include "Game.hpp"
 
-Game::Game(const ResourceHolder& rsrcs) : mainWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar"),
+Game::Game(const TextureHolder& rsrcs) : mainWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar"),
 mainView(sf::Vector2f(Settings::VIEW_X/2, Settings::VIEW_Y/2), sf::Vector2f(Settings::VIEW_X, Settings::VIEW_Y)), gameState(Settings::gameStates::Play), score(0), gameOverlay(&gameState, &score, rsrcs)
 {
     textures = &rsrcs;

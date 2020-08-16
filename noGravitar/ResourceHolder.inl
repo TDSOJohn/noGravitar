@@ -1,12 +1,10 @@
 //
-//  TextureHolder.cpp
+//  ResourceHolder.inl
 //  Grativar_final
 //
 //  Created by Giovanni Basso on 24/01/2020.
 //  Copyright © 2020 Giovanni Basso. All rights reserved.
 //
-
-#include "ResourceHolder.hpp"
 
 template <typename Resource, typename Identifier>
 void ResourceHolder<Resource, Identifier>::load(Identifier id, const std::string& filename)
@@ -53,3 +51,6 @@ void ResourceHolder<Resource, Identifier>::insertResource(Identifier id, std::un
     auto inserted = mResourceMap.insert(std::make_pair(id, std::move(resource)));
     assert(inserted.second);
 }
+
+//  Better use a separate document for forward-declarations and typedefs
+typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;

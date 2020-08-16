@@ -8,7 +8,7 @@
 
 #include "Character.hpp"
 
-Character::Character(const ResourceHolder& resources, Textures::ID textureID, sf::Vector2f position, float rotation) : characterSprite(resources.get(textureID))
+Character::Character(const TextureHolder& resources, Textures::ID textureID, sf::Vector2f position, float rotation) : characterSprite(resources.get(textureID))
 {
     if(textureID == Textures::Enemy_1)
         settings = Settings::ENEMY_1;

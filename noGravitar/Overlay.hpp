@@ -15,7 +15,7 @@
 class Overlay : public sf::Drawable
 {
 public:
-    Overlay(Settings::gameStates*, int*, const ResourceHolder& = ResourceHolder());
+    Overlay(Settings::gameStates*, int*, const TextureHolder& = TextureHolder());
     
     void                    update(sf::Vector2f);
     
