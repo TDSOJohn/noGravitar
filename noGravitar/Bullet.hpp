@@ -9,25 +9,25 @@
 #ifndef Bullet_hpp
 #define Bullet_hpp
 
-#include "ResourceHolder.hpp"
+#include "Core/ResourceHolder.hpp"
+#include "Core/GameEntity.hpp"
 
-class Bullet : public sf::Drawable
+
+class Bullet : public GameEntity
 {
 public:
-    Bullet(const sf::Texture& = sf::Texture(), sf::Vector2f = sf::Vector2f(), Textures::ID = Textures::Bullet_1, float = 0.f); //int is damage, float is rotation angle
+    Bullet(const sf::Texture&, entitySettings = Settings::BULLET_3, sf::Vector2f = sf::Vector2f()); //int is damage, float is rotation angle
     
     bool                move(const sf::Time& = sf::Time());                                 //Return 0 if bullet no longer inside map coordinates
     int                 getDamage() { return settings.damage; }
-    sf::FloatRect       getBounds() const { return bulletSprite.getGlobalBounds(); }
+    sf::FloatRect       getBounds() const { return entitySprite.getGlobalBounds(); }
     
 private:
-    entitySettings      settings;
     sf::Vector2f        directionVector;
-    sf::Sprite          bulletSprite;
     
     virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        target.draw(bulletSprite);
+        target.draw(entitySprite);
     }
 };
 

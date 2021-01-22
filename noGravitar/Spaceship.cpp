@@ -7,7 +7,8 @@
 //
 
 #include "Spaceship.hpp"
-#include "ResourceHolder.hpp"
+
+
 
 Textures::ID toTextureID(Spaceship::Type type)
 {
@@ -22,7 +23,7 @@ Textures::ID toTextureID(Spaceship::Type type)
     }
 }
 
-Spaceship::Spaceship(const TextureHolder& resources, Textures::ID textureID, sf::Vector2f position) : Character(resources, textureID, position, 0), fuelBar(sf::Vector2f(Settings::SPACESHIP_FUEL, 6.f)), hookSprite(resources.get(Textures::Hook)), fuel(Settings::SPACESHIP_FUEL), grabbing(false), clock(), fuelConsumption(sf::Time::Zero)
+Spaceship::Spaceship(TexturesPtr textures, Textures::ID textureID, sf::Vector2f position) : Character(textures->get(textureID), textureID, position, 0), fuelBar(sf::Vector2f(Settings::SPACESHIP_FUEL, 6.f)), hookSprite(textures->get(Textures::Hook)), fuel(Settings::SPACESHIP_FUEL), grabbing(false), clock(), fuelConsumption(sf::Time::Zero)
 {
     settings = Settings::SPACESHIP;
     fuelBar.setOrigin(fuel/2, 3.f);

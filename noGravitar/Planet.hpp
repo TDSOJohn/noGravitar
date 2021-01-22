@@ -9,16 +9,18 @@
 #ifndef Planet_hpp
 #define Planet_hpp
 
-#include "ResourceHolder.hpp"
+#include "Core/ResourceHolder.hpp"
 #include "Spaceship.hpp"
 #include "Enemy.hpp"
 #include "Fuel.hpp"
 #include "Bullet.hpp"
 
+
+
 class Planet : public sf::Drawable
 {
 public:
-    Planet(int*, const TextureHolder& =TextureHolder(), sf::Vector2f =sf::Vector2f());
+    Planet(TexturesPtr, int*, sf::Vector2f =sf::Vector2f());
     
     void                changeStatus(bool pStatus) { planetStatus = pStatus; };
     
@@ -28,10 +30,12 @@ public:
     //Spaceship, Time since last update, isShooting, isGrabbing
     
 private:
+    TexturesPtr         textures;
+    sf::Texture         bulletTexture;
+
     sf::Sprite          planetSprite;
     sf::Sprite          planetBackground;
     sf::VertexArray     ground;
-    const sf::Texture&  bulletTexture;
     sf::Time            spaceshipBulletTime;
     sf::Time            enemyBullet1Time;
     sf::Time            enemyBullet2Time;

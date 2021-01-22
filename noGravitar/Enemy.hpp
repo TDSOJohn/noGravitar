@@ -9,7 +9,7 @@
 #ifndef Enemy_hpp
 #define Enemy_hpp
 
-#include "ResourceHolder.hpp"
+#include "Core/ResourceHolder.hpp"
 #include "Character.hpp"
 
 class Enemy : public Character      //Character class inherits almost everything from Character

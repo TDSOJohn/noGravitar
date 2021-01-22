@@ -53,4 +53,5 @@ void ResourceHolder<Resource, Identifier>::insertResource(Identifier id, std::un
 }
 
 //  Better use a separate document for forward-declarations and typedefs
-typedef ResourceHolder<sf::Texture, Textures::ID> TextureHolder;
+typedef ResourceHolder<sf::Texture, Textures::ID>   TextureHolder;
+typedef const std::shared_ptr<TextureHolder>        TexturesPtr;

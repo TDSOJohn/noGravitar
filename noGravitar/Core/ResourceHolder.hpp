@@ -10,18 +10,13 @@
 #define ResourceHolder_hpp
 
 #include <iostream>
+#include <memory>
 #include <cmath>
 #include <map>
 #include <SFML/Graphics.hpp>
 
 #include "Settings.h"
 
-/*
- struct entityResources
- {
- std::unique_ptr<sf::Texture> texture;
- characterSettings entityData;
- };*/
 
 template <typename Resource, typename Identifier>
 class ResourceHolder

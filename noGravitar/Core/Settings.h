@@ -19,7 +19,22 @@
 
 namespace Textures
 {
-    enum                ID { ssBackground, pBackground, Planet, Raptor, Eagle, Hook, Fuel, Enemy_1, Enemy_2, Bullet_1, Bullet_2, Bullet_3, Won, Lost };
+    enum                ID {
+                                ssBackground,
+                                pBackground,
+                                Planet,
+                                Raptor,
+                                Eagle,
+                                Hook,
+                                Fuel,
+                                Enemy_1,
+                                Enemy_2,
+                                Bullet_1,
+                                Bullet_2,
+                                Bullet_3,
+                                Won,
+                                Lost
+                            };
 }
 
 struct    entitySettings
@@ -57,11 +72,15 @@ namespace Settings
     const unsigned int      HOOK_SPEED = 450;
     
     const entitySettings    SPACESHIP = { Textures::Eagle,      70,   750,    9,      8,      0 };
-    const entitySettings    ENEMY_1 =   { Textures::Enemy_1,    70,   0,      2.7,    3,      0 };
-    const entitySettings    ENEMY_2 =   { Textures::Enemy_2,    50,   0,      0.6,    4,      0 };
-    const entitySettings    BULLET_1 =  { Textures::Bullet_1,   0,    730,    0,      5,      0 };
-    const entitySettings    BULLET_2 =  { Textures::Bullet_2,   0,    550,    0,      3,      0 };
-    const entitySettings    BULLET_3 =  { Textures::Bullet_3,   0,    950,    0,      8,      0 };
+    const entitySettings    ENEMY_1   =   { Textures::Enemy_1,    70,   0,      2.7,    3,      0 };
+    const entitySettings    ENEMY_2   =   { Textures::Enemy_2,    50,   0,      0.6,    4,      0 };
+    
+    //  Rotation is default for spaceship orientation, aka 180.f
+    const entitySettings    BULLET_SPACESHIP
+                                      =  { Textures::Bullet_1,   0,    730,    0,      5,      180.f};
+    const entitySettings    BULLET_2a =  { Textures::Bullet_2,   0,    550,    0,      3,      25.f };
+    const entitySettings    BULLET_2b =  { Textures::Bullet_2,   0,    550,    0,      3,      -25.f};
+    const entitySettings    BULLET_3  =  { Textures::Bullet_3,   0,    950,    0,      8,      0 };
 }
 
 #endif /* Settings_h */

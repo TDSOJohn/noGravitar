@@ -8,10 +8,9 @@
 
 #include "GameEntity.hpp"
 
-GameEntity::GameEntity(const sf::Texture& texture, const entitySettings& eSettings, const sf::Vector2f& position, float rotation) :
-entitySprite(texture), settings(eSettings)
+GameEntity::GameEntity(const sf::Texture& texture, const entitySettings& eSettings, const sf::Vector2f& position) :
+                settings(eSettings), entitySprite(texture)
 {
-    settings.rotation = rotation;
     this->setOrigin(entitySprite.getLocalBounds().width/2, entitySprite.getLocalBounds().height/2);
     this->setPosition(position);
     this->setRotation(settings.rotation);

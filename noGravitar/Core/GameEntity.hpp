@@ -12,12 +12,13 @@
 #include <SFML/Graphics.hpp>
 
 #include "Settings.h"
+#include "ResourceHolder.hpp"
 
 
 class GameEntity : public sf::Drawable, public sf::Transformable
 {
 public:
-    GameEntity(const sf::Texture& =sf::Texture(), const entitySettings& = entitySettings(), const sf::Vector2f& =sf::Vector2f(), float =0.f);
+    GameEntity(const sf::Texture&, const entitySettings& = entitySettings(), const sf::Vector2f& =sf::Vector2f());
     sf::FloatRect getBounds() const { return entitySprite.getGlobalBounds(); }
     
 protected:

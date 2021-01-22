@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C09FCAA25BB651F000ABB20 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C09FCA825BB651F000ABB20 /* World.cpp */; };
+		0C09FCAD25BB6670000ABB20 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C09FCAB25BB6670000ABB20 /* Player.cpp */; };
+		0C09FCB125BB776D000ABB20 /* SceneNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C09FCAF25BB776D000ABB20 /* SceneNode.cpp */; };
 		0C45448724BDCAE200214E91 /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C45448624BDCAE200214E91 /* ResourcePath.mm */; };
 		0C45448A24BDCAE200214E91 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C45448924BDCAE200214E91 /* main.cpp */; };
 		0C45449B24BDCCC600214E91 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C45449924BDCCC600214E91 /* Bullet.cpp */; };
@@ -35,6 +38,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C09FCA825BB651F000ABB20 /* World.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
+		0C09FCA925BB651F000ABB20 /* World.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = World.hpp; sourceTree = "<group>"; };
+		0C09FCAB25BB6670000ABB20 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		0C09FCAC25BB6670000ABB20 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		0C09FCAF25BB776D000ABB20 /* SceneNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneNode.cpp; sourceTree = "<group>"; };
+		0C09FCB025BB776D000ABB20 /* SceneNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneNode.hpp; sourceTree = "<group>"; };
 		0C45448124BDCAE200214E91 /* noGravitar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = noGravitar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C45448524BDCAE200214E91 /* noGravitar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "noGravitar-Info.plist"; sourceTree = "<group>"; };
 		0C45448624BDCAE200214E91 /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -88,6 +97,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C09FCAE25BB7611000ABB20 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0C45448624BDCAE200214E91 /* ResourcePath.mm */,
+				0C45448824BDCAE200214E91 /* ResourcePath.hpp */,
+				0C4544AF24BDCDFD00214E91 /* ResourceHolder.hpp */,
+				0CC8046A24E6E9E000ACDE50 /* ResourceHolder.inl */,
+				0C4544B124BDCE3C00214E91 /* Settings.h */,
+				0C4544A524BDCD6A00214E91 /* Game.cpp */,
+				0C4544A624BDCD6A00214E91 /* Game.hpp */,
+				0C86054924E93AAF003B89E1 /* GameEntity.cpp */,
+				0C86054A24E93AAF003B89E1 /* GameEntity.hpp */,
+				0C09FCAF25BB776D000ABB20 /* SceneNode.cpp */,
+				0C09FCB025BB776D000ABB20 /* SceneNode.hpp */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		0C45447724BDCAE200214E91 = {
 			isa = PBXGroup;
 			children = (
@@ -107,32 +134,28 @@
 		0C45448324BDCAE200214E91 /* noGravitar */ = {
 			isa = PBXGroup;
 			children = (
-				0C45448624BDCAE200214E91 /* ResourcePath.mm */,
-				0C45448824BDCAE200214E91 /* ResourcePath.hpp */,
-				0C4544AF24BDCDFD00214E91 /* ResourceHolder.hpp */,
-				0CC8046A24E6E9E000ACDE50 /* ResourceHolder.inl */,
-				0C4544B124BDCE3C00214E91 /* Settings.h */,
+				0C09FCAE25BB7611000ABB20 /* Core */,
 				0C45448924BDCAE200214E91 /* main.cpp */,
-				0C4544A524BDCD6A00214E91 /* Game.cpp */,
-				0C4544A624BDCD6A00214E91 /* Game.hpp */,
-				0C4544B224BDCE8D00214E91 /* SolarSystem.cpp */,
-				0C4544B324BDCE8D00214E91 /* SolarSystem.hpp */,
-				0C86054924E93AAF003B89E1 /* GameEntity.cpp */,
-				0C86054A24E93AAF003B89E1 /* GameEntity.hpp */,
-				0C4544AB24BDCDC400214E91 /* Planet.cpp */,
-				0C4544AC24BDCDC400214E91 /* Planet.hpp */,
-				0C45449C24BDCCFA00214E91 /* Character.cpp */,
-				0C45449D24BDCCFA00214E91 /* Character.hpp */,
-				0C45449F24BDCD2700214E91 /* Enemy.cpp */,
-				0C4544A024BDCD2700214E91 /* Enemy.hpp */,
-				0C4544A224BDCD4F00214E91 /* Fuel.cpp */,
-				0C4544A324BDCD4F00214E91 /* Fuel.hpp */,
+				0C09FCA825BB651F000ABB20 /* World.cpp */,
+				0C09FCA925BB651F000ABB20 /* World.hpp */,
 				0C4544A824BDCD9300214E91 /* Overlay.cpp */,
 				0C4544A924BDCD9300214E91 /* Overlay.hpp */,
+				0C09FCAB25BB6670000ABB20 /* Player.cpp */,
+				0C09FCAC25BB6670000ABB20 /* Player.hpp */,
+				0C4544B224BDCE8D00214E91 /* SolarSystem.cpp */,
+				0C4544B324BDCE8D00214E91 /* SolarSystem.hpp */,
+				0C45449C24BDCCFA00214E91 /* Character.cpp */,
+				0C45449D24BDCCFA00214E91 /* Character.hpp */,
+				0C4544AB24BDCDC400214E91 /* Planet.cpp */,
+				0C4544AC24BDCDC400214E91 /* Planet.hpp */,
 				0C4544B524BDCEAA00214E91 /* Spaceship.cpp */,
 				0C4544B624BDCEAA00214E91 /* Spaceship.hpp */,
 				0C45449924BDCCC600214E91 /* Bullet.cpp */,
 				0C45449A24BDCCC600214E91 /* Bullet.hpp */,
+				0C45449F24BDCD2700214E91 /* Enemy.cpp */,
+				0C4544A024BDCD2700214E91 /* Enemy.hpp */,
+				0C4544A224BDCD4F00214E91 /* Fuel.cpp */,
+				0C4544A324BDCD4F00214E91 /* Fuel.hpp */,
 				0C45448B24BDCAE200214E91 /* Resources */,
 				0C45448424BDCAE200214E91 /* Supporting Files */,
 			);
@@ -269,10 +292,13 @@
 				0C45448A24BDCAE200214E91 /* main.cpp in Sources */,
 				0C45449B24BDCCC600214E91 /* Bullet.cpp in Sources */,
 				0C86054B24E93AAF003B89E1 /* GameEntity.cpp in Sources */,
+				0C09FCAA25BB651F000ABB20 /* World.cpp in Sources */,
 				0C4544B424BDCE8D00214E91 /* SolarSystem.cpp in Sources */,
 				0C4544A124BDCD2700214E91 /* Enemy.cpp in Sources */,
+				0C09FCB125BB776D000ABB20 /* SceneNode.cpp in Sources */,
 				0C4544AD24BDCDC400214E91 /* Planet.cpp in Sources */,
 				0C4544A424BDCD4F00214E91 /* Fuel.cpp in Sources */,
+				0C09FCAD25BB6670000ABB20 /* Player.cpp in Sources */,
 				0C45448724BDCAE200214E91 /* ResourcePath.mm in Sources */,
 				0C45449E24BDCCFA00214E91 /* Character.cpp in Sources */,
 				0C4544AA24BDCD9300214E91 /* Overlay.cpp in Sources */,

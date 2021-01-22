@@ -9,11 +9,15 @@
 #ifndef SolarSystem_hpp
 #define SolarSystem_hpp
 
-#include "ResourceHolder.hpp"
+#include "Core/ResourceHolder.hpp"
+
+
 #include "Spaceship.hpp"
 #include "Planet.hpp"
 #include "Enemy.hpp"
 #include "Bullet.hpp"
+
+
 
 struct planetCell
 {
@@ -24,7 +28,7 @@ struct planetCell
 class SolarSystem: public sf::Drawable
 {
 public:
-    SolarSystem(int*, const TextureHolder& = TextureHolder());
+    SolarSystem(TexturesPtr, int*);
     
     void                handleInputEvent(sf::Keyboard::Key key, bool isMoving);
     Settings::gameStates update(sf::Time deltaTime);         //Returns ::Lost if spaceship dead, ::Play if everything ok, ::Win if planet complete
@@ -35,7 +39,8 @@ private:
     
     sf::Sprite          ssBackgroundSprite;
     Spaceship           ourHero;
-    std::vector<planetCell> planetArray;
+    std::vector<planetCell>
+                        planetArray;
     
     int*                score;
     bool                movingUp,

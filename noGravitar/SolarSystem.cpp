@@ -8,7 +8,9 @@
 
 #include "SolarSystem.hpp"
 
-SolarSystem::SolarSystem(int* scr, const TextureHolder& resources) : ourHero(resources, Textures::Eagle, sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3)), ssBackgroundSprite(resources.get(Textures::ssBackground)), solarSystemStatus(-1), movingUp(false), movingDown(false), movingLeft(false), movingRight(false), isGrabbing(false), isShooting(false), score(scr)
+
+
+SolarSystem::SolarSystem(TexturesPtr textures, int* scr) : ourHero(textures, Textures::Eagle, sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3)), ssBackgroundSprite(textures->get(Textures::ssBackground)), solarSystemStatus(-1), movingUp(false), movingDown(false), movingLeft(false), movingRight(false), isGrabbing(false), isShooting(false), score(scr)
 {
     int tempY =0;
     int i =0;
@@ -19,7 +21,7 @@ SolarSystem::SolarSystem(int* scr, const TextureHolder& resources) : ourHero(res
         if((tempY < (Settings::MAP_Y/3 - Settings::ICONS_DIM*2)) || (tempY > (Settings::MAP_Y/3 + Settings::ICONS_DIM*2)))
         {
             i++;
-            planetArray.push_back(planetCell { (Planet(score, resources, sf::Vector2f(Settings::MAP_X/(Settings::PLANETS+1)*i, tempY))), false });
+            planetArray.push_back(planetCell { (Planet(textures, score, sf::Vector2f(Settings::MAP_X/(Settings::PLANETS+1)*i, tempY))), false });
         }
     }
 }

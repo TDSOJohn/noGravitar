@@ -14,32 +14,26 @@
 // function `resourcePath()` from ResourcePath.hpp
 //
 
-#include "ResourcePath.hpp"
-#include "ResourceHolder.hpp"
+#include <iostream>
+#include <stdexcept>
+
+
 #include "Game.hpp"
+
+
 
 int main()
 {
     std::srand(std::time(0));
-    TextureHolder textures;
-    
-    textures.load(Textures::Won, resourcePath() + "youWon.png");
-    textures.load(Textures::Lost, resourcePath() + "youLost.png");
-    
-    textures.load(Textures::ssBackground, resourcePath() + "ssBackground.png");
-    textures.load(Textures::pBackground, resourcePath() + "pBackground.png");
-    textures.load(Textures::Planet, resourcePath() + "planet.png");
-    textures.load(Textures::Eagle, resourcePath() + "spaceship.png");
-    textures.load(Textures::Raptor, resourcePath() + "spaceship.png");
-    textures.load(Textures::Hook, resourcePath() + "hook.png");
-    textures.load(Textures::Fuel, resourcePath() + "fuel.png");
-    textures.load(Textures::Enemy_1, resourcePath() + "enemy1.png");
-    textures.load(Textures::Enemy_2, resourcePath() + "enemy2.png");
-    textures.load(Textures::Bullet_1, resourcePath() + "bullet.png");
-    textures.load(Textures::Bullet_2, resourcePath() + "bullet.png");
-    
-    Game game(textures);
-    game.run();
-    
+
+    try
+    {
+        Game game;
+        game.run();
+    }
+    catch(std::exception& e)
+    {
+        std::cout << "\nEXCEPTION: " << e.what() << std::endl;
+    }
     return EXIT_SUCCESS;
 }

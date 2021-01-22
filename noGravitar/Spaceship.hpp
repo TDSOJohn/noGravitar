@@ -9,8 +9,11 @@
 #ifndef Spaceship_hpp
 #define Spaceship_hpp
 
-#include "ResourceHolder.hpp"
+#include "Core/ResourceHolder.hpp"
+
 #include "Character.hpp"
+
+
 
 class Spaceship : public Character
 {
@@ -21,7 +24,7 @@ public:
         Raptor,
     };
     
-    Spaceship(const TextureHolder& =TextureHolder(), Textures::ID =Textures::Eagle, sf::Vector2f =sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
+    Spaceship(TexturesPtr, Textures::ID =Textures::Eagle, sf::Vector2f =sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
     
     Settings::gameStates move(sf::Vector2f, bool, bool);             //Move from current position by vector2f passed, bool for shooting and hook movement
     void                move(sf::Vector2f);                         //Move to position passed by vector2f

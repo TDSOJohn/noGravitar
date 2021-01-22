@@ -9,7 +9,7 @@
 #ifndef Fuel_hpp
 #define Fuel_hpp
 
-#include "ResourceHolder.hpp"
+#include "Core/ResourceHolder.hpp"
 
 class Fuel : public sf::Drawable
 {
