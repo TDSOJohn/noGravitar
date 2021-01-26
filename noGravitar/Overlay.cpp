@@ -10,31 +10,53 @@
 
 
 
-Overlay::Overlay(std::shared_ptr<TextureHolder> textures, Settings::gameStates* gState, int* scr) : youWonMessage(textures->get(Textures::Won)), youLostMessage(textures->get(Textures::Lost))
+Overlay::Overlay(TextureHolder& textures, Settings::gameStates* gState, int* scr) : youWonMessage(textures.get(Textures::Won)),
+    youLostMessage(textures.get(Textures::Lost))
 {
     score = scr;
     gameState = gState;
     if(!gameFont.loadFromFile(resourcePath() + "andaleMono.ttf"))
         return EXIT_FAILURE;
-    scoreText.setString("SCORE");
-    scoreText.setFont(gameFont);
-    scoreNumberText.setFont(gameFont);
-    scoreText.setCharacterSize(20);
-    scoreNumberText.setCharacterSize(28);
-    scoreText.setFillColor(sf::Color::Green);
-    scoreNumberText.setFillColor(sf::Color::Green);
-    scoreText.setOrigin(scoreText.getLocalBounds().width/2, scoreText.getLocalBounds().height/2);
     
+    scoreText.setString("SCORE");
+    
+    scoreText.setFont(gameFont);
+    scoreText.setCharacterSize(20);
+    scoreText.setFillColor(sf::Color::Green);
+    scoreText.setOrigin(scoreText.getLocalBounds().width/2, scoreText.getLocalBounds().height/2);
+
+    scoreNumberText.setFont(gameFont);
+    scoreNumberText.setCharacterSize(28);
+    scoreNumberText.setFillColor(sf::Color::Green);
+    scoreNumberText.setOrigin(scoreNumberText.getLocalBounds().width/2,
+                              scoreNumberText.getLocalBounds().height/2);
+    
+    scoreText.setPosition(50.f, 100.f);
+    scoreNumberText.setPosition(100.f, 94.f);
+
     youWonMessage.setOrigin(youWonMessage.getLocalBounds().width/2, youWonMessage.getLocalBounds().height/2);
     youWonMessage.setPosition(Settings::VIEW_X/2, Settings::VIEW_Y/2);
+
     youLostMessage.setOrigin(youLostMessage.getLocalBounds().width/2, youLostMessage.getLocalBounds().height/2);
     youLostMessage.setPosition(Settings::VIEW_X/2, Settings::VIEW_Y/2);
 }
 
-void Overlay::update(sf::Vector2f position)
+
+void Overlay::updateCurrent(sf::Time dt)
 {
     scoreNumberText.setString(std::to_string(*score));
     scoreNumberText.setOrigin(scoreNumberText.getLocalBounds().width/2, scoreNumberText.getLocalBounds().height/2);
-    scoreText.setPosition(position - sf::Vector2f(0.f, 285.f));
-    scoreNumberText.setPosition(position - sf::Vector2f(0.f, 255.f));
+    scoreText.setPosition(50.f, 30.f);
+    scoreNumberText.setPosition(100.f, 24.f);
+}
+
+
+void Overlay::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(scoreText);
+    target.draw(scoreNumberText);
+    if(*gameState == Settings::gameStates::Won)
+        target.draw(youWonMessage);
+    if(*gameState == Settings::gameStates::Lost)
+        target.draw(youLostMessage);
 }

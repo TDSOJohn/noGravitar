@@ -9,44 +9,78 @@
 #ifndef Settings_h
 #define Settings_h
 
+
+#include <SFML/System/Vector2.hpp>
+
+
+
 #define PI 3.14159265
 /*
  Fire rate is in shoots/second
- Speed is in pixels/second
+ 
  Xs, Ys and DIMs are in pixels
  Fuel rate is in fuel(life)/second
  */
 
 namespace Textures
 {
-    enum                ID {
-                                ssBackground,
-                                pBackground,
-                                Planet,
-                                Raptor,
-                                Eagle,
-                                Hook,
-                                Fuel,
-                                Enemy_1,
-                                Enemy_2,
-                                Bullet_1,
-                                Bullet_2,
-                                Bullet_3,
-                                Won,
-                                Lost
-                            };
+    enum ID
+    {
+        ssBackground,
+        pBackground,
+        Planet,
+        Raptor,
+        Eagle,
+        Hook,
+        Fuel,
+        Enemy_1,
+        Enemy_2,
+        Bullet_1,
+        Bullet_2,
+        Bullet_3,
+        Won,
+        Lost
+    };
 }
+
+
+namespace Fonts
+{
+    enum ID
+    {
+        Mono,
+        Cursive,
+        Standard
+    };
+}
+
+
+namespace States
+{
+    enum ID
+    {
+        None,
+        Title,
+        Menu,
+        Game,
+        Loading,
+        Pause
+    };
+}
+
 
 struct    entitySettings
 {
     Textures::ID            entityType;
     int                     life;
-    unsigned int            speed;
+    sf::Vector2f            velocity;
     float                   firerate;
     unsigned short          damage;
     float                   rotation;
     
 };
+
+
 
 namespace Settings
 {
@@ -55,8 +89,8 @@ namespace Settings
     const unsigned int      MAP_X = 1920;
     const unsigned int      MAP_Y = 1200;
     
-    const unsigned int      VIEW_X = 1280;
-    const unsigned int      VIEW_Y = 854;
+    const unsigned int      VIEW_X = 1920;
+    const unsigned int      VIEW_Y = 1200;
     
     const unsigned short    ICONS_DIM = 64;
     
@@ -71,6 +105,7 @@ namespace Settings
     const unsigned int      SPACESHIP_FUEL = 50;
     const unsigned int      HOOK_SPEED = 450;
     
+    /*
     const entitySettings    SPACESHIP = { Textures::Eagle,      70,   750,    9,      8,      0 };
     const entitySettings    ENEMY_1   =   { Textures::Enemy_1,    70,   0,      2.7,    3,      0 };
     const entitySettings    ENEMY_2   =   { Textures::Enemy_2,    50,   0,      0.6,    4,      0 };
@@ -80,7 +115,7 @@ namespace Settings
                                       =  { Textures::Bullet_1,   0,    730,    0,      5,      180.f};
     const entitySettings    BULLET_2a =  { Textures::Bullet_2,   0,    550,    0,      3,      25.f };
     const entitySettings    BULLET_2b =  { Textures::Bullet_2,   0,    550,    0,      3,      -25.f};
-    const entitySettings    BULLET_3  =  { Textures::Bullet_3,   0,    950,    0,      8,      0 };
+    const entitySettings    BULLET_3  =  { Textures::Bullet_3,   0,    950,    0,      8,      0 };*/
 }
 
 #endif /* Settings_h */

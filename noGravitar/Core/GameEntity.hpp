@@ -11,26 +11,31 @@
 
 #include <SFML/Graphics.hpp>
 
+
 #include "Settings.h"
 #include "ResourceHolder.hpp"
 
+#include "SceneNode.hpp"
 
-class GameEntity : public sf::Drawable, public sf::Transformable
+
+
+class GameEntity : public SceneNode
 {
 public:
-    GameEntity(const sf::Texture&, const entitySettings& = entitySettings(), const sf::Vector2f& =sf::Vector2f());
-    sf::FloatRect getBounds() const { return entitySprite.getGlobalBounds(); }
+    GameEntity(const entitySettings& = entitySettings());
+    
+    void                        setVelocity(const sf::Vector2f& v_in);
+    void                        setVelocity(float v_in_x, float v_in_y);
+
+    sf::Vector2f                getVelocity() const;
+    
     
 protected:
-    entitySettings settings;
-    sf::Sprite entitySprite;
+    entitySettings              settings;
 
+    
 private:
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
-    {
-        states.transform *= getTransform();
-        target.draw(entitySprite, states);
-    }
+    virtual void                updateCurrent(sf::Time dt);
 };
 
 #endif /* GameEntity_hpp */

@@ -13,8 +13,7 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 Game::Game() :
     mWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar", sf::Style::Close),
-    score(0),
-    mWorld()
+    mWorld(mWindow)
 {    
     mFont.loadFromFile(resourcePath() + "andaleMono.ttf");
 }
@@ -58,9 +57,9 @@ void Game::processInput()
 }
 
 
-void Game::update(sf::Time elapsedTime)
+void Game::update(sf::Time dt)
 {
-    mWorld.update(elapsedTime);
+    mWorld.update(dt);
 }
 
 void Game::render()
@@ -74,21 +73,7 @@ void Game::render()
     mWindow.display();
 }
 
-
-void Game::createTextures()
+void Game::updateStatistics(sf::Time dt)
 {
-    textures->load(Textures::Won,           resourcePath() + "youWon.png");
-    textures->load(Textures::Lost,          resourcePath() + "youLost.png");
     
-    textures->load(Textures::ssBackground,  resourcePath() + "ssBackground.png");
-    textures->load(Textures::pBackground,   resourcePath() + "pBackground.png");
-    textures->load(Textures::Planet,        resourcePath() + "planet.png");
-    textures->load(Textures::Eagle,         resourcePath() + "spaceship.png");
-    textures->load(Textures::Raptor,        resourcePath() + "spaceship.png");
-    textures->load(Textures::Hook,          resourcePath() + "hook.png");
-    textures->load(Textures::Fuel,          resourcePath() + "fuel.png");
-    textures->load(Textures::Enemy_1,       resourcePath() + "enemy1.png");
-    textures->load(Textures::Enemy_2,       resourcePath() + "enemy2.png");
-    textures->load(Textures::Bullet_1,      resourcePath() + "bullet.png");
-    textures->load(Textures::Bullet_2,      resourcePath() + "bullet.png");
 }

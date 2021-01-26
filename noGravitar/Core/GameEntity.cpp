@@ -8,10 +8,35 @@
 
 #include "GameEntity.hpp"
 
-GameEntity::GameEntity(const sf::Texture& texture, const entitySettings& eSettings, const sf::Vector2f& position) :
-                settings(eSettings), entitySprite(texture)
+
+
+GameEntity::GameEntity(const entitySettings& eSettings) :
+                settings(eSettings)
 {
-    this->setOrigin(entitySprite.getLocalBounds().width/2, entitySprite.getLocalBounds().height/2);
-    this->setPosition(position);
-    this->setRotation(settings.rotation);
+
+}
+
+
+void GameEntity::setVelocity(const sf::Vector2f& v_in)
+{
+    settings.velocity = v_in;
+}
+
+
+void GameEntity::setVelocity(float v_in_x, float v_in_y)
+{
+    settings.velocity.x = v_in_x;
+    settings.velocity.y = v_in_y;
+}
+
+
+sf::Vector2f GameEntity::getVelocity() const
+{
+    return settings.velocity;
+}
+
+
+void GameEntity::updateCurrent(sf::Time dt)
+{
+    move(settings.velocity * dt.asSeconds());
 }

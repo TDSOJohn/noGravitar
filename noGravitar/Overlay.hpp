@@ -13,13 +13,17 @@
 #include "Core/ResourceHolder.hpp"
 
 
+#include "Core/GameEntity.hpp"
 
-class Overlay : public sf::Drawable
+
+
+class Overlay : public GameEntity
 {
 public:
-    Overlay(std::shared_ptr<TextureHolder>, Settings::gameStates*, int*);
+    Overlay(TextureHolder& textures, Settings::gameStates*, int*);
     
-    void                    update(sf::Vector2f);
+    void                    updateCurrent(sf::Time dt);
+    
     
 private:
     int*                    score;
@@ -32,14 +36,9 @@ private:
     sf::Sprite              youWonMessage;
     sf::Sprite              youLostMessage;
     
-    virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
-    {
-        target.draw(scoreText);
-        target.draw(scoreNumberText);
-        if(*gameState == Settings::gameStates::Won)
-            target.draw(youWonMessage);
-        if(*gameState == Settings::gameStates::Lost)
-            target.draw(youLostMessage);
-    }
+    
+private:
+    void                    drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+    
 };
 #endif /* Overlay_hpp */

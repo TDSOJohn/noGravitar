@@ -1,55 +1,45 @@
 //
 //  Spaceship.hpp
-//  Grativar_final
+//  noGravitar
 //
-//  Created by Giovanni Basso on 25/01/2020.
-//  Copyright © 2020 Giovanni Basso. All rights reserved.
+//  Created by Giovanni Basso on 23/01/2021.
+//  Copyright © 2021 Giovanni Basso. All rights reserved.
 //
 
 #ifndef Spaceship_hpp
 #define Spaceship_hpp
 
+
 #include "Core/ResourceHolder.hpp"
-
-#include "Character.hpp"
-
+#include "Core/GameEntity.hpp"
 
 
-class Spaceship : public Character
+
+class Spaceship : public GameEntity
 {
 public:
+    
     enum Type
     {
-        Eagle,
-        Raptor,
+        Old_Fart,
+        Flying_Hippo,
+        Speed_Junkie,
+        Psychedelic_Space_Teapot
     };
     
-    Spaceship(TexturesPtr, Textures::ID =Textures::Eagle, sf::Vector2f =sf::Vector2f(Settings::MAP_X/2, Settings::MAP_Y/3));
     
-    Settings::gameStates move(sf::Vector2f, bool, bool);             //Move from current position by vector2f passed, bool for shooting and hook movement
-    void                move(sf::Vector2f);                         //Move to position passed by vector2f
-    void                addFuel(int);
+    Spaceship(Type type, const TextureHolder& textures);
     
-    int                 isHit(int);
-    sf::FloatRect       getHookBounds()         { return hookSprite.getGlobalBounds(); }
-    bool                isGrabbing()            { return grabbing; }
+    void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const;
+    
+    
+    unsigned int                    getCategory() const;
     
 private:
-    int                 fuel;
-    bool                grabbing;
-    sf::RectangleShape  fuelBar;
-    sf::Sprite          hookSprite;
-    sf::Clock           clock;
-    sf::Time            fuelConsumption;
+    Type                            mType;
     
-    virtual void        draw(sf::RenderTarget& target, sf::RenderStates states) const
-    {
-        target.draw(characterSprite);
-        if(grabbing)
-            target.draw(hookSprite);
-        target.draw(lifeBar);
-        target.draw(fuelBar);
-    }
+    sf::Sprite                      mSprite;
+    
 };
 
 #endif /* Spaceship_hpp */

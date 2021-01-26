@@ -17,7 +17,6 @@
 
 #include "Player.hpp"
 #include "World.hpp"
-#include "SolarSystem.hpp"
 
 
 
@@ -29,15 +28,11 @@ public:
     
 private:
     void                processInput();
-    void                update(sf::Time elapsedTime);
+    void                update(sf::Time dt);
     void                render();
-    void                updateStatistics(sf::Time elapsedTime);
+    void                updateStatistics(sf::Time dt);
     
-private:
-    Settings::gameStates
-                        gameState;
-    int                 score;
-    
+private:    
     sf::RenderWindow    mWindow;
     
     World               mWorld;

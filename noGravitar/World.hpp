@@ -19,9 +19,11 @@
 
 #include "Core/ResourceHolder.hpp"
 #include "Core/SceneNode.hpp"
+#include "Core/CommandQueue.hpp"
 
 
 #include "Overlay.hpp"
+#include "Spaceship.hpp"
 
 
 
@@ -31,32 +33,45 @@ typedef std::unique_ptr<Overlay>        overlayPtr;
 class World : private sf::NonCopyable
 {
 public:
-    World();
+    explicit                            World(sf::RenderWindow& window);
     
     void                                update(sf::Time dt);
-    
     void                                draw();
     
-private:
-    TextureHolder                       mTextures;
-    overlayPtr                          gameOverlay;
+    CommandQueue&                       getCommandQueue();
     
+    
+private:
     enum Layers
     {
-        Mission,
-        Space,
         DeepSpace,
+        Space,
+        Mission,
+        Info,
         LayerCount
     };
+
+    sf::RenderWindow&                   mWindow;
+    sf::View                            mView;
     
     SceneNode                           mSceneGraph;
-    
     std::array<SceneNode*, LayerCount>  mSceneLayers;
+    CommandQueue                        mCommandQueue;
+    
+    TextureHolder                       mTextures;
+    
+    Overlay*                            mGameOverlay;
+    Settings::gameStates                gameState;
 
+    Spaceship*                          mSpaceship;
+    int                                 score;
     
 private:
     void                                createTextures();
     void                                loadScene();
+    
+    void                                adaptPlayerPosition();
+    void                                adaptPlayerVelocity();
 };
 
 
