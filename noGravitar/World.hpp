@@ -22,12 +22,8 @@
 #include "Core/CommandQueue.hpp"
 
 
-#include "Overlay.hpp"
 #include "Spaceship.hpp"
 
-
-
-typedef std::unique_ptr<Overlay>        overlayPtr;
 
 
 class World : private sf::NonCopyable
@@ -60,9 +56,6 @@ private:
     
     TextureHolder                       mTextures;
     
-    Overlay*                            mGameOverlay;
-    Settings::gameStates                gameState;
-
     Spaceship*                          mSpaceship;
     int                                 score;
     

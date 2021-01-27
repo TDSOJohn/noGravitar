@@ -26,6 +26,9 @@ namespace Textures
 {
     enum ID
     {
+        TitleBar,
+        Title,
+        
         ssBackground,
         pBackground,
         Planet,
@@ -39,7 +42,7 @@ namespace Textures
         Bullet_2,
         Bullet_3,
         Won,
-        Lost
+        Lost,
     };
 }
 
@@ -84,8 +87,6 @@ struct    entitySettings
 
 namespace Settings
 {
-    enum                    gameStates { Lost, Play, Won, Pause };
-    
     const unsigned int      MAP_X = 1920;
     const unsigned int      MAP_Y = 1200;
     

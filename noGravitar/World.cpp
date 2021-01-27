@@ -59,7 +59,7 @@ CommandQueue& World::getCommandQueue()
 
 
 void World::createTextures()
-{
+{    
     mTextures.load(Textures::Won,            resourcePath() + "youWon.png");
     mTextures.load(Textures::Lost,           resourcePath() + "youLost.png");
     
@@ -87,11 +87,6 @@ void World::loadScene()
         mSceneGraph.attachChild(std::move(layer));
     }
     
-    //  Initialize the game overlay
-    overlayPtr gameOverlay(new Overlay(mTextures, &gameState, &score));
-    mGameOverlay = gameOverlay.get();
-    mSceneLayers[Info]->attachChild(std::move(gameOverlay));
-
     //  Load background texture
     sf::Texture& texture = mTextures.get(Textures::ssBackground);
     
@@ -126,7 +121,6 @@ void World::adaptPlayerPosition()
 void World::adaptPlayerVelocity()
 {
     sf::Vector2f velocity = mSpaceship->getVelocity();
-    std::cout << velocity.x << "\t" << velocity.y << std::endl;
     
     // If moving diagonally, reduce velocity (to have always same velocity)
     if (velocity.x != 0.f && velocity.y != 0.f)

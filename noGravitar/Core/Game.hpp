@@ -15,8 +15,10 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 
+#include "ResourceHolder.hpp"
 #include "Player.hpp"
 #include "World.hpp"
+#include "StateStack.hpp"
 
 
 
@@ -30,16 +32,20 @@ private:
     void                processInput();
     void                update(sf::Time dt);
     void                render();
+    
     void                updateStatistics(sf::Time dt);
+    void                registerStates();
     
 private:    
     sf::RenderWindow    mWindow;
     
-    World               mWorld;
     Player              mPlayer;
     
-    sf::Font            mFont;
+    TextureHolder       mTextures;
+    FontHolder          mFonts;
     sf::Text            mStatisticsText;
+    
+    StateStack          mStateStack;
     
     static const sf::Time
                         TimePerFrame;

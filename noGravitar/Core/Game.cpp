@@ -6,16 +6,32 @@
 //  Copyright © 2020 Giovanni Basso. All rights reserved.
 //
 
+
+#include "ResourcePath.hpp"
 #include "Game.hpp"
+
+
+#include "../GameState.hpp"
+#include "../PauseState.hpp"
+#include "../TitleState.hpp"
+#include "../MenuState.hpp"
+
+
 
 const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 
 Game::Game() :
     mWindow(sf::VideoMode(Settings::MAP_X, Settings::MAP_Y), "Gravitar", sf::Style::Close),
-    mWorld(mWindow)
+    mStateStack(State::Context(mWindow, mTextures, mFonts, mPlayer))
 {    
-    mFont.loadFromFile(resourcePath() + "andaleMono.ttf");
+    mFonts.load(Fonts::Mono, resourcePath() + "andaleMono.ttf");
+    
+    mTextures.load(Textures::TitleBar,      resourcePath() + "TitleBar.png");
+    mTextures.load(Textures::Title,         resourcePath() + "Title.png");
+
+    registerStates();
+    mStateStack.pushState(States::Title);
 }
 
 
@@ -33,6 +49,9 @@ void Game::run()
             timeSinceLastUpdate -= TimePerFrame;
             processInput();
             update(TimePerFrame);
+            
+            if(mStateStack.isEmpty())
+                mWindow.close();
         }
         
         updateStatistics(elapsedTime);
@@ -43,29 +62,28 @@ void Game::run()
 
 void Game::processInput()
 {
-    CommandQueue& commands = mWorld.getCommandQueue();
-    
     sf::Event event;
     while (mWindow.pollEvent(event))
     {
-        mPlayer.handleEvent(event, commands);
+        mStateStack.handleEvent(event);
         
         if(event.type == sf::Event::Closed)
             mWindow.close();
     }
-    mPlayer.handleRealTimeInput(commands);
 }
 
 
 void Game::update(sf::Time dt)
 {
-    mWorld.update(dt);
+    mStateStack.update(dt);
 }
+
 
 void Game::render()
 {
     mWindow.clear();
-    mWorld.draw();
+    
+    mStateStack.draw();
 
     mWindow.setView(mWindow.getDefaultView());
     mWindow.draw(mStatisticsText);
@@ -73,7 +91,17 @@ void Game::render()
     mWindow.display();
 }
 
+
 void Game::updateStatistics(sf::Time dt)
 {
     
+}
+
+
+void Game::registerStates()
+{
+    mStateStack.registerState<TitleState>(States::Title);
+    mStateStack.registerState<MenuState>(States::Menu);
+    mStateStack.registerState<GameState>(States::Game);
+    mStateStack.registerState<PauseState>(States::Pause);
 }
