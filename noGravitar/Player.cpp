@@ -6,14 +6,9 @@
 //  Copyright © 2021 Giovanni Basso. All rights reserved.
 //
 
-
-#include "Core/Settings.h"
-#include "Core/Category.hpp"
-
-
-#include "Spaceship.hpp"
 #include "Player.hpp"
-
+#include "Spaceship.hpp"
+#include "Core/CommandQueue.hpp"
 
 
 struct SpaceshipMover
@@ -25,21 +20,25 @@ struct SpaceshipMover
     
     void operator() (Spaceship& spaceship, sf::Time) const
     {
-        spaceship.setVelocity(spaceship.getVelocity() + velocity);
+        spaceship.accelerate(velocity * spaceship.getMaxSpeed());
     }
     
     sf::Vector2f velocity;
 };
 
 
-Player::Player()
+Player::Player():
+    mCurrentMissionStatus(MissionRunning)
 {
     // Set initial key bindings
-    mKeyBinding[sf::Keyboard::Left] = MoveLeft;
-    mKeyBinding[sf::Keyboard::Right]= MoveRight;
-    mKeyBinding[sf::Keyboard::Up]   = MoveUp;
-    mKeyBinding[sf::Keyboard::Down] = MoveDown;
-    
+    mKeyBinding[sf::Keyboard::W]    = MoveUp;
+    mKeyBinding[sf::Keyboard::A]    = MoveLeft;
+    mKeyBinding[sf::Keyboard::S]    = MoveDown;
+    mKeyBinding[sf::Keyboard::D]    = MoveRight;
+    mKeyBinding[sf::Keyboard::K]    = Fire;
+    mKeyBinding[sf::Keyboard::Space]= UseHook;
+    mKeyBinding[sf::Keyboard::M]    = LaunchMissile;
+
     // Set initial action bindings
     initializeActions();
     
@@ -48,7 +47,7 @@ Player::Player()
         pair.second.category = Category::PlayerShip;
 }
 
-void Player::handleEvent(sf::Event event, CommandQueue& commands)
+void Player::handleEvent(const sf::Event& event, CommandQueue& commands)
 {
     if (event.type == sf::Event::KeyPressed)
     {
@@ -70,7 +69,7 @@ void Player::handleRealTimeInput(CommandQueue& commands)
     }
 }
 
-void Player::assignKey(Actions action, sf::Keyboard::Key key)
+void Player::assignKey(Action action, sf::Keyboard::Key key)
 {
     // Remove all keys that already map to action
     for (auto itr = mKeyBinding.begin(); itr != mKeyBinding.end(); )
@@ -85,7 +84,7 @@ void Player::assignKey(Actions action, sf::Keyboard::Key key)
     mKeyBinding[key] = action;
 }
 
-sf::Keyboard::Key Player::getAssignedKey(Actions action) const
+sf::Keyboard::Key Player::getAssignedKey(Action action) const
 {
     for(auto pair : mKeyBinding)
     {
@@ -96,17 +95,27 @@ sf::Keyboard::Key Player::getAssignedKey(Actions action) const
     return sf::Keyboard::Unknown;
 }
 
-void Player::initializeActions()
+void Player::setMissionStatus(MissionStatus status)
 {
-    const float playerSpeed = 400.f;
-    
-    mActionBinding[MoveLeft].action = derivedAction<Spaceship>(SpaceshipMover(-playerSpeed, 0.f));
-    mActionBinding[MoveRight].action= derivedAction<Spaceship>(SpaceshipMover(+playerSpeed, 0.f));
-    mActionBinding[MoveUp].action   = derivedAction<Spaceship>(SpaceshipMover(0.f, -playerSpeed));
-    mActionBinding[MoveDown].action = derivedAction<Spaceship>(SpaceshipMover(0.f, +playerSpeed));
+    mCurrentMissionStatus = status;
 }
 
-bool Player::isRealtimeAction(Actions action)
+Player::MissionStatus Player::getMissionStatus() const
+{
+    return mCurrentMissionStatus;
+}
+
+void Player::initializeActions()
+{
+    mActionBinding[MoveLeft].action = derivedAction<Spaceship>(SpaceshipMover(-1, 0.f));
+    mActionBinding[MoveRight].action= derivedAction<Spaceship>(SpaceshipMover(+1, 0.f));
+    mActionBinding[MoveUp].action   = derivedAction<Spaceship>(SpaceshipMover(0.f, -1));
+    mActionBinding[MoveDown].action = derivedAction<Spaceship>(SpaceshipMover(0.f, +1));
+    mActionBinding[Fire].action = derivedAction<Spaceship>(std::bind(&Spaceship::fire, std::placeholders::_1));
+    mActionBinding[LaunchMissile].action = derivedAction<Spaceship>(std::bind(&Spaceship::launchMissile, std::placeholders::_1));
+}
+
+bool Player::isRealtimeAction(Action action)
 {
     switch (action)
     {
@@ -114,6 +123,7 @@ bool Player::isRealtimeAction(Actions action)
         case MoveRight:
         case MoveDown:
         case MoveUp:
+        case Fire:
             return true;
             
         default:

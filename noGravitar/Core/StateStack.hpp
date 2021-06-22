@@ -9,6 +9,12 @@
 #ifndef StateStack_hpp
 #define StateStack_hpp
 
+#include "State.hpp"
+#include "../StateIdentifiers.hpp"
+#include "../ResourceIdentifiers.hpp"
+
+#include <SFML/System/NonCopyable.hpp>
+#include <SFML/System/Time.hpp>
 
 #include <vector>
 #include <utility>
@@ -16,16 +22,13 @@
 #include <map>
 
 
-#include <SFML/System/NonCopyable.hpp>
-#include <SFML/System/Time.hpp>
+namespace sf
+{
+    class Event;
+    class RenderWindow;
+}
 
-
-#include "State.hpp"
-#include "Settings.h"
-
-
-
-class StateStack
+class StateStack : private sf::NonCopyable
 {
 public:
     enum Action

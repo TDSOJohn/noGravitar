@@ -8,35 +8,72 @@
 
 #include "GameEntity.hpp"
 
+#include <cassert>
 
 
-GameEntity::GameEntity(const entitySettings& eSettings) :
-                settings(eSettings)
+
+GameEntity::GameEntity(int hitpoints):
+    mVelocity(),
+    mHitpoints(hitpoints)
+{}
+
+void GameEntity::setVelocity(sf::Vector2f velocity)
 {
-
+    mVelocity = velocity;
 }
 
-
-void GameEntity::setVelocity(const sf::Vector2f& v_in)
+void GameEntity::setVelocity(float vx, float vy)
 {
-    settings.velocity = v_in;
+    mVelocity.x = vx;
+    mVelocity.y = vy;
 }
 
-
-void GameEntity::setVelocity(float v_in_x, float v_in_y)
+void GameEntity::accelerate(sf::Vector2f velocity)
 {
-    settings.velocity.x = v_in_x;
-    settings.velocity.y = v_in_y;
+    mVelocity += velocity;
 }
 
+void GameEntity::accelerate(float vx, float vy)
+{
+    mVelocity.x += vx;
+    mVelocity.y += vy;
+}
 
 sf::Vector2f GameEntity::getVelocity() const
 {
-    return settings.velocity;
+    return mVelocity;
 }
 
-
-void GameEntity::updateCurrent(sf::Time dt)
+int GameEntity::getHitpoints() const
 {
-    move(settings.velocity * dt.asSeconds());
+    return mHitpoints;
+}
+
+void GameEntity::repair(int points)
+{
+    assert(points > 0);
+
+    mHitpoints += points;
+}
+
+void GameEntity::damage(int points)
+{
+    assert(points > 0);
+    
+    mHitpoints -= points;
+}
+
+void GameEntity::destroy()
+{
+    mHitpoints = 0;
+}
+
+bool GameEntity::isDestroyed() const
+{
+    return(mHitpoints <= 0);
+}
+
+void GameEntity::updateCurrent(sf::Time dt, CommandQueue&)
+{
+    move(mVelocity * dt.asSeconds());
 }

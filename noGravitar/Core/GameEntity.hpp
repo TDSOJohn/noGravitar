@@ -9,12 +9,6 @@
 #ifndef GameEntity_hpp
 #define GameEntity_hpp
 
-#include <SFML/Graphics.hpp>
-
-
-#include "Settings.h"
-#include "ResourceHolder.hpp"
-
 #include "SceneNode.hpp"
 
 
@@ -22,20 +16,30 @@
 class GameEntity : public SceneNode
 {
 public:
-    GameEntity(const entitySettings& = entitySettings());
+    explicit                    GameEntity(int hitpoints);
     
-    void                        setVelocity(const sf::Vector2f& v_in);
-    void                        setVelocity(float v_in_x, float v_in_y);
+    void                        setVelocity(sf::Vector2f velocity);
+    void                        setVelocity(float vx, float vy);
 
+    void                        accelerate(sf::Vector2f velocity);
+    void                        accelerate(float vx, float vy);
+    
     sf::Vector2f                getVelocity() const;
+    
+    int                         getHitpoints() const;
+    void                        repair(int points);
+    void                        damage(int points);
+    void                        destroy();
+    bool                        isDestroyed() const;
+
     
     
 protected:
-    entitySettings              settings;
+    sf::Vector2f                mVelocity;
+    int                         mHitpoints;
 
-    
-private:
-    virtual void                updateCurrent(sf::Time dt);
+protected:
+    virtual void                updateCurrent(sf::Time dt, CommandQueue& commands);
 };
 
 #endif /* GameEntity_hpp */

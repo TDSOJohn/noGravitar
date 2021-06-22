@@ -8,9 +8,7 @@
 
 #include "SpriteNode.hpp"
 
-
 #include <SFML/Graphics/RenderTarget.hpp>
-
 
 
 SpriteNode::SpriteNode(const sf::Texture& texture) :

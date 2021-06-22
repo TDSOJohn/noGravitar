@@ -9,12 +9,9 @@
 #ifndef CommandQueue_hpp
 #define CommandQueue_hpp
 
-
-#include <queue>
-
-
 #include "Command.hpp"
 
+#include <queue>
 
 
 class CommandQueue

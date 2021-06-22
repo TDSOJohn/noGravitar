@@ -1,38 +1,33 @@
 //
-//  GameState.hpp
+//  GameOverState.hpp
 //  noGravitar
 //
-//  Created by Giovanni Basso on 26/01/2021.
+//  Created by Giovanni Basso on 20/06/21.
 //  Copyright © 2021 Giovanni Basso. All rights reserved.
 //
 
-#ifndef GameState_hpp
-#define GameState_hpp
-
+#ifndef GameOverState_hpp
+#define GameOverState_hpp
 
 #include "Core/State.hpp"
-#include "World.hpp"
-#include "Player.hpp"
-
+#include "GUI/Container.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 
 
-
-class GameState : public State
+class GameOverState: public State
 {
 public:
-    GameState(StateStack& stack, Context context);
-    
+    GameOverState(StateStack& stack, Context context);
+
     virtual void        draw();
     virtual bool        update(sf::Time dt);
     virtual bool        handleEvent(const sf::Event& event);
-    
-    
+
 private:
-    World               mWorld;
-    Player&             mPlayer;
+    sf::Text            mGameOverText;
+    sf::Time            mElapsedTime;
 };
 
-#endif /* GameState_hpp */
+#endif /* GameOverState_hpp */

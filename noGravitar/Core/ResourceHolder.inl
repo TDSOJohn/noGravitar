@@ -51,10 +51,3 @@ void ResourceHolder<Resource, Identifier>::insertResource(Identifier id, std::un
     auto inserted = mResourceMap.insert(std::make_pair(id, std::move(resource)));
     assert(inserted.second);
 }
-
-//  Better use a separate document for forward-declarations and typedefs
-typedef ResourceHolder<sf::Texture, Textures::ID>   TextureHolder;
-typedef const std::shared_ptr<TextureHolder>        TexturesPtr;
-
-typedef ResourceHolder<sf::Font, Fonts::ID>         FontHolder;
-typedef const std::shared_ptr<FontHolder>           FontsPtr;

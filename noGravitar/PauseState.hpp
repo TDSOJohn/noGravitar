@@ -9,13 +9,11 @@
 #ifndef PauseState_hpp
 #define PauseState_hpp
 
+#include "Core/State.hpp"
+#include "GUI/Container.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
-
-
-#include "Core/State.hpp"
-
 
 
 class PauseState : public State
@@ -31,7 +29,7 @@ public:
 private:
     sf::Sprite                  mBackgroundSprite;
     sf::Text                    mPausedText;
-    sf::Text                    mInstructionText;
+    GUI::Container              mGUIContainer;
 };
 
 

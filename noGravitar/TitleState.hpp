@@ -9,13 +9,10 @@
 #ifndef TitleState_hpp
 #define TitleState_hpp
 
-
 #include "State.hpp"
-
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
-
 
 
 class TitleState : public State

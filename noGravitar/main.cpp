@@ -14,18 +14,14 @@
 // function `resourcePath()` from ResourcePath.hpp
 //
 
+#include "Game.hpp"
+
 #include <iostream>
 #include <stdexcept>
 
 
-#include "Game.hpp"
-
-
-
 int main()
 {
-    std::srand(std::time(0));
-
     try
     {
         Game game;

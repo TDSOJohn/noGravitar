@@ -7,13 +7,10 @@
 //
 
 #include "Command.hpp"
-#include "Settings.h"
-#include "Category.hpp"
 
 
 Command::Command() :
     action(),
     category(Category::None)
 {
-    
 }

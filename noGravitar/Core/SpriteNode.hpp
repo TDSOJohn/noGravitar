@@ -9,12 +9,9 @@
 #ifndef SpriteNode_hpp
 #define SpriteNode_hpp
 
-
 #include "SceneNode.hpp"
 
-
 #include <SFML/Graphics/Sprite.hpp>
-
 
 
 class SpriteNode : public SceneNode

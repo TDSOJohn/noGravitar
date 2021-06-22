@@ -8,6 +8,7 @@
 
 #include "StateStack.hpp"
 
+#include <cassert>
 
 
 StateStack::StateStack(State::Context context) :
@@ -111,7 +112,7 @@ void StateStack::applyPendingChanges()
 }
 
 
-StateStack::PendingChange::PendingChange(Action action, States::ID stateID) :
+StateStack::PendingChange::PendingChange(Action action, States::ID stateID):
     action(action),
     stateID(stateID)
 {

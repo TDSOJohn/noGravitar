@@ -7,13 +7,9 @@
 //
 
 #include "TitleState.hpp"
-
-
 #include "Core/ResourceHolder.hpp"
 
-
 #include <SFML/Graphics/RenderWindow.hpp>
-
 
 
 TitleState::TitleState(StateStack& stack, Context context) :

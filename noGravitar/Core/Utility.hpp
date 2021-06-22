@@ -9,21 +9,42 @@
 #ifndef Utility_h
 #define Utility_h
 
-#include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Text.hpp>
+
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/System/Vector2.hpp>
+
+#include <sstream>
 
 
-void centerOrigin(sf::Sprite& sprite)
+namespace sf
 {
-    sf::FloatRect bounds = sprite.getLocalBounds();
-    sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
+    class Sprite;
+    class Text;
 }
 
-void centerOrigin(sf::Text& text)
-{
-    sf::FloatRect bounds = text.getLocalBounds();
-    text.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
-}
+// Since std::to_string doesn't work on MinGW we have to implement
+// our own to support all platforms.
+template <typename T>
+std::string         toString(const T& value);
 
+// Convert enumerators to strings
+std::string         toString(sf::Keyboard::Key key);
+
+// Call setOrigin() with the center of the object
+void                centerOrigin(sf::Sprite& sprite);
+void                centerOrigin(sf::Text& text);
+
+// Degree/radian conversion
+float               toDegree(float radian);
+float               toRadian(float degree);
+
+// Random number generation
+int                 randomInt(int exclusiveMax);
+
+// Vector operations
+float               length(sf::Vector2f vector);
+sf::Vector2f        unitVector(sf::Vector2f vector);
+
+#include "Utility.inl"
 
 #endif /* Utility_h */

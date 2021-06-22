@@ -9,17 +9,13 @@
 #ifndef State_hpp
 #define State_hpp
 
-
-#include <memory>
-
+#include "ResourceIdentifiers.hpp"
+#include "StateIdentifiers.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
 
-
-#include "ResourceHolder.hpp"
-#include "Settings.h"
-
+#include <memory>
 
 
 namespace sf

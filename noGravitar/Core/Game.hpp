@@ -9,17 +9,14 @@
 #ifndef Game_hpp
 #define Game_hpp
 
-#include <SFML/System/Time.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-
-
 #include "ResourceHolder.hpp"
+#include "../ResourceIdentifiers.hpp"
 #include "Player.hpp"
-#include "World.hpp"
 #include "StateStack.hpp"
 
+#include <SFML/System/Time.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 
 class Game : private sf::NonCopyable
@@ -37,17 +34,19 @@ private:
     void                registerStates();
     
 private:    
+    static const sf::Time
+                        TimePerFrame;
+
     sf::RenderWindow    mWindow;
+    TextureHolder       mTextures;
+    FontHolder          mFonts;
     
     Player              mPlayer;
     
-    TextureHolder       mTextures;
-    FontHolder          mFonts;
-    sf::Text            mStatisticsText;
-    
     StateStack          mStateStack;
-    
-    static const sf::Time
-                        TimePerFrame;
+
+    sf::Text            mStatisticsText;
+    sf::Time            mStatisticsUpdateTime;
+    std::size_t         mStatisticsNumFrames;
 };
 #endif /* Game_hpp */

@@ -20,6 +20,12 @@ namespace Category
         PlayerShip          = 1 << 1,
         AlliedShip          = 1 << 2,
         EnemyShip           = 1 << 3,
+        Pickup              = 1 << 4,
+        AlliedProjectile    = 1 << 5,
+        EnemyProjectile     = 1 << 6,
+
+        Aircraft = PlayerShip | AlliedShip | EnemyShip,
+        Projectile = AlliedProjectile | EnemyProjectile,
     };
 }
 
