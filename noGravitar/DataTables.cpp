@@ -22,7 +22,7 @@ std::vector<SpaceshipData> initializeSpaceshipData()
     std::vector<SpaceshipData> data(Spaceship::Typecount);
 
     data[Spaceship::Old_Fart].life = 100;
-    data[Spaceship::Old_Fart].speed = 400.f;
+    data[Spaceship::Old_Fart].speed = 600.f;
     data[Spaceship::Old_Fart].fireInterval = sf::seconds(0.7f);
     data[Spaceship::Old_Fart].texture = Textures::Eagle;
 

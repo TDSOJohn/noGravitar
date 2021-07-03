@@ -53,8 +53,8 @@ World::World(sf::RenderWindow& window, FontHolder& fonts) :
     mTextures(),
     mSceneGraph(),
     mSceneLayers(),
-    mWorldBounds(0.f, 0.f, window.getSize().x, window.getSize().y),
-    mSpawnPosition(mWorldView.getSize().x / 2.f, mWorldBounds.height - mWorldView.getSize().y / 2.f),
+    mWorldBounds(0.f, 0.f, window.getSize().x, 4000.f),
+    mSpawnPosition(mWorldView.getSize().x / 2.f, mWorldBounds.height - (mWorldView.getSize().y / 2.f)),
     mPlayerSpaceship(nullptr),
     mEnemySpawnPoints(),
     mActiveEnemies()
@@ -69,7 +69,7 @@ World::World(sf::RenderWindow& window, FontHolder& fonts) :
 void World::update(sf::Time dt)
 {
     mPlayerSpaceship->setVelocity(0.f, 0.f);
-    mWorldView.move(mPlayerSpaceship->getPosition() - mWorldView.getCenter());
+    mWorldView.move(0.f, mPlayerSpaceship->getPosition().y - mWorldView.getCenter().y);
 
     // Setup commands to destroy entities and guide missiles
     destroyEntitiesOutsideView();
@@ -130,9 +130,9 @@ void World::loadTextures()
     mTextures.load(Textures::Fuel,           resourcePath() + "fuel.png");
     mTextures.load(Textures::Enemy_1,        resourcePath() + "enemy1.png");
     mTextures.load(Textures::Enemy_2,        resourcePath() + "enemy2.png");
-    mTextures.load(Textures::Bullet_1,       resourcePath() + "bullet.png");
-    mTextures.load(Textures::Bullet_2,       resourcePath() + "bullet.png");
-    mTextures.load(Textures::Bullet_3,       resourcePath() + "bullet.png");
+    mTextures.load(Textures::Bullet_1,       resourcePath() + "bullet_1.png");
+    mTextures.load(Textures::Bullet_2,       resourcePath() + "bullet_2.png");
+    mTextures.load(Textures::Bullet_3,       resourcePath() + "bullet_3.png");
 }
 
 void World::adaptPlayerPosition()
@@ -241,16 +241,16 @@ void World::addEnemies()
     int spawn_x, spawn_y;
     spawn_x = spawn_y = 0;
     // Add enemies to the spawn point container
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 6; i++)
     {
-        spawn_x = randomInt(mWindow.getSize().x - 600) + 300;
-        spawn_y = randomInt(mWindow.getSize().y - 600) + 300;
+        spawn_x = randomInt(mWorldBounds.width - 300);
+        spawn_y = randomInt(mWorldBounds.height - 900) + 300;
         addEnemy(Spaceship::Enemy_1, spawn_x, spawn_y);
     }
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 5; i++)
     {
-        spawn_x = randomInt(mWindow.getSize().x - 600) + 300;
-        spawn_y = randomInt(mWindow.getSize().y - 600) + 300;
+        spawn_x = randomInt(mWorldBounds.width - 600);
+        spawn_y = randomInt(mWorldBounds.height - 900) + 300;
         addEnemy(Spaceship::Enemy_2, spawn_x, spawn_y);
     }
 

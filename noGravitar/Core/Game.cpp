@@ -25,7 +25,7 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 
 Game::Game() :
-    mWindow(sf::VideoMode(1000, 3000), "Gravitar", sf::Style::Close),
+    mWindow(sf::VideoMode(1000, 1000), "Gravitar", sf::Style::Close),
     mTextures(),
     mFonts(),
     mStateStack(State::Context(mWindow, mTextures, mFonts, mPlayer)),
