@@ -131,7 +131,7 @@ bool Spaceship::isMarkedForRemoval() const
 
 bool Spaceship::isAllied() const
 {
-    return mType == Old_Fart;
+    return (mType == Old_Fart || mType == Flying_Hippo || mType == Speed_Junkie || mType == Psychedelic_Space_Teapot);
 }
 
 float Spaceship::getMaxSpeed() const

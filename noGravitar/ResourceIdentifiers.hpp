@@ -22,8 +22,7 @@ namespace Textures
         TitleBar,
         Title,
         
-        ssBackground,
-        pBackground,
+        Background,
         Planet,
         Raptor,
         Eagle,

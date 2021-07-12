@@ -118,21 +118,20 @@ bool World::hasPlayerReachedEnd() const
 
 void World::loadTextures()
 {
-    mTextures.load(Textures::Won,            resourcePath() + "youWon.png");
-    mTextures.load(Textures::Lost,           resourcePath() + "youLost.png");
+    mTextures.load(Textures::Won,           resourcePath() + "youWon.png");
+    mTextures.load(Textures::Lost,          resourcePath() + "youLost.png");
     
-    mTextures.load(Textures::ssBackground,   resourcePath() + "ssBackground.png");
-    mTextures.load(Textures::pBackground,    resourcePath() + "pBackground.png");
-    mTextures.load(Textures::Planet,         resourcePath() + "planet.png");
-    mTextures.load(Textures::Eagle,          resourcePath() + "spaceship.png");
-    mTextures.load(Textures::Raptor,         resourcePath() + "spaceship.png");
-    mTextures.load(Textures::Hook,           resourcePath() + "hook.png");
-    mTextures.load(Textures::Fuel,           resourcePath() + "fuel.png");
-    mTextures.load(Textures::Enemy_1,        resourcePath() + "enemy1.png");
-    mTextures.load(Textures::Enemy_2,        resourcePath() + "enemy2.png");
-    mTextures.load(Textures::Bullet_1,       resourcePath() + "bullet_1.png");
-    mTextures.load(Textures::Bullet_2,       resourcePath() + "bullet_2.png");
-    mTextures.load(Textures::Bullet_3,       resourcePath() + "bullet_3.png");
+    mTextures.load(Textures::Background,    resourcePath() + "Background.png");
+    mTextures.load(Textures::Planet,        resourcePath() + "planet.png");
+    mTextures.load(Textures::Eagle,         resourcePath() + "spaceship.png");
+    mTextures.load(Textures::Raptor,        resourcePath() + "spaceship.png");
+    mTextures.load(Textures::Hook,          resourcePath() + "hook.png");
+    mTextures.load(Textures::Fuel,          resourcePath() + "fuel.png");
+    mTextures.load(Textures::Enemy_1,       resourcePath() + "enemy1.png");
+    mTextures.load(Textures::Enemy_2,       resourcePath() + "enemy2.png");
+    mTextures.load(Textures::Bullet_1,      resourcePath() + "bullet_1.png");
+    mTextures.load(Textures::Bullet_2,      resourcePath() + "bullet_2.png");
+    mTextures.load(Textures::Bullet_3,      resourcePath() + "bullet_3.png");
 }
 
 void World::adaptPlayerPosition()
@@ -217,7 +216,7 @@ void World::buildScene()
     }
 
     // Prepare the tiled background
-    sf::Texture& texture = mTextures.get(Textures::ssBackground);
+    sf::Texture& texture = mTextures.get(Textures::Background);
     sf::IntRect textureRect(mWorldBounds);
     texture.setRepeated(true);
 
@@ -227,7 +226,7 @@ void World::buildScene()
     mSceneLayers[DeepSpace]->attachChild(std::move(backgroundSprite));
 
     // Add player's spaceship
-    std::unique_ptr<Spaceship> player(new Spaceship(Spaceship::Old_Fart, mTextures, mFonts));
+    std::unique_ptr<Spaceship> player(new Spaceship(Spaceship::Speed_Junkie, mTextures, mFonts));
     mPlayerSpaceship = player.get();
     mPlayerSpaceship->setPosition(mSpawnPosition);
     mSceneLayers[Space]->attachChild(std::move(player));
