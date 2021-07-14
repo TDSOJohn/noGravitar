@@ -33,7 +33,7 @@ Spaceship::Spaceship(Type type, const TextureHolder& textures, const FontHolder&
     mIsFiring(false),
     mIsLaunchingMissile(false),
     mIsMarkedForRemoval(false),
-    mSprite(textures.get(Table[type].texture)),
+    mSprite(textures.get(Table[type].texture), Table[type].textureRect),
     mFireRateLevel(1),
     mSpreadLevel(2),
     mMissileAmmo(2),

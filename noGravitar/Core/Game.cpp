@@ -25,7 +25,7 @@ const sf::Time Game::TimePerFrame = sf::seconds(1.f/60.f);
 
 
 Game::Game() :
-    mWindow(sf::VideoMode(1000, 1000), "Gravitar", sf::Style::Close),
+    mWindow(sf::VideoMode(1000, 1600), "Gravitar", sf::Style::Close),
     mTextures(),
     mFonts(),
     mStateStack(State::Context(mWindow, mTextures, mFonts, mPlayer)),
@@ -34,6 +34,9 @@ Game::Game() :
     mStatisticsNumFrames(0)
 {
     mWindow.setKeyRepeatEnabled(false);
+    
+    //  CPU usage drops from 20-30% to 5-8%
+    mWindow.setFramerateLimit(60.f);
     
     mFonts.load(Fonts::Mono, resourcePath() + "andaleMono.ttf");
     

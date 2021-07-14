@@ -14,6 +14,7 @@
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Rect.hpp>
 
 #include <vector>
 #include <functional>
@@ -38,6 +39,7 @@ struct SpaceshipData
     int                     life;
     float                   speed;
     Textures::ID            texture;
+    sf::IntRect             textureRect;
     sf::Time                fireInterval;
     std::vector<Direction>  directions;
 };

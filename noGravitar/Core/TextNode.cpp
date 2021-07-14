@@ -16,6 +16,7 @@ TextNode::TextNode(const FontHolder& fonts, const std::string& text)
 {
     mText.setFont(fonts.get(Fonts::Mono));
     mText.setCharacterSize(20);
+    mText.setFillColor(sf::Color::Black);
     setString(text);
 }
 

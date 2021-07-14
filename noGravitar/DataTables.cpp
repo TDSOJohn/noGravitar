@@ -25,30 +25,37 @@ std::vector<SpaceshipData> initializeSpaceshipData()
     data[Spaceship::Old_Fart].speed = 600.f;
     data[Spaceship::Old_Fart].fireInterval = sf::seconds(0.7f);
     data[Spaceship::Old_Fart].texture = Textures::Eagle;
+    data[Spaceship::Old_Fart].textureRect = sf::IntRect(0, 0, 64, 119);
 
     data[Spaceship::Flying_Hippo].life = 150;
     data[Spaceship::Flying_Hippo].speed = 350.f;
     data[Spaceship::Flying_Hippo].fireInterval = sf::seconds(1);
     data[Spaceship::Flying_Hippo].texture = Textures::Eagle;
+    data[Spaceship::Flying_Hippo].textureRect = sf::IntRect(0, 0, 64, 119);
 
     data[Spaceship::Speed_Junkie].life = 70;
     data[Spaceship::Speed_Junkie].speed = 700.f;
     data[Spaceship::Speed_Junkie].fireInterval = sf::seconds(1);
     data[Spaceship::Speed_Junkie].texture = Textures::Eagle;
+    data[Spaceship::Speed_Junkie].textureRect = sf::IntRect(0, 0, 64, 119);
 
     data[Spaceship::Psychedelic_Space_Teapot].life = 130;
     data[Spaceship::Psychedelic_Space_Teapot].speed = 400.f;
     data[Spaceship::Psychedelic_Space_Teapot].fireInterval = sf::seconds(1);
     data[Spaceship::Psychedelic_Space_Teapot].texture = Textures::Eagle;
+    data[Spaceship::Psychedelic_Space_Teapot].textureRect = sf::IntRect(0, 0, 64, 119);
 
     data[Spaceship::Enemy_1].life = 60;
     data[Spaceship::Enemy_1].speed = 300.f;
     data[Spaceship::Enemy_1].fireInterval = sf::seconds(1.3f);
     data[Spaceship::Enemy_1].texture = Textures::Enemy_1;
+    data[Spaceship::Enemy_1].textureRect = sf::IntRect(0, 0, 65, 64);
+
     data[Spaceship::Enemy_1].directions.push_back(Direction(180.f, 300.f));
     data[Spaceship::Enemy_1].directions.push_back(Direction(270.f, 300.f));
     data[Spaceship::Enemy_1].directions.push_back(Direction(0.f, 300.f));
     data[Spaceship::Enemy_1].directions.push_back(Direction(90.f, 300.f));
+    data[Spaceship::Enemy_1].textureRect = sf::IntRect(0, 0, 65, 64);
 
     data[Spaceship::Enemy_2].life = 40;
     data[Spaceship::Enemy_2].speed = 500.f;
@@ -57,6 +64,7 @@ std::vector<SpaceshipData> initializeSpaceshipData()
     data[Spaceship::Enemy_2].directions.push_back(Direction(240.f, 300.f));
     data[Spaceship::Enemy_2].directions.push_back(Direction(120.f, 300.f));
     data[Spaceship::Enemy_2].directions.push_back(Direction(0.f, 300.f));
+    data[Spaceship::Enemy_2].textureRect = sf::IntRect(0, 0, 65, 64);
 
     return data;
 }

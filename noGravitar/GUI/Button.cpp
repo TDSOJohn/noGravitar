@@ -31,6 +31,7 @@ Button::Button(const FontHolder& fonts, const TextureHolder& textures):
 
     sf::FloatRect bounds = mSprite.getLocalBounds();
     mText.setPosition(bounds.width / 2.f, bounds.height / 2.f);
+//    mText.setFillColor(sf::Color::Black);
 }
 
 void Button::setCallback(Callback callback)
